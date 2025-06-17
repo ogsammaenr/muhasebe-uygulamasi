@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.ogsammaenr.muhasebeuygulamasi.MainApplication">
    <children>
       <MenuBar layoutX="18.0" layoutY="12.0" prefHeight="30.0" styleClass="menu_bar" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <menus>
@@ -203,7 +203,7 @@
                               <Label layoutX="120.0" layoutY="13.0" prefHeight="25.0" prefWidth="80.0" styleClass="subtitle" stylesheets="@style.css" text="TL/m²" />
                            </children>
                         </Group>
-                        <Button fx:id="btn_save" layoutX="234.0" layoutY="529.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Kaydet" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+                        <Button fx:id="btn_save" layoutX="234.0" layoutY="529.0" mnemonicParsing="false" onAction="#onSaveClick" prefHeight="30.0" prefWidth="60.0" text="Kaydet" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
                      </children>
                   </AnchorPane>
                </children>

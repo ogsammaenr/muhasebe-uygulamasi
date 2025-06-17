@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import me.ogsammaenr.muhasebeuygulamasi.util.Utils;
@@ -63,18 +62,6 @@ public class NewProductController {
         containerVBox.getChildren().remove(unit);
     }
 
-    @FXML
-    private TextField txt_measureX;
-    @FXML
-    private TextField txt_measureY;
-    @FXML
-    private TextField txt_measureZ;
-    @FXML
-    private TextField txt_count;
-    @FXML
-    private TextField txt_patternTime;
-    @FXML
-    private TextField txt_drillTime;
     @FXML
     private Button addUnit;
     @FXML
