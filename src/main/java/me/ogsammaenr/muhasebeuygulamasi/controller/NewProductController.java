@@ -99,7 +99,12 @@ public class NewProductController {
             System.out.println("FXML URL: " + fxmlUrl);
             FXMLLoader loader = new FXMLLoader(fxmlUrl);
 
+
             Parent newProductView = loader.load();
+
+            NewProductController2 controller = loader.getController();
+            controller.setUnitsManager(unitsManager);
+
             Stage stage = new Stage();
             stage.setTitle("Product Muhasebe Uygulamasi");
             stage.setAlwaysOnTop(true);
@@ -136,9 +141,12 @@ public class NewProductController {
             } else {
                 int value = Integer.parseInt(str);
             }
-            node.setStyle("-fx-text-fill: black;");
-            if (str.endsWith("f") || str.endsWith("F"))
+            if (str.endsWith("f") || str.endsWith("F")) {
                 node.setStyle("-fx-text-fill: red;");
+                return;
+            }
+            node.setStyle("-fx-text-fill: black;");
+
         } catch (Exception e) {
             node.setStyle("-fx-text-fill: red;");
         }

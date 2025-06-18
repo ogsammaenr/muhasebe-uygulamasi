@@ -6,13 +6,27 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.InputMethodEvent;
+import javafx.scene.layout.VBox;
+import me.ogsammaenr.muhasebeuygulamasi.manager.UnitsManager;
+import me.ogsammaenr.muhasebeuygulamasi.model.Unit;
+
+import java.util.Map;
 
 public class NewProductController2 {
+
+    private Map<String, Unit> unitMap;
+
+    private UnitsManager unitsManager;
+    private double totalTime;
+    private double totalArea;
 
     @FXML
     public void initialize() {
         setupListeners();
+    }
 
+    public void setUnitsManager(UnitsManager unitsManager) {
+        this.unitsManager = unitsManager;
     }
 
     @FXML
@@ -22,12 +36,8 @@ public class NewProductController2 {
 
     @FXML
     public void onKesimChange(InputMethodEvent e) {
-        if (txt_kesimFiyat.getStyle().contains("-fx-text-fill: red")) {
+        if (txt_kesimFiyat.getStyle().equals("-fx-text-fill: red")) {
             System.out.println("işlem yapılmaz");
-            return;
-        }
-        if (txt_kesimFiyat.getText().isEmpty()) {
-            System.out.println("işlem yapılamaz");
             return;
         }
 
@@ -108,7 +118,8 @@ public class NewProductController2 {
         txt_tutkalFiyat.textProperty().addListener((observable, oldValue, newValue) -> handleCheckValues(txt_tutkalFiyat));
     }
 
-    private void printUnitInfos() {
+    private void addUnitInfos() {
+
 
     }
 
@@ -117,6 +128,11 @@ public class NewProductController2 {
             String str = node.getText();
             double value = Double.parseDouble(str);
 
+            if (str.endsWith("f") || str.endsWith("F")) {
+                node.setStyle("-fx-text-fill: red;");
+                return;
+            }
+            
             node.setStyle("-fx-text-fill: black;");
         } catch (Exception e) {
             node.setStyle("-fx-text-fill: red;");
@@ -202,4 +218,8 @@ public class NewProductController2 {
     private Label lbl_birimKar;
     @FXML
     private Button btn_save;
+    @FXML
+    private VBox hammaddeVBox;
+    @FXML
+    private VBox mainVBox;
 }
