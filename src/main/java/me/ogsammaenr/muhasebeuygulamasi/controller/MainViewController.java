@@ -12,6 +12,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import me.ogsammaenr.muhasebeuygulamasi.MainApplication;
 
@@ -47,7 +48,8 @@ public class MainViewController {
 
                 Stage stage = new Stage();
                 stage.setTitle("Product Muhasebe Uygulamasi");
-                stage.setAlwaysOnTop(true);
+                stage.initOwner(MainApplication.getInstance().getStage());
+                stage.initModality(Modality.WINDOW_MODAL);
                 stage.setMinWidth(550);
                 stage.setMinHeight(300);
                 stage.setScene(new Scene(newProductView));
