@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
 
 public class NewProductController2 {
 
@@ -31,6 +32,78 @@ public class NewProductController2 {
     public void onSaveClick(ActionEvent event) {
 
     }
+
+    @FXML
+    public void onKesimChange(InputMethodEvent e) {
+        if (txt_kesimFiyat.getStyle().contains("-fx-text-fill: red")) {
+            System.out.println("işlem yapılmaz");
+            return;
+        }
+        if (txt_kesimFiyat.getText().isEmpty()) {
+            System.out.println("işlem yapılamaz");
+            return;
+        }
+
+        System.out.println("işlem yapıldı");
+
+
+    }
+
+    @FXML
+    public void onCncChange(InputMethodEvent e) {
+
+    }
+
+    @FXML
+    public void onKalinlastirmaChange(InputMethodEvent e) {
+
+    }
+
+    @FXML
+    public void onKarChange(InputMethodEvent e) {
+
+    }
+
+    @FXML
+    public void onPaletlemeChange(InputMethodEvent e) {
+
+    }
+
+    @FXML
+    public void onPvcChange(InputMethodEvent e) {
+
+    }
+
+    @FXML
+    public void onZimparaIscilikChange(InputMethodEvent e) {
+
+    }
+
+    @FXML
+    public void onZimparaChange(InputMethodEvent e) {
+
+    }
+
+    @FXML
+    public void onTutkalChange(InputMethodEvent e) {
+
+    }
+
+    @FXML
+    public void onBasimIscilikChange(InputMethodEvent e) {
+
+    }
+
+    @FXML
+    public void onAmbalajChange(InputMethodEvent e) {
+
+    }
+
+    @FXML
+    public void onNakliyeChange(InputMethodEvent e) {
+
+    }
+    
 
     private void handleCheckValues(TextField node) {
         try {

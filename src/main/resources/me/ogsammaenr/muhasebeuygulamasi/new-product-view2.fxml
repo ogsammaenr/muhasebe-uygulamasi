@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.ogsammaenr.muhasebeuygulamasi.controller.NewProductController2">
    <children>
       <MenuBar layoutX="18.0" layoutY="12.0" prefHeight="30.0" styleClass="menu_bar" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -79,77 +78,77 @@
                            <children>
                               <Label prefHeight="25.0" prefWidth="150.0" styleClass="subtitle" stylesheets="@style.css" text="Kesim (Plaka)  :" />
                               <Label fx:id="lbl_kesimFiyatBirim" layoutX="250.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" />
-                              <TextField fx:id="txt_kesimFiyat" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
+                              <TextField fx:id="txt_kesimFiyat" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" onInputMethodTextChanged="#onKesimChange" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
                            </children>
                         </Group>
                         <Group>
                            <children>
                               <Label prefHeight="25.0" prefWidth="150.0" styleClass="subtitle" stylesheets="@style.css" text="CNC (dk)  :" />
                               <Label fx:id="lbl_CNCFiyatBirim" layoutX="250.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" />
-                              <TextField fx:id="txt_CNCFiyat" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
+                              <TextField fx:id="txt_CNCFiyat" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" onInputMethodTextChanged="#onCncChange" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
                            </children>
                         </Group>
                         <Group>
                            <children>
                               <Label prefHeight="25.0" prefWidth="150.0" styleClass="subtitle" stylesheets="@style.css" text="Zımpara İşçilik (m²)  :" />
                               <Label fx:id="lbl_zimparaIscilikBirim" layoutX="250.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" />
-                              <TextField fx:id="txt_zimparaIscilik" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
+                              <TextField fx:id="txt_zimparaIscilik" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" onInputMethodTextChanged="#onZimparaIscilikChange" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
                            </children>
                         </Group>
                         <Group>
                            <children>
                               <Label prefHeight="25.0" prefWidth="150.0" styleClass="subtitle" stylesheets="@style.css" text="Zımpara (m²)  :" />
                               <Label fx:id="lbl_zimparaFiyatBirim" layoutX="250.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" />
-                              <TextField fx:id="txt_zimparaFiyat" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
+                              <TextField fx:id="txt_zimparaFiyat" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" onInputMethodTextChanged="#onZimparaChange" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
                            </children>
                         </Group>
                         <Group>
                            <children>
                               <Label prefHeight="25.0" prefWidth="150.0" styleClass="subtitle" stylesheets="@style.css" text="Paletleme İşçilik (m²)  :" />
                               <Label fx:id="lbl_paletIscilikBirim" layoutX="250.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" />
-                              <TextField fx:id="txt_paletIscilik" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
+                              <TextField fx:id="txt_paletIscilik" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" onInputMethodTextChanged="#onPaletlemeChange" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
                            </children>
                         </Group>
                         <Group>
                            <children>
                               <Label prefHeight="25.0" prefWidth="150.0" styleClass="subtitle" stylesheets="@style.css" text="Tutkal (m²)  :" />
                               <Label fx:id="lbl_tutkalFiyatBirim" layoutX="250.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" />
-                              <TextField fx:id="txt_tutkalFiyat" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
+                              <TextField fx:id="txt_tutkalFiyat" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" onInputMethodTextChanged="#onTutkalChange" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
                            </children>
                         </Group>
                         <Group>
                            <children>
                               <Label prefHeight="25.0" prefWidth="150.0" styleClass="subtitle" stylesheets="@style.css" text="PVC (m²)  :" />
                               <Label fx:id="lbl_PVCBirim" layoutX="250.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" />
-                              <TextField fx:id="txt_PVC" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
+                              <TextField fx:id="txt_PVC" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" onInputMethodTextChanged="#onPvcChange" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
                            </children>
                         </Group>
                         <Group>
                            <children>
                               <Label prefHeight="25.0" prefWidth="150.0" styleClass="subtitle" stylesheets="@style.css" text="Basım İşçilik (m²)  :" />
                               <Label fx:id="lbl_basimIscilikBirim" layoutX="250.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" />
-                              <TextField fx:id="txt_basimIscilik" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
+                              <TextField fx:id="txt_basimIscilik" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" onInputMethodTextChanged="#onBasimIscilikChange" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
                            </children>
                         </Group>
                         <Group>
                            <children>
                               <Label prefHeight="25.0" prefWidth="150.0" styleClass="subtitle" stylesheets="@style.css" text="Ambalaj (m²)  :" />
                               <Label fx:id="lbl_ambalajBirim" layoutX="250.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" />
-                              <TextField fx:id="txt_ambalaj" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
+                              <TextField fx:id="txt_ambalaj" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" onInputMethodTextChanged="#onAmbalajChange" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
                            </children>
                         </Group>
                         <Group>
                            <children>
                               <Label prefHeight="25.0" prefWidth="150.0" styleClass="subtitle" stylesheets="@style.css" text="Nakliye (m²)  :" />
                               <Label fx:id="lbl_nakliyeBirim" layoutX="250.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" />
-                              <TextField fx:id="txt_nakliye" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
+                              <TextField fx:id="txt_nakliye" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" onInputMethodTextChanged="#onNakliyeChange" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
                            </children>
                         </Group>
                         <Group>
                            <children>
                               <Label prefHeight="25.0" prefWidth="150.0" styleClass="subtitle" stylesheets="@style.css" text="Kalınlaştırma İşçilik  :" />
                               <Label fx:id="lbl_kalinlastirmaIscilikBirim" layoutX="250.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" />
-                              <TextField fx:id="txt_kalinlastirmaIscilik" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
+                              <TextField fx:id="txt_kalinlastirmaIscilik" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" onInputMethodTextChanged="#onKalinlastirmaChange" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
                            </children>
                         </Group>
                         <Group>
@@ -157,7 +156,7 @@
                               <Label layoutY="-8.0" prefHeight="10.0" prefWidth="10.0" />
                               <Label layoutY="10.0" prefHeight="25.0" prefWidth="150.0" styleClass="subtitle" stylesheets="@style.css" text="Kar  :" />
                               <Label fx:id="lbl_karBirim" layoutX="250.0" layoutY="10.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" />
-                              <TextField fx:id="txt_karOran" layoutX="150.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
+                              <TextField fx:id="txt_karOran" layoutX="150.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" onInputMethodTextChanged="#onKarChange" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
                            </children>
                         </Group>
                      </children>
