@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -21,11 +22,10 @@ public class NewProductController {
     private Map<String, Group> units;
     private int unitCounter = 1;
 
-
     @FXML
+
     public void initialize() {
         this.units = new HashMap<>();
-
         units.put("Unit-1", textGroup);
         parentPane.widthProperty().addListener((obs, oldVal, newVal) -> {
             double centerX = newVal.doubleValue() / 2;
@@ -44,7 +44,6 @@ public class NewProductController {
         int insertIndex = Math.max(containerVBox.getChildren().size() - 1, 0);
         containerVBox.getChildren().add(insertIndex, newGroup);
 
-
         Button btn = (Button) newGroup.getChildren().getLast();
 
         System.out.println(newGroup.getId());
@@ -52,6 +51,13 @@ public class NewProductController {
             System.out.println(node.getId());
         }
         btn.setOnAction(e -> handleDeleteUnit(newGroup));
+
+        for (var node : newGroup.getChildren()) {
+            if (node instanceof TextField) {
+                ((TextField) node).textProperty().addListener((observable, oldValue, newValue) -> handlecheckValues((TextField) node));
+            }
+        }
+
     }
 
     @FXML
@@ -84,6 +90,17 @@ public class NewProductController {
     private void handleDeleteUnit(@NotNull Group unit) {
         units.remove(unit.getId());
         containerVBox.getChildren().remove(unit);
+    }
+
+    private void handlecheckValues(TextField node) {
+        try {
+            String str = node.getText();
+            double value = Double.parseDouble(str);
+
+            node.setStyle("-fx-text-fill: black;");
+        } catch (Exception e) {
+            node.setStyle("-fx-text-fill: red;");
+        }
     }
 
     @FXML
