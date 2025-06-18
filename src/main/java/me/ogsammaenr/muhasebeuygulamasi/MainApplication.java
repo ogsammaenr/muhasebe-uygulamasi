@@ -45,21 +45,6 @@ public class MainApplication extends Application {
         launch();
     }
 
-    public ContextMenu getContextMenu() {
-        return contextMenu;
-    }
-
-    public MenuItem getDeleteItem() {
-        return deleteItem;
-    }
-
-    public MenuItem getEditItem() {
-        return editItem;
-    }
-
-    public Parent getNewProductView() {
-        return newProductView;
-    }
 
     public Stage getStage() {
         return stage;

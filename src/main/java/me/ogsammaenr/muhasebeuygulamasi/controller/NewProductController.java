@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import me.ogsammaenr.muhasebeuygulamasi.manager.UnitsManager;
 import me.ogsammaenr.muhasebeuygulamasi.model.Unit;
 import me.ogsammaenr.muhasebeuygulamasi.util.Utils;
 import org.jetbrains.annotations.NotNull;
@@ -22,14 +23,14 @@ import java.util.Map;
 
 public class NewProductController {
     private Map<String, Group> units;
-    private Map<String, Unit> unitMap;
+
+    private UnitsManager unitsManager;
 
     private int unitCounter = 2;
 
     @FXML
-
     public void initialize() {
-        this.unitMap = new HashMap<>();
+        unitsManager = new UnitsManager();
 
         this.units = new HashMap<>();
         units.put("Unit-1", textGroup);
@@ -59,15 +60,13 @@ public class NewProductController {
 
         System.out.println(newGroup.getId());
         for (var node : newGroup.getChildren()) {
+            if (node instanceof TextField textField) {
+                textField.textProperty().addListener((observable, oldValue, newValue) -> handlecheckValues((TextField) node));
+            }
             System.out.println(node.getId());
         }
         btn.setOnAction(e -> handleDeleteUnit(newGroup));
 
-        for (var node : newGroup.getChildren()) {
-            if (node instanceof TextField textField) {
-                textField.textProperty().addListener((observable, oldValue, newValue) -> handlecheckValues((TextField) node));
-            }
-        }
 
     }
 
@@ -87,11 +86,11 @@ public class NewProductController {
                     alert.setContentText("Lütfen geçerli ve düzgün değerler girin.");
                     alert.showAndWait();
 
-                    units.clear();
                     return;
                 }
             }
-            addUnitByGroup(units.get(id));
+
+            unitsManager.addUnit(getUnitByGroup(units.get(id)));
 
         }
 
@@ -108,6 +107,9 @@ public class NewProductController {
             stage.setMinHeight(600);
             stage.setScene(new Scene(newProductView));
             stage.show();
+
+            Stage stg = (Stage) next.getScene().getWindow();
+            stg.close();
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -142,16 +144,22 @@ public class NewProductController {
         }
     }
 
-    private void addUnitByGroup(Group group) {
-        String unitId = group.getId();
-        double measurex = Double.parseDouble(group.getChildren().get(0).getAccessibleText());
-        double measurey = Double.parseDouble(group.getChildren().get(1).getAccessibleText());
-        double measurez = Double.parseDouble(group.getChildren().get(2).getAccessibleText());
-        int count = Integer.parseInt(group.getChildren().get(3).getAccessibleText());
-        double patternTime = Double.parseDouble(group.getChildren().get(4).getAccessibleText());
-        double drillTime = Double.parseDouble(group.getChildren().get(5).getAccessibleText());
+    private Unit getUnitByGroup(Group group) {
+        TextField tfMeasureX = (TextField) group.getChildren().get(0);
+        TextField tfMeasureY = (TextField) group.getChildren().get(1);
+        TextField tfMeasureZ = (TextField) group.getChildren().get(2);
+        TextField tfCount = (TextField) group.getChildren().get(3);
+        TextField tfPatternTime = (TextField) group.getChildren().get(4);
+        TextField tfDrillTime = (TextField) group.getChildren().get(5);
 
-        Unit unit = new Unit(unitId, measurex, measurey, measurez, count, patternTime, drillTime);
+        double measurex = Double.parseDouble(tfMeasureX.getText());
+        double measurey = Double.parseDouble(tfMeasureY.getText());
+        double measurez = Double.parseDouble(tfMeasureZ.getText());
+        int count = Integer.parseInt(tfCount.getText());
+        double patternTime = Double.parseDouble(tfPatternTime.getText());
+        double drillTime = Double.parseDouble(tfDrillTime.getText());
+
+        return new Unit(group.getId(), measurex, measurey, measurez, count, patternTime, drillTime);
 
     }
 
