@@ -57,7 +57,7 @@
                               <Label layoutX="95.0" prefHeight="30.0" prefWidth="95.0" styleClass="subtitle" stylesheets="@style.css" text="m²" />
                            </children>
                         </Group>
-                        <Group>
+                        <Group fx:id="hammaddeBilgiGroup" visible="false">
                            <children>
                               <Label fx:id="lbl_hammadde" prefHeight="25.0" prefWidth="95.0" styleClass="subcost_display" stylesheets="@style.css" />
                               <Label fx:id="lbl_hammaddeAlan" layoutX="95.0" prefHeight="25.0" prefWidth="95.0" styleClass="subcost_display" stylesheets="@style.css" />
@@ -78,14 +78,14 @@
                            <children>
                               <Label prefHeight="25.0" prefWidth="150.0" styleClass="subtitle" stylesheets="@style.css" text="Kesim (Plaka)  :" />
                               <Label fx:id="lbl_kesimFiyatBirim" layoutX="250.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" />
-                              <TextField fx:id="txt_kesimFiyat" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" onInputMethodTextChanged="#onKesimChange" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
+                              <TextField fx:id="txt_kesimFiyat" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#onKesimChange" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
                            </children>
                         </Group>
                         <Group>
                            <children>
                               <Label prefHeight="25.0" prefWidth="150.0" styleClass="subtitle" stylesheets="@style.css" text="CNC (dk)  :" />
                               <Label fx:id="lbl_CNCFiyatBirim" layoutX="250.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" />
-                              <TextField fx:id="txt_CNCFiyat" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
+                              <TextField fx:id="txt_CNCFiyat" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#onCncChange" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
                            </children>
                         </Group>
                         <Group>

@@ -2,14 +2,18 @@ package me.ogsammaenr.muhasebeuygulamasi.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import me.ogsammaenr.muhasebeuygulamasi.manager.UnitsManager;
 import me.ogsammaenr.muhasebeuygulamasi.model.Unit;
+import me.ogsammaenr.muhasebeuygulamasi.util.Utils;
 
+import java.util.List;
 import java.util.Map;
 
 public class NewProductController2 {
@@ -23,10 +27,15 @@ public class NewProductController2 {
     @FXML
     public void initialize() {
         setupListeners();
+
     }
 
     public void setUnitsManager(UnitsManager unitsManager) {
         this.unitsManager = unitsManager;
+        totalTime = unitsManager.getTotalTime();
+        totalArea = unitsManager.getTotalArea();
+
+        addHammaddeGroups();
     }
 
     @FXML
@@ -35,20 +44,33 @@ public class NewProductController2 {
     }
 
     @FXML
-    public void onKesimChange(InputMethodEvent e) {
-        if (txt_kesimFiyat.getStyle().equals("-fx-text-fill: red")) {
+    public void onKesimChange(KeyEvent event) {
+        if (txt_kesimFiyat.getStyle().equals("-fx-text-fill: red;")) {
             System.out.println("işlem yapılmaz");
             return;
         }
+        if (txt_kesimFiyat.getText().isEmpty()) {
+            lbl_kesimFiyatBirim.setText("");
+            return;
+        }
 
+        double birimFiyat = (Double.parseDouble(txt_kesimFiyat.getText()) / 5.88) * totalArea;
+
+        lbl_kesimFiyatBirim.setText(String.valueOf(Utils.round(birimFiyat, 2)));
         System.out.println("işlem yapıldı");
-
 
     }
 
     @FXML
-    public void onCncChange(InputMethodEvent e) {
+    public void onCncChange(KeyEvent e) {
+        if (txt_CNCFiyat.getStyle().equals("-fx-text-fill: red;")) return;
+        if (txt_CNCFiyat.getText().isEmpty()) {
+            lbl_CNCFiyatBirim.setText("");
+            return;
+        }
 
+        double birimfiyat = Double.parseDouble(txt_CNCFiyat.getText()) * totalTime;
+        lbl_CNCFiyatBirim.setText(String.valueOf(Utils.round(birimfiyat, 2)));
     }
 
     @FXML
@@ -118,21 +140,36 @@ public class NewProductController2 {
         txt_tutkalFiyat.textProperty().addListener((observable, oldValue, newValue) -> handleCheckValues(txt_tutkalFiyat));
     }
 
-    private void addUnitInfos() {
+    private void addHammaddeGroups() {
+        List<Double> allThickness = unitsManager.getAllThickness();
 
+        for (double thickness : allThickness) {
+            Group group = Utils.copyGroup(hammaddeBilgiGroup);
 
+            Label hammadde = (Label) group.getChildren().get(0);
+            Label alan = (Label) group.getChildren().get(1);
+
+            hammadde.setText("MDF " + Utils.round(thickness, 0));
+            alan.setText("" + unitsManager.thicnessToArea(thickness));
+
+            hammaddeVBox.getChildren().add(1, group);
+        }
     }
 
     private void handleCheckValues(TextField node) {
         try {
             String str = node.getText();
-            double value = Double.parseDouble(str);
+            if (str.isEmpty()) {
+                node.setStyle("-fx-text-fill: black;");
+                return;
+            }
 
             if (str.endsWith("f") || str.endsWith("F")) {
                 node.setStyle("-fx-text-fill: red;");
                 return;
             }
-            
+
+            double value = Double.parseDouble(str);
             node.setStyle("-fx-text-fill: black;");
         } catch (Exception e) {
             node.setStyle("-fx-text-fill: red;");
@@ -222,4 +259,6 @@ public class NewProductController2 {
     private VBox hammaddeVBox;
     @FXML
     private VBox mainVBox;
+    @FXML
+    private Group hammaddeBilgiGroup;
 }

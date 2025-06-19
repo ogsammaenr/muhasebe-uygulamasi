@@ -136,6 +136,12 @@ public class NewProductController {
     private void handlecheckValues(TextField node) {
         try {
             String str = node.getText();
+
+            if (str.isEmpty()) {
+                node.setStyle("-fx-text-fill: black;");
+                return;
+            }
+
             if (!node.getId().equals("txt_count")) {
                 double value = Double.parseDouble(str);
             } else {

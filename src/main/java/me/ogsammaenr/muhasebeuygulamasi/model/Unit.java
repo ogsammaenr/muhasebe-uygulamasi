@@ -1,5 +1,7 @@
 package me.ogsammaenr.muhasebeuygulamasi.model;
 
+import me.ogsammaenr.muhasebeuygulamasi.util.Utils;
+
 public class Unit {
     private String unitId;
     private double measurex;
@@ -13,14 +15,14 @@ public class Unit {
 
     public Unit(String unitId, double measurex, double measurey, double measurez, int count, double patternTime, double drillTime) {
         this.unitId = unitId;
-        this.measurex = measurex;
-        this.measurey = measurey;
-        this.measurez = measurez;
+        this.measurex = Utils.round(measurex, 2);
+        this.measurey = Utils.round(measurey, 2);
+        this.measurez = Utils.round(measurez, 2);
         this.count = count;
         this.patternTime = patternTime;
         this.drillTime = drillTime;
-        this.totalTime = (patternTime + drillTime) * count;
-        this.area = (measurex * measurey * count) / 1000000;
+        this.totalTime = Utils.round((patternTime + drillTime) * count, 2);
+        this.area = Utils.round((measurex * measurey * count) / 1000000, 2);
     }
 
     public double getArea() {

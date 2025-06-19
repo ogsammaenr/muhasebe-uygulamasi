@@ -1,9 +1,9 @@
 package me.ogsammaenr.muhasebeuygulamasi.manager;
 
 import me.ogsammaenr.muhasebeuygulamasi.model.Unit;
+import me.ogsammaenr.muhasebeuygulamasi.util.Utils;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class UnitsManager {
 
@@ -32,7 +32,7 @@ public class UnitsManager {
     public double getTotalTime() {
         double totalTime = 0;
         for (Unit unit : unitMap.values()) {
-            totalTime += unit.getTotalTime();
+            totalTime += Utils.round(unit.getTotalTime(), 2);
         }
         return totalTime;
     }
@@ -40,9 +40,29 @@ public class UnitsManager {
     public double getTotalArea() {
         double totalArea = 0;
         for (Unit unit : unitMap.values()) {
-            totalArea += unit.getArea();
+            totalArea += Utils.round(unit.getArea(), 2);
         }
         return totalArea;
+    }
+
+    public List<Double> getAllThickness() {
+        Set<Double> thicknessSet = new LinkedHashSet<>();
+        for (Unit unit : unitMap.values()) {
+            thicknessSet.add(Utils.round(unit.getMeasurez(), 2));
+        }
+        return new ArrayList<>(thicknessSet);
+    }
+
+    public double thicnessToArea(double thickness) {
+        double area = 0;
+
+        for (Unit unit : unitMap.values()) {
+            if (thickness == Utils.round(unit.getMeasurez(), 2)) {
+                area += Utils.round(unit.getArea(), 2);
+            }
+        }
+
+        return area;
     }
 
     public Map<String, Unit> getUnitMap() {

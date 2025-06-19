@@ -2,6 +2,7 @@ package me.ogsammaenr.muhasebeuygulamasi.util;
 
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
@@ -66,11 +67,34 @@ public class Utils {
 
                 copy.setId(original.getId());
                 clone.getChildren().add(copy);
+            } else if (node instanceof Label original) {
+                Label copy = new Label();
+
+                copy.setLayoutX(original.getLayoutX());
+                copy.setLayoutY(original.getLayoutY());
+
+                copy.setPrefWidth(original.getPrefWidth());
+                copy.setPrefHeight(original.getPrefHeight());
+                copy.setMaxHeight(original.getMaxHeight());
+                copy.setMinHeight(original.getMinHeight());
+                copy.setMaxWidth(original.getMaxWidth());
+                copy.setMaxHeight(original.getMaxHeight());
+
+                copy.getStyleClass().clear();
+                copy.getStyleClass().addAll(original.getStyleClass());
+
+                copy.setId(original.getId());
+                clone.getChildren().add(copy);
             }
 
         }
         return clone;
     }
 
+
+    public static double round(double value, int places) {
+        double scale = Math.pow(10, places);
+        return Math.round(value * scale) / scale;
+    }
 
 }
