@@ -4,25 +4,25 @@ import me.ogsammaenr.muhasebeuygulamasi.util.Utils;
 
 public class Unit {
     private String unitId;
-    private double measurex;
-    private double measurey;
-    private double measurez;
+    private int measurex;
+    private int measurey;
+    private int measurez;
     private int count;
     private double patternTime;
     private double drillTime;
     private double totalTime;
     private double area;
 
-    public Unit(String unitId, double measurex, double measurey, double measurez, int count, double patternTime, double drillTime) {
+    public Unit(String unitId, int measurex, int measurey, int measurez, int count, double patternTime, double drillTime) {
         this.unitId = unitId;
-        this.measurex = Utils.round(measurex, 2);
-        this.measurey = Utils.round(measurey, 2);
-        this.measurez = Utils.round(measurez, 2);
+        this.measurex = measurex;
+        this.measurey = measurey;
+        this.measurez = measurez;
         this.count = count;
         this.patternTime = patternTime;
         this.drillTime = drillTime;
-        this.totalTime = Utils.round((patternTime + drillTime) * count, 2);
-        this.area = Utils.round((measurex * measurey * count) / 1000000, 2);
+        this.totalTime = Utils.round((patternTime + drillTime) * count, 4);
+        this.area = Utils.round((double) (measurex * measurey * count) / 1000000, 4);
     }
 
     public double getArea() {
@@ -33,15 +33,15 @@ public class Unit {
         return drillTime;
     }
 
-    public double getMeasurex() {
+    public int getMeasurex() {
         return measurex;
     }
 
-    public double getMeasurey() {
+    public int getMeasurey() {
         return measurey;
     }
 
-    public double getMeasurez() {
+    public int getMeasurez() {
         return measurez;
     }
 

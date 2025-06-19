@@ -142,7 +142,7 @@ public class NewProductController {
                 return;
             }
 
-            if (!node.getId().equals("txt_count")) {
+            if (node.getId().equals("txt_patternTime") || node.getId().equals("txt_drillTime")) {
                 double value = Double.parseDouble(str);
             } else {
                 int value = Integer.parseInt(str);
@@ -166,9 +166,9 @@ public class NewProductController {
         TextField tfPatternTime = (TextField) group.getChildren().get(4);
         TextField tfDrillTime = (TextField) group.getChildren().get(5);
 
-        double measurex = Double.parseDouble(tfMeasureX.getText());
-        double measurey = Double.parseDouble(tfMeasureY.getText());
-        double measurez = Double.parseDouble(tfMeasureZ.getText());
+        int measurex = Integer.parseInt(tfMeasureX.getText());
+        int measurey = Integer.parseInt(tfMeasureY.getText());
+        int measurez = Integer.parseInt(tfMeasureZ.getText());
         int count = Integer.parseInt(tfCount.getText());
         double patternTime = Double.parseDouble(tfPatternTime.getText());
         double drillTime = Double.parseDouble(tfDrillTime.getText());

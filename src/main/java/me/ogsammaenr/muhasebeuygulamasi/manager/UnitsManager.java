@@ -32,23 +32,23 @@ public class UnitsManager {
     public double getTotalTime() {
         double totalTime = 0;
         for (Unit unit : unitMap.values()) {
-            totalTime += Utils.round(unit.getTotalTime(), 2);
+            totalTime += unit.getTotalTime();
         }
-        return totalTime;
+        return Utils.round(totalTime, 2);
     }
 
     public double getTotalArea() {
         double totalArea = 0;
         for (Unit unit : unitMap.values()) {
-            totalArea += Utils.round(unit.getArea(), 2);
+            totalArea += unit.getArea();
         }
-        return totalArea;
+        return Utils.round(totalArea, 2);
     }
 
-    public List<Double> getAllThickness() {
-        Set<Double> thicknessSet = new LinkedHashSet<>();
+    public List<Integer> getAllThickness() {
+        Set<Integer> thicknessSet = new LinkedHashSet<>();
         for (Unit unit : unitMap.values()) {
-            thicknessSet.add(Utils.round(unit.getMeasurez(), 2));
+            thicknessSet.add(unit.getMeasurez());
         }
         return new ArrayList<>(thicknessSet);
     }
@@ -57,8 +57,8 @@ public class UnitsManager {
         double area = 0;
 
         for (Unit unit : unitMap.values()) {
-            if (thickness == Utils.round(unit.getMeasurez(), 2)) {
-                area += Utils.round(unit.getArea(), 2);
+            if (thickness == unit.getMeasurez()) {
+                area += unit.getArea();
             }
         }
 
