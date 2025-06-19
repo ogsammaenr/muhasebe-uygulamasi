@@ -120,7 +120,7 @@
                            <children>
                               <Label prefHeight="25.0" prefWidth="150.0" styleClass="subtitle" stylesheets="@style.css" text="PVC (m²)  :" />
                               <Label fx:id="lbl_PVCBirim" layoutX="250.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" />
-                              <TextField fx:id="txt_PVC" layoutX="150.0" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#onPvcChange" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
+                              <Label fx:id="lbl_PVC" layoutX="150.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
                            </children>
                         </Group>
                         <Group>
@@ -156,7 +156,7 @@
                               <Label layoutY="-8.0" prefHeight="10.0" prefWidth="10.0" />
                               <Label layoutY="10.0" prefHeight="25.0" prefWidth="150.0" styleClass="subtitle" stylesheets="@style.css" text="Kar  :" />
                               <Label fx:id="lbl_karBirim" layoutX="250.0" layoutY="10.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" />
-                              <TextField fx:id="txt_karOran" layoutX="150.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
+                              <TextField fx:id="txt_karOran" layoutX="150.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#onKarChange" prefHeight="25.0" prefWidth="100.0" styleClass="text-field" stylesheets="@style.css" />
                            </children>
                         </Group>
                         <Group fx:id="hammaddeGroup" visible="false">

@@ -3,7 +3,6 @@ package me.ogsammaenr.muhasebeuygulamasi.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -23,22 +22,13 @@ public class NewProductController2 {
     private double totalTime;
     private double totalArea;
 
+    private double PvcFiyatdolar;
     private double PvcFiyat;
     private double dolar;
 
-    private double kesimFiyat;
-    private double CncFiyat;
-    private double zimparaIscilikFiyat;
-    private double zimparaFiyat;
-    private double paletlemeIscilikFiyat;
-    private double tutkalFiyat;
-    private double PvcMasraf;
-    private double basimIscilikFiyat;
-    private double ambalajFiyat;
-    private double nakliyeFiyat;
-    private double ekIscilikFiyat;
-
-    private double kar;
+    private double kesimFiyat, CncFiyat, zimparaIscilikFiyat, zimparaFiyat,
+            paletlemeIscilikFiyat, tutkalFiyat, PvcMasraf, basimIscilikFiyat,
+            ambalajFiyat, nakliyeFiyat, ekIscilikFiyat, kar;
 
     @FXML
     public void initialize() {
@@ -59,136 +49,112 @@ public class NewProductController2 {
 
     }
 
+    private void handleGenericCost(KeyEvent event, TextField input, Label output, double multiplier, java.util.function.DoubleConsumer setter) {
+        if (input.getStyle().equals("-fx-text-fill: red;") || input.getText().isEmpty()) {
+            output.setText("");
+            return;
+        }
+        double value = Double.parseDouble(input.getText()) * multiplier;
+        setter.accept(Utils.round(value, 2));
+        output.setText(String.valueOf(Utils.round(value, 2)));
+    }
+
     @FXML
     public void onKesimChange() {
-        if (txt_kesimFiyat.getStyle().equals("-fx-text-fill: red;")) {
-            System.out.println("işlem yapılmaz");
-            return;
-        }
-        if (txt_kesimFiyat.getText().isEmpty()) {
-            lbl_kesimFiyatBirim.setText("");
-            return;
-        }
-
-        double birimFiyat = (Double.parseDouble(txt_kesimFiyat.getText()) / 5.88) * totalArea;
-
-        lbl_kesimFiyatBirim.setText(String.valueOf(Utils.round(birimFiyat, 2)));
-        System.out.println("işlem yapıldı");
-
+        handleGenericCost(null, txt_kesimFiyat, lbl_kesimFiyatBirim, totalArea / 5.88, v -> kesimFiyat = v);
     }
 
     @FXML
     public void onCncChange(KeyEvent e) {
-        if (txt_CNCFiyat.getStyle().equals("-fx-text-fill: red;") || txt_CNCFiyat.getText().isEmpty()) {
-            lbl_CNCFiyatBirim.setText("");
-            return;
-        }
-
-        double birimfiyat = Double.parseDouble(txt_CNCFiyat.getText()) * totalTime;
-        lbl_CNCFiyatBirim.setText(String.valueOf(Utils.round(birimfiyat, 2)));
+        handleGenericCost(e, txt_CNCFiyat, lbl_CNCFiyatBirim, totalTime, v -> CncFiyat = v);
     }
 
     @FXML
-    public void onZimparaIscilikChange(KeyEvent event) {
-        if (txt_zimparaIscilik.getStyle().equals("-fx-text-fill: red;") || txt_zimparaIscilik.getText().isEmpty()) {
-            lbl_zimparaIscilikBirim.setText("");
-            return;
-        }
+    public void onZimparaIscilikChange(KeyEvent e) {
+        handleGenericCost(e, txt_zimparaIscilik, lbl_zimparaIscilikBirim, totalArea, v -> zimparaIscilikFiyat = v);
+    }
 
-        double birimfiyat = Double.parseDouble(txt_zimparaIscilik.getText()) * totalArea;
-        lbl_zimparaIscilikBirim.setText(String.valueOf(Utils.round(birimfiyat, 2)));
+
+    @FXML
+    public void onZimparaChange(KeyEvent e) {
+        handleGenericCost(e, txt_zimparaFiyat, lbl_zimparaFiyatBirim, totalArea, v -> zimparaFiyat = v);
     }
 
     @FXML
-    public void onZimparaChange(KeyEvent event) {
-        if (txt_zimparaFiyat.getStyle().equals("-fx-text-fill: red;") || txt_zimparaFiyat.getText().isEmpty()) {
-            lbl_zimparaFiyatBirim.setText("");
-            return;
-        }
-
-        double birimfiyat = Double.parseDouble(txt_zimparaFiyat.getText()) * totalArea;
-        lbl_zimparaFiyatBirim.setText(String.valueOf(Utils.round(birimfiyat, 2)));
+    public void onPaletIscilikChange(KeyEvent e) {
+        handleGenericCost(e, txt_paletIscilik, lbl_paletIscilikBirim, totalArea, v -> paletlemeIscilikFiyat = v);
     }
 
     @FXML
-    public void onPaletIscilikChange(KeyEvent event) {
-        if (txt_paletIscilik.getStyle().equals("-fx-text-fill: red;") || txt_paletIscilik.getText().isEmpty()) {
-            lbl_paletIscilikBirim.setText("");
-            return;
-        }
-
-        double birimfiyat = Double.parseDouble(txt_paletIscilik.getText()) * totalArea;
-        lbl_paletIscilikBirim.setText(String.valueOf(Utils.round(birimfiyat, 2)));
+    public void onTutkalFiyatChange(KeyEvent e) {
+        handleGenericCost(e, txt_tutkalFiyat, lbl_tutkalFiyatBirim, totalArea, v -> tutkalFiyat = v);
     }
 
     @FXML
-    public void onTutkalFiyatChange(KeyEvent event) {
-        if (txt_tutkalFiyat.getStyle().equals("-fx-text-fill: red;") || txt_tutkalFiyat.getText().isEmpty()) {
-            lbl_tutkalFiyatBirim.setText("");
-            return;
-        }
-
-        double birimfiyat = Double.parseDouble(txt_tutkalFiyat.getText()) * totalArea;
-        lbl_tutkalFiyatBirim.setText(String.valueOf(Utils.round(birimfiyat, 2)));
+    public void onBasimIscilikChange(KeyEvent e) {
+        handleGenericCost(e, txt_basimIscilik, lbl_basimIscilikBirim, totalArea, v -> basimIscilikFiyat = v);
     }
 
     @FXML
-    public void onBasimIscilikChange(KeyEvent event) {
-        if (txt_basimIscilik.getStyle().equals("-fx-text-fill: red;") || txt_basimIscilik.getText().isEmpty()) {
-            lbl_basimIscilikBirim.setText("");
-            return;
-        }
-
-        double birimfiyat = Double.parseDouble(txt_basimIscilik.getText()) * totalArea;
-        lbl_basimIscilikBirim.setText(String.valueOf(Utils.round(birimfiyat, 2)));
+    public void onAmbalajChange(KeyEvent e) {
+        handleGenericCost(e, txt_ambalaj, lbl_ambalajBirim, totalArea, v -> ambalajFiyat = v);
     }
 
     @FXML
-    public void onAmbalajChange(KeyEvent event) {
-        if (txt_ambalaj.getStyle().equals("-fx-text-fill: red;") || txt_ambalaj.getText().isEmpty()) {
-            lbl_ambalajBirim.setText("");
-            return;
-        }
-
-        double birimfiyat = Double.parseDouble(txt_ambalaj.getText()) * totalArea;
-        lbl_ambalajBirim.setText(String.valueOf(Utils.round(birimfiyat, 2)));
+    public void onNakliyeChange(KeyEvent e) {
+        handleGenericCost(e, txt_nakliye, lbl_nakliyeBirim, totalArea, v -> nakliyeFiyat = v);
     }
 
     @FXML
-    public void onNakliyeChange(KeyEvent event) {
-        if (txt_nakliye.getStyle().equals("-fx-text-fill: red;") || txt_nakliye.getText().isEmpty()) {
-            lbl_nakliyeBirim.setText("");
-            return;
-        }
-
-        double birimfiyat = Double.parseDouble(txt_nakliye.getText()) * totalArea;
-        lbl_nakliyeBirim.setText(String.valueOf(Utils.round(birimfiyat, 2)));
+    public void onEkIscilikChange(KeyEvent e) {
+        handleGenericCost(e, txt_ekIscilik, lbl_ekIscilikBirim, totalArea, v -> ekIscilikFiyat = v);
     }
 
     @FXML
-    public void onEkIscilikChange(KeyEvent event) {
-        if (txt_ekIscilik.getStyle().equals("-fx-text-fill: red;") || txt_ekIscilik.getText().isEmpty()) {
-            lbl_ekIscilikBirim.setText("");
+    public void onKarChange() {
+        if (txt_karOran.getStyle().equals("-fx-text-fill: red;") || txt_karOran.getText().isEmpty()) {
+            lbl_karBirim.setText("");
             return;
         }
-
-        double birimfiyat = Double.parseDouble(txt_ekIscilik.getText()) * totalArea;
-        lbl_ekIscilikBirim.setText(String.valueOf(Utils.round(birimfiyat, 2)));
+        double oran = Double.parseDouble(txt_karOran.getText());
+        double toplam = kesimFiyat + CncFiyat + zimparaIscilikFiyat + zimparaFiyat +
+                paletlemeIscilikFiyat + tutkalFiyat + PvcMasraf + basimIscilikFiyat +
+                ambalajFiyat + nakliyeFiyat + ekIscilikFiyat;
+        kar = Utils.round(toplam * oran, 2);
+        lbl_karBirim.setText(String.valueOf(kar));
     }
 
     @FXML
     public void onPvcFiyatChange() {
-
-    }
-
-    @FXML
-    public void onPvcChange() {
-
+        if (txt_PVCFiyat.getStyle().equals("-fx-text-fill: red;") || txt_PVCFiyat.getText().isEmpty()) {
+            lbl_PVCBirim.setText("");
+            lbl_PVC.setText("");
+            return;
+        }
+        PvcFiyatdolar = Double.parseDouble(txt_PVCFiyat.getText());
+        if (!txt_dolar.getStyle().equals("-fx-text-fill: red;") && !txt_dolar.getText().isEmpty()) {
+            calculatePvc();
+        }
     }
 
     @FXML
     public void onDolarChange() {
+        if (txt_dolar.getStyle().equals("-fx-text-fill: red;") || txt_dolar.getText().isEmpty()) {
+            lbl_PVCBirim.setText("");
+            lbl_PVC.setText("");
+            return;
+        }
+        dolar = Double.parseDouble(txt_dolar.getText());
+        if (!txt_PVCFiyat.getStyle().equals("-fx-text-fill: red;") && !txt_PVCFiyat.getText().isEmpty()) {
+            calculatePvc();
+        }
+    }
 
+    private void calculatePvc() {
+        PvcFiyat = Utils.round(dolar * PvcFiyatdolar * 2 * 1.03, 2);
+        lbl_PVC.setText(String.valueOf(PvcFiyat));
+        PvcMasraf = Utils.round(PvcFiyat * totalArea, 2);
+        lbl_PVCBirim.setText(String.valueOf(PvcMasraf));
     }
 
     private void addHammaddeGroups() {
@@ -197,21 +163,19 @@ public class NewProductController2 {
         for (int thickness : allThickness) {
             Group group = Utils.copyGroup(hammaddeBilgiGroup);
             Group hammaddeGrp = Utils.copyGroup(hammaddeGroup);
+            ((Label) group.getChildren().get(0)).setText("MDF " + thickness);
+            ((Label) group.getChildren().get(1)).setText(String.valueOf(unitsManager.thicnessToArea(thickness)));
 
-            Label hammadde = (Label) group.getChildren().get(0);
-            Label alan = (Label) group.getChildren().get(1);
+            hammaddeGrp.setId(String.valueOf(thickness));
 
-            hammadde.setText("MDF " + thickness);
-            alan.setText(String.valueOf(unitsManager.thicnessToArea(thickness)));
+            Label label = (Label) hammaddeGrp.getChildren().get(0);
+            TextField fiyat = (TextField) hammaddeGrp.getChildren().get(1);
 
-            Label hammaddeLabel = (Label) hammaddeGrp.getChildren().get(0);
-            TextField hammaddeFiyat = (TextField) hammaddeGrp.getChildren().get(1);
-
-            hammaddeFiyat.textProperty().addListener((observable, oldValue, newValue) -> handleCheckValues(hammaddeFiyat));
-            hammaddeFiyat.textProperty().addListener((observable, oldValue, newValue) -> handleHammaddeGroups(hammaddeFiyat));
-
-            hammaddeLabel.setText("MDF " + thickness);
-            hammaddeGrp.setId("" + Utils.round(thickness, 2));
+            label.setText("MDF " + thickness);
+            fiyat.textProperty().addListener((obs, oldVal, newVal) -> {
+                handleCheckValues(fiyat);
+                handleHammaddeGroups(fiyat);
+            });
 
             mainVBox.getChildren().add(1, hammaddeGrp);
             hammaddeVBox.getChildren().add(1, group);
@@ -241,124 +205,43 @@ public class NewProductController2 {
     private void handleHammaddeGroups(TextField node) {
         Group group = (Group) node.getParent();
 
+        Label resultLabel = (Label) group.getChildren().getLast();
         if (node.getStyle().equals("-fx-text-fill: black;") && !node.getText().isEmpty()) {
-            double fiyat = Utils.round(Double.parseDouble(node.getText()), 2);
-            double sureMiktar = unitsManager.thicnessToArea(Double.parseDouble(group.getId())) * (1.12 / 5.88);
-
-            double birimFiyat = Utils.round(fiyat * sureMiktar, 2);
-
-            Label birimEkran = (Label) group.getChildren().getLast();
-
-            birimEkran.setText(String.valueOf(birimFiyat));
+            double fiyat = Double.parseDouble(node.getText());
+            double kalinlik = Double.parseDouble(group.getId());
+            double miktar = unitsManager.thicnessToArea(kalinlik) * (1.12 / 5.88);
+            double birimFiyat = Utils.round(fiyat * miktar, 2);
+            resultLabel.setText(String.valueOf(birimFiyat));
         } else {
-            Label birimEkran = (Label) group.getChildren().getLast();
-            birimEkran.setText("");
+            resultLabel.setText("");
         }
 
     }
 
 
     private void setupListeners() {
-        txt_ambalaj.textProperty().addListener((observable, oldValue, newValue) -> handleCheckValues(txt_ambalaj));
-        txt_dolar.textProperty().addListener((observable, oldValue, newValue) -> handleCheckValues(txt_dolar));
-        txt_CNCFiyat.textProperty().addListener((observable, oldValue, newValue) -> handleCheckValues(txt_CNCFiyat));
-        txt_kesimFiyat.textProperty().addListener((observable, oldValue, newValue) -> handleCheckValues(txt_kesimFiyat));
-        txt_nakliye.textProperty().addListener((observable, oldValue, newValue) -> handleCheckValues(txt_nakliye));
-        txt_basimIscilik.textProperty().addListener((observable, oldValue, newValue) -> handleCheckValues(txt_basimIscilik));
-        txt_ekIscilik.textProperty().addListener((observable, oldValue, newValue) -> handleCheckValues(txt_ekIscilik));
-        txt_karOran.textProperty().addListener((observable, oldValue, newValue) -> handleCheckValues(txt_karOran));
-        txt_paletIscilik.textProperty().addListener((observable, oldValue, newValue) -> handleCheckValues(txt_paletIscilik));
-        txt_PVC.textProperty().addListener((observable, oldValue, newValue) -> handleCheckValues(txt_PVC));
-        txt_PVCFiyat.textProperty().addListener((observable, oldValue, newValue) -> handleCheckValues(txt_PVCFiyat));
-        txt_zimparaIscilik.textProperty().addListener((observable, oldValue, newValue) -> handleCheckValues(txt_zimparaIscilik));
-        txt_zimparaFiyat.textProperty().addListener((observable, oldValue, newValue) -> handleCheckValues(txt_zimparaFiyat));
-        txt_tutkalFiyat.textProperty().addListener((observable, oldValue, newValue) -> handleCheckValues(txt_tutkalFiyat));
+        TextField[] fields = {txt_ambalaj, txt_dolar, txt_CNCFiyat, txt_kesimFiyat,
+                txt_nakliye, txt_basimIscilik, txt_ekIscilik, txt_karOran, txt_paletIscilik,
+                txt_PVCFiyat, txt_zimparaIscilik, txt_zimparaFiyat, txt_tutkalFiyat};
+
+        for (TextField field : fields) {
+            field.textProperty().addListener((obs, oldVal, newVal) -> handleCheckValues(field));
+        }
     }
 
     @FXML
-    private TextField txt_PVCFiyat;
+    private TextField txt_PVCFiyat, txt_PVCRenk, txt_PVCFirma, txt_dolar, txt_kesimFiyat, txt_CNCFiyat,
+            txt_zimparaIscilik, txt_zimparaFiyat, txt_paletIscilik, txt_tutkalFiyat,
+            txt_basimIscilik, txt_ambalaj, txt_nakliye, txt_ekIscilik, txt_karOran;
+
     @FXML
-    private TextField txt_PVCRenk;
+    private Label lbl_PVCBirim, lbl_PVC, lbl_kesimFiyatBirim, lbl_CNCFiyatBirim,
+            lbl_zimparaIscilikBirim, lbl_zimparaFiyatBirim, lbl_paletIscilikBirim,
+            lbl_tutkalFiyatBirim, lbl_basimIscilikBirim, lbl_ambalajBirim, lbl_nakliyeBirim,
+            lbl_ekIscilikBirim, lbl_karBirim;
+
     @FXML
-    private TextField txt_PVCFirma;
+    private VBox hammaddeVBox, mainVBox;
     @FXML
-    private TextField txt_dolar;
-    @FXML
-    private Label lbl_hammadde;
-    @FXML
-    private Label lbl_hammaddeAlan;
-    @FXML
-    private Label lbl_kesimFiyatBirim;
-    @FXML
-    private TextField txt_kesimFiyat;
-    @FXML
-    private Label lbl_CNCFiyatBirim;
-    @FXML
-    private TextField txt_CNCFiyat;
-    @FXML
-    private Label lbl_zimparaIscilikBirim;
-    @FXML
-    private TextField txt_zimparaIscilik;
-    @FXML
-    private Label lbl_zimparaFiyatBirim;
-    @FXML
-    private TextField txt_zimparaFiyat;
-    @FXML
-    private Label lbl_paletIscilikBirim;
-    @FXML
-    private TextField txt_paletIscilik;
-    @FXML
-    private Label lbl_tutkalFiyatBirim;
-    @FXML
-    private TextField txt_tutkalFiyat;
-    @FXML
-    private Label lbl_PVCBirim;
-    @FXML
-    private TextField txt_PVC;
-    @FXML
-    private Label lbl_basimIscilikBirim;
-    @FXML
-    private TextField txt_basimIscilik;
-    @FXML
-    private Label lbl_ambalajBirim;
-    @FXML
-    private TextField txt_ambalaj;
-    @FXML
-    private Label lbl_nakliyeBirim;
-    @FXML
-    private TextField txt_nakliye;
-    @FXML
-    private Label lbl_ekIscilikBirim;
-    @FXML
-    private TextField txt_ekIscilik;
-    @FXML
-    private Label lbl_karBirim;
-    @FXML
-    private TextField txt_karOran;
-    @FXML
-    private Label lbl_takimFiyat;
-    @FXML
-    private Label lbl_birimFiyat;
-    @FXML
-    private Label lbl_hammaddeFiyat;
-    @FXML
-    private Label lbl_hammaddeBirimFiyat;
-    @FXML
-    private Label lbl_iscilikFiyat;
-    @FXML
-    private Label lbl_iscilikBirimFiyat;
-    @FXML
-    private Label lbl_kar;
-    @FXML
-    private Label lbl_birimKar;
-    @FXML
-    private Button btn_save;
-    @FXML
-    private VBox hammaddeVBox;
-    @FXML
-    private VBox mainVBox;
-    @FXML
-    private Group hammaddeBilgiGroup;
-    @FXML
-    private Group hammaddeGroup;
+    private Group hammaddeBilgiGroup, hammaddeGroup;
 }
