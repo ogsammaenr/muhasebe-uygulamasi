@@ -65,7 +65,7 @@
                         </Group>
                      </children>
                   </VBox>
-                  <VBox fx:id="mainVBox" alignment="TOP_CENTER" layoutX="200.0" prefHeight="485.0" prefWidth="448.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="0.0">
+                  <VBox fx:id="mainVBox" alignment="TOP_CENTER" layoutX="200.0" prefHeight="485.0" prefWidth="448.0" spacing="3.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Group>
                            <children>
