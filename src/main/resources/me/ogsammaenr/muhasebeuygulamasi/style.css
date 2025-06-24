@@ -21,6 +21,30 @@
     -fx-background-color: #7aa892;
 }
 
+.title_button {
+    -fx-background-color: #243642;
+    -fx-background-radius: 0;
+}
+
+.title_button:hover {
+    -fx-background-color: #344f5e;
+}
+
+.exit_button {
+    -fx-background-color: #243642;
+    -fx-background-radius: 0;
+}
+
+.exit_button:hover {
+    -fx-background-color: #a11818;
+}
+
+#main_title {
+    -fx-text-fill: #E2F1E2;
+    -fx-font-family: "Tahoma";
+    -fx-font-size: 12px;
+}
+
 .new_product {
     -fx-background-color: #5c8174;
 }

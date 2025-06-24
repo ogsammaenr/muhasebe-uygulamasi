@@ -26,6 +26,9 @@ public class MainViewController {
     private Stage stage;
     private Scene scene;
 
+    private double xOffset = 0;
+    private double yOffset = 0;
+
     @FXML
     public void initialize() {
         setupContextMenu();
@@ -50,6 +53,7 @@ public class MainViewController {
                 stage.setTitle("Product Muhasebe Uygulamasi");
                 stage.initOwner(MainApplication.getInstance().getStage());
                 stage.initModality(Modality.WINDOW_MODAL);
+
                 stage.setMinWidth(550);
                 stage.setMinHeight(300);
                 stage.setScene(new Scene(newProductView));
@@ -60,6 +64,21 @@ public class MainViewController {
             }
         }
 
+    }
+
+    @FXML
+    public void onTitleBarClicked(MouseEvent event) {
+        // Mouse'un pencere üzerindeki konumunu kaydet (sahne içi konum)
+        xOffset = event.getSceneX();
+        yOffset = event.getSceneY();
+    }
+
+    @FXML
+    public void onTitleBarDragged(MouseEvent event) {
+        Stage stage = (Stage) titleBar.getScene().getWindow();
+        // Pencerenin yeni konumunu hesapla
+        stage.setX(event.getScreenX() - xOffset);
+        stage.setY(event.getScreenY() - yOffset);
     }
 
     private void setupContextMenu() {
@@ -99,6 +118,8 @@ public class MainViewController {
     private Button btn_newProduct;
     @FXML
     private AnchorPane mainPane;
+    @FXML
+    private AnchorPane titleBar;
     @FXML
     private Group ekran;
     @FXML

@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import me.ogsammaenr.muhasebeuygulamasi.manager.UnitsManager;
 import me.ogsammaenr.muhasebeuygulamasi.model.Unit;
@@ -54,7 +53,7 @@ public class NewProductController2 {
 
     }
 
-    private void handleGenericCost(KeyEvent event, TextField input, Label output, double multiplier, DoubleConsumer setter) {
+    private void handleGenericCost(TextField input, Label output, double multiplier, DoubleConsumer setter) {
         if (input.getStyle().equals("-fx-text-fill: red;") || input.getText().isEmpty()) {
             setter.accept(0);
             output.setText("");
@@ -67,71 +66,71 @@ public class NewProductController2 {
 
     @FXML
     public void onKesimChange() {
-        handleGenericCost(null, txt_kesimFiyat, lbl_kesimFiyatBirim, totalArea / 5.88, v -> kesimFiyat = v);
+        handleGenericCost(txt_kesimFiyat, lbl_kesimFiyatBirim, totalArea / 5.88, v -> kesimFiyat = v);
         calculateKar();
         calculateFiyatlar();
     }
 
     @FXML
-    public void onCncChange(KeyEvent e) {
-        handleGenericCost(e, txt_CNCFiyat, lbl_CNCFiyatBirim, totalTime, v -> CncFiyat = v);
+    public void onCncChange() {
+        handleGenericCost(txt_CNCFiyat, lbl_CNCFiyatBirim, totalTime, v -> CncFiyat = v);
         calculateKar();
         calculateFiyatlar();
     }
 
     @FXML
-    public void onZimparaIscilikChange(KeyEvent e) {
-        handleGenericCost(e, txt_zimparaIscilik, lbl_zimparaIscilikBirim, totalArea, v -> zimparaIscilikFiyat = v);
+    public void onZimparaIscilikChange() {
+        handleGenericCost(txt_zimparaIscilik, lbl_zimparaIscilikBirim, totalArea, v -> zimparaIscilikFiyat = v);
         calculateKar();
         calculateFiyatlar();
     }
 
 
     @FXML
-    public void onZimparaChange(KeyEvent e) {
-        handleGenericCost(e, txt_zimparaFiyat, lbl_zimparaFiyatBirim, totalArea, v -> zimparaFiyat = v);
+    public void onZimparaChange() {
+        handleGenericCost(txt_zimparaFiyat, lbl_zimparaFiyatBirim, totalArea, v -> zimparaFiyat = v);
         calculateKar();
         calculateFiyatlar();
     }
 
     @FXML
-    public void onPaletIscilikChange(KeyEvent e) {
-        handleGenericCost(e, txt_paletIscilik, lbl_paletIscilikBirim, totalArea, v -> paletlemeIscilikFiyat = v);
+    public void onPaletIscilikChange() {
+        handleGenericCost(txt_paletIscilik, lbl_paletIscilikBirim, totalArea, v -> paletlemeIscilikFiyat = v);
         calculateKar();
         calculateFiyatlar();
     }
 
     @FXML
-    public void onTutkalFiyatChange(KeyEvent e) {
-        handleGenericCost(e, txt_tutkalFiyat, lbl_tutkalFiyatBirim, totalArea, v -> tutkalFiyat = v);
+    public void onTutkalFiyatChange() {
+        handleGenericCost(txt_tutkalFiyat, lbl_tutkalFiyatBirim, totalArea, v -> tutkalFiyat = v);
         calculateKar();
         calculateFiyatlar();
     }
 
     @FXML
-    public void onBasimIscilikChange(KeyEvent e) {
-        handleGenericCost(e, txt_basimIscilik, lbl_basimIscilikBirim, totalArea, v -> basimIscilikFiyat = v);
+    public void onBasimIscilikChange() {
+        handleGenericCost(txt_basimIscilik, lbl_basimIscilikBirim, totalArea, v -> basimIscilikFiyat = v);
         calculateKar();
         calculateFiyatlar();
     }
 
     @FXML
-    public void onAmbalajChange(KeyEvent e) {
-        handleGenericCost(e, txt_ambalaj, lbl_ambalajBirim, totalArea, v -> ambalajFiyat = v);
+    public void onAmbalajChange() {
+        handleGenericCost(txt_ambalaj, lbl_ambalajBirim, totalArea, v -> ambalajFiyat = v);
         calculateKar();
         calculateFiyatlar();
     }
 
     @FXML
-    public void onNakliyeChange(KeyEvent e) {
-        handleGenericCost(e, txt_nakliye, lbl_nakliyeBirim, totalArea, v -> nakliyeFiyat = v);
+    public void onNakliyeChange() {
+        handleGenericCost(txt_nakliye, lbl_nakliyeBirim, totalArea, v -> nakliyeFiyat = v);
         calculateKar();
         calculateFiyatlar();
     }
 
     @FXML
-    public void onEkIscilikChange(KeyEvent e) {
-        handleGenericCost(e, txt_ekIscilik, lbl_ekIscilikBirim, totalArea, v -> ekIscilikFiyat = v);
+    public void onEkIscilikChange() {
+        handleGenericCost(txt_ekIscilik, lbl_ekIscilikBirim, totalArea, v -> ekIscilikFiyat = v);
         calculateKar();
         calculateFiyatlar();
     }

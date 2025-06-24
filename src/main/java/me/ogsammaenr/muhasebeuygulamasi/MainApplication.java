@@ -6,7 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -31,11 +33,14 @@ public class MainApplication extends Application {
 
         this.editItem = new MenuItem("Edit");
         this.deleteItem = new MenuItem("Delete");
+        Image icon = new Image(getClass().getResource("icons/logo.png").toExternalForm());
 
         contextMenu.getItems().addAll(editItem, deleteItem);
 
         Scene scene = new Scene(root);
         stage.setTitle("Procut Muhasebe Uygulamasi");
+        stage.getIcons().add(icon);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
     }
