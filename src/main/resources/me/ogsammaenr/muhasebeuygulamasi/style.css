@@ -21,34 +21,6 @@
     -fx-background-color: #7aa892;
 }
 
-.title_button {
-    -fx-background-color: #243642;
-    -fx-background-radius: 0;
-}
-
-.title_button:hover {
-    -fx-background-color: #344f5e;
-}
-
-.exit_button {
-    -fx-background-color: #243642;
-    -fx-background-radius: 0;
-}
-
-.exit_button:hover {
-    -fx-background-color: #a11818;
-}
-
-#main_title {
-    -fx-text-fill: #E2F1E2;
-    -fx-font-family: "Tahoma";
-    -fx-font-size: 12px;
-}
-
-.new_product {
-    -fx-background-color: #5c8174;
-}
-
 .title {
     -fx-alignment: center;
     -fx-text-fill: #015778;
@@ -64,7 +36,7 @@
     -fx-font-family: "Tahoma";
     -fx-font-weight: bold;
     -fx-font-size: 12px;
-    -fx-text-fill: #505050;
+    -fx-text-fill: #243642;
 }
 
 .product_display {
@@ -106,10 +78,25 @@
     -fx-background-radius: 3;
     -fx-border-color: #d6d6d6;
     -fx-border-radius: 3;
+    -fx-text-fill: #243642;
 }
 
-.icon {
+.client_display {
+    -fx-background-color: #d8e5d8;
+    -fx-background-radius: 5;
+    -fx-border-color: #d6d6d6;
+    -fx-text-fill: #243642;
+    -fx-font-family: "Tahoma";
+    -fx-font-weight: normal;
+    -fx-font-size: 12px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.client_display:hover {
+    -fx-background-color: #cddacd;
+}
+
+.client_display:focused {
     -fx-background-color: #629584;
-    -fx-background-radius: 10;
-    -fx-alignment: center;
+    -fx-text-fill: #E2F1E2;
 }

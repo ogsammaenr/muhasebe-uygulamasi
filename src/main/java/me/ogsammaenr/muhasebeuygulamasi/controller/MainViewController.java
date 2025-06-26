@@ -2,12 +2,10 @@ package me.ogsammaenr.muhasebeuygulamasi.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -67,18 +65,27 @@ public class MainViewController {
     }
 
     @FXML
-    public void onTitleBarClicked(MouseEvent event) {
-        // Mouse'un pencere üzerindeki konumunu kaydet (sahne içi konum)
-        xOffset = event.getSceneX();
-        yOffset = event.getSceneY();
-    }
+    public void onClientsClick(MouseEvent event) {
+        if (main_pane.getChildren().size() > 0 &&
+            "clients-view.fxml".equals(main_pane.getChildren().get(0).getId())) {
+            return; // zaten yüklü
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/me/ogsammaenr/muhasebeuygulamasi/clients-view.fxml"));
+            Parent newClientsView = loader.load();
 
-    @FXML
-    public void onTitleBarDragged(MouseEvent event) {
-        Stage stage = (Stage) titleBar.getScene().getWindow();
-        // Pencerenin yeni konumunu hesapla
-        stage.setX(event.getScreenX() - xOffset);
-        stage.setY(event.getScreenY() - yOffset);
+
+            main_pane.getChildren().clear();
+            main_pane.getChildren().add(newClientsView);
+            AnchorPane.setTopAnchor(newClientsView, 0.0);
+            AnchorPane.setLeftAnchor(newClientsView, 0.0);
+            AnchorPane.setRightAnchor(newClientsView, 0.0);
+            AnchorPane.setBottomAnchor(newClientsView, 0.0);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void setupContextMenu() {
@@ -96,7 +103,7 @@ public class MainViewController {
     private void setupListeners() {
     }
 
-    // 🔹 Her buton için sağ tık dinleyicisi kurar
+
     private void setupRightClick(Button button) {
         button.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.SECONDARY) {
@@ -115,37 +122,9 @@ public class MainViewController {
     }
 
     @FXML
-    private Button btn_newProduct;
+    private Button btn_newProduct, btn_clients;
     @FXML
-    private AnchorPane mainPane;
-    @FXML
-    private AnchorPane titleBar;
-    @FXML
-    private Group ekran;
-    @FXML
-    private Label lbl_x;
-    @FXML
-    private Label lbl_y;
-    @FXML
-    private Label lbl_z;
-    @FXML
-    private Label lbl_adet;
-    @FXML
-    private Label lbl_takimFiyat;
-    @FXML
-    private Label lbl_birimFiyat;
-    @FXML
-    private Label lbl_hammaddeFiyat;
-    @FXML
-    private Label lbl_hammaddeBirimFiyat;
-    @FXML
-    private Label lbl_iscilikFiyat;
-    @FXML
-    private Label lbl_iscilikBirimFiyat;
-    @FXML
-    private Label lbl_kar;
-    @FXML
-    private Label lbl_birimKar;
+    private AnchorPane stagePane, main_pane;
 
 
 }

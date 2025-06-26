@@ -8,7 +8,6 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -21,6 +20,9 @@ public class MainApplication extends Application {
     private Parent newProductView;
 
     private Stage stage;
+
+    private double xOffset = 0, yOffset = 0;
+    private final int RESIZE_MARGIN = 8;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -37,11 +39,14 @@ public class MainApplication extends Application {
 
         contextMenu.getItems().addAll(editItem, deleteItem);
 
-        Scene scene = new Scene(root);
-        stage.setTitle("Procut Muhasebe Uygulamasi");
+        Scene scene = new Scene(root, 900, 600);
+
         stage.getIcons().add(icon);
-        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("Prucut Muhasebe Uygulaması");
+        stage.setMinWidth(900);
+        stage.setMinHeight(600);
         stage.setScene(scene);
+
         stage.show();
     }
 

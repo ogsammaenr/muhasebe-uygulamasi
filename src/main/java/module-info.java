@@ -11,6 +11,7 @@ module me.ogsammaenr.muhasebeuygulamasi {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires annotations;
+    requires FX.BorderlessScene;
 
     opens me.ogsammaenr.muhasebeuygulamasi to javafx.fxml;
     exports me.ogsammaenr.muhasebeuygulamasi;
