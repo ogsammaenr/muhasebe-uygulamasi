@@ -5,10 +5,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="700.0" styleClass="main_pane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.ogsammaenr.muhasebeuygulamasi.controller.ClientsController">
    <children>
@@ -18,8 +21,16 @@
                <children>
                   <Group>
                      <children>
-                        <TextField prefHeight="30.0" prefWidth="300.0" promptText="Ara" styleClass="text-field" stylesheets="@style.css" />
-                        <Button layoutX="300.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
+                        <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefColumnCount="1" prefHeight="30.0" prefWidth="300.0" promptText="Ara" styleClass="text-field" stylesheets="@style.css" />
+                        <Button layoutX="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/Search.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                      </children>
                   </Group>
                   <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="330.0" styleClass="client_display" stylesheets="@style.css" />
@@ -36,41 +47,63 @@
             <Label layoutY="30.0" prefHeight="30.0" prefWidth="150.0" styleClass="subcost_display" stylesheets="@style.css" />
          </children>
       </Group>
-      <VBox layoutX="415.0" layoutY="179.0" prefHeight="250.0" prefWidth="270.0" spacing="5.0" AnchorPane.rightAnchor="15.0">
+      <VBox layoutX="414.0" layoutY="157.0" prefHeight="370.0" prefWidth="320.0" spacing="5.0" AnchorPane.rightAnchor="10.0">
          <children>
-            <Label prefHeight="35.0" prefWidth="270.0" styleClass="subtitle" stylesheets="@style.css" text="Seçilen Müşteri Bilgileri" />
+            <Label prefHeight="35.0" prefWidth="320.0" styleClass="subtitle" stylesheets="@style.css" text="Seçilen Müşteri Bilgileri" />
             <Group>
                <children>
                   <Label prefHeight="30.0" prefWidth="120.0" styleClass="subtitle" stylesheets="@style.css" text="Firma Adı : " />
-                  <Label layoutX="120.0" prefHeight="30.0" prefWidth="150.0" styleClass="subcost_display" />
+                  <Label layoutX="120.0" prefHeight="30.0" prefWidth="200.0" styleClass="subcost_display" />
                </children>
             </Group>
             <Group>
                <children>
                   <Label prefHeight="30.0" prefWidth="120.0" styleClass="subtitle" stylesheets="@style.css" text="Ürün Sayısı :" />
-                  <Label layoutX="120.0" prefHeight="30.0" prefWidth="150.0" styleClass="subcost_display" stylesheets="@style.css" />
+                  <Label layoutX="120.0" prefHeight="30.0" prefWidth="200.0" styleClass="subcost_display" stylesheets="@style.css" />
                </children>
             </Group>
             <Group>
                <children>
                   <Label prefHeight="30.0" prefWidth="120.0" styleClass="subtitle" stylesheets="@style.css" text="Toplam Katkı :" />
-                  <Label layoutX="120.0" prefHeight="30.0" prefWidth="150.0" styleClass="subcost_display" stylesheets="@style.css" />
+                  <Label layoutX="120.0" prefHeight="30.0" prefWidth="200.0" styleClass="subcost_display" stylesheets="@style.css" />
                </children>
             </Group>
             <Group>
                <children>
                   <Label prefHeight="30.0" prefWidth="120.0" styleClass="subtitle" stylesheets="@style.css" text="Kayıt Tarihi :" />
-                  <Label layoutX="120.0" prefHeight="30.0" prefWidth="150.0" styleClass="subcost_display" stylesheets="@style.css" />
+                  <Label layoutX="120.0" prefHeight="30.0" prefWidth="200.0" styleClass="subcost_display" stylesheets="@style.css" />
                </children>
             </Group>
             <Group>
                <children>
                   <Label prefHeight="30.0" prefWidth="120.0" styleClass="subtitle" stylesheets="@style.css" text="Son İşlem Tarihi :" />
-                  <Label layoutX="120.0" prefHeight="30.0" prefWidth="150.0" styleClass="subcost_display" stylesheets="@style.css" />
+                  <Label layoutX="120.0" prefHeight="30.0" prefWidth="200.0" styleClass="subcost_display" stylesheets="@style.css" />
+               </children>
+            </Group>
+            <Group>
+               <children>
+                  <Label prefHeight="30.0" prefWidth="120.0" styleClass="subtitle" stylesheets="@style.css" text="E posta :" />
+                  <Label layoutX="120.0" prefHeight="30.0" prefWidth="200.0" styleClass="subcost_display" />
+               </children>
+            </Group>
+            <Group>
+               <children>
+                  <Label prefHeight="30.0" prefWidth="120.0" styleClass="subtitle" text="Telefon No :" />
+                  <Label layoutX="120.0" prefHeight="30.0" prefWidth="200.0" styleClass="subcost_display" />
+               </children>
+            </Group>
+            <Group>
+               <children>
+                  <Label prefHeight="30.0" prefWidth="120.0" styleClass="subtitle" stylesheets="@style.css" text="Notlar :" />
+                  <TextArea editable="false" layoutX="120.0" prefHeight="80.0" prefWidth="200.0" stylesheets="@style.css">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </TextArea>
                </children>
             </Group>
          </children>
       </VBox>
-      <Button layoutX="149.0" layoutY="535.0" mnemonicParsing="false" text="yeni Müşteri" />
+      <Button fx:id="btn_newClient" layoutX="149.0" layoutY="535.0" mnemonicParsing="false" onAction="#onNewClientClick" text="yeni Müşteri" AnchorPane.bottomAnchor="5.0" />
    </children>
 </AnchorPane>

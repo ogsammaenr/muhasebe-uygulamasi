@@ -100,3 +100,12 @@
     -fx-background-color: #629584;
     -fx-text-fill: #E2F1E2;
 }
+
+.stage-title {
+    -fx-alignment: center;
+    -fx-text-fill: #E2F1E2;
+    -fx-font-family: "Tahoma";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-color: #243642;
+}
