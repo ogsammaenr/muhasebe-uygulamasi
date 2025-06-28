@@ -7,26 +7,31 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" styleClass="main_pane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" styleClass="main_pane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.ogsammaenr.muhasebeuygulamasi.controller.NewClientController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="200.0" styleClass="stage-title" stylesheets="@style.css" text="Yeni Müşteri" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Label layoutX="14.0" layoutY="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="subtitle" text="Firma adı : " AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="35.0" />
-      <TextField layoutX="200.0" layoutY="66.0" prefHeight="30.0" prefWidth="300.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="67.0" />
-      <Label layoutX="200.0" layoutY="98.0" prefHeight="30.0" prefWidth="200.0" styleClass="subtitle" text="Giriş tarihi :" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="99.0" />
-      <Group layoutX="200.0" layoutY="130.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="131.0">
+      <Button fx:id="btn_save" layoutX="434.0" layoutY="526.0" mnemonicParsing="false" onAction="#onSaveClick" text="Kaydet" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+      <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
          <children>
-            <TextField prefHeight="30.0" prefWidth="300.0" />
-            <CheckBox layoutX="306.0" layoutY="12.0" maxHeight="8.0" minHeight="8.0" mnemonicParsing="false" prefHeight="8.0" text="Şu an" />
+            <Label prefHeight="30.0" prefWidth="200.0" styleClass="subtitle" text="Firma adı : " />
+            <TextField fx:id="txt_companyName" prefHeight="30.0" prefWidth="300.0" />
+            <Label prefHeight="30.0" prefWidth="200.0" styleClass="subtitle" text="Giriş tarihi :" />
+            <Group>
+               <children>
+                  <TextField fx:id="txt_registerDate" prefHeight="30.0" prefWidth="300.0" />
+                  <CheckBox fx:id="chbx_now" layoutX="306.0" layoutY="12.0" maxHeight="8.0" minHeight="8.0" mnemonicParsing="false" onAction="#onNowCheck" prefHeight="8.0" text="Şu an" />
+                  <Label disable="true" layoutX="-56.0" layoutY="8.0" />
+               </children>
+            </Group>
+            <Label prefHeight="30.0" prefWidth="200.0" styleClass="subtitle" stylesheets="@style.css" text="E-Posta :" />
+            <TextField fx:id="txt_eMail" prefHeight="30.0" prefWidth="300.0" promptText="opsiyonel" />
+            <Label prefHeight="30.0" prefWidth="200.0" styleClass="subtitle" stylesheets="@style.css" text="Telefon Numarası :" />
+            <TextField fx:id="txt_phoneNumber" prefHeight="30.0" prefWidth="300.0" promptText="opsiyonel" />
+            <Label prefHeight="30.0" prefWidth="200.0" styleClass="subtitle" text="Notlar :" />
+            <TextArea fx:id="txt_notes" prefHeight="80.0" prefWidth="300.0" promptText="opsiyonel" styleClass="text-field" stylesheets="@style.css" />
          </children>
-      </Group>
-      <Button layoutX="434.0" layoutY="526.0" mnemonicParsing="false" text="Kaydet" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
-      <Label layoutX="236.0" layoutY="161.0" prefHeight="30.0" prefWidth="200.0" styleClass="subtitle" stylesheets="@style.css" text="E-Posta :" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="163.0" />
-      <TextField layoutX="100.0" layoutY="194.0" prefHeight="30.0" prefWidth="300.0" promptText="opsiyonel" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="195.0" />
-      <Label layoutX="236.0" layoutY="226.0" prefHeight="30.0" prefWidth="200.0" styleClass="subtitle" stylesheets="@style.css" text="Telefon Numarası :" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="227.0" />
-      <TextField layoutX="100.0" layoutY="258.0" prefHeight="30.0" prefWidth="300.0" promptText="opsiyonel" AnchorPane.topAnchor="259.0" />
-      <Label layoutX="236.0" layoutY="290.0" prefHeight="30.0" prefWidth="200.0" styleClass="subtitle" text="Notlar :" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="291.0" />
-      <TextArea layoutX="100.0" layoutY="322.0" prefHeight="80.0" prefWidth="300.0" promptText="opsiyonel" styleClass="text-field" stylesheets="@style.css" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="323.0" />
+      </VBox>
    </children>
 </AnchorPane>
