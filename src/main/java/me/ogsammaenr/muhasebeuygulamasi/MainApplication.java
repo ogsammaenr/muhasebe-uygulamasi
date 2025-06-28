@@ -8,6 +8,7 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import me.ogsammaenr.muhasebeuygulamasi.storage.DatabaseManager;
 
 import java.io.IOException;
 
@@ -23,6 +24,16 @@ public class MainApplication extends Application {
 
     private double xOffset = 0, yOffset = 0;
     private final int RESIZE_MARGIN = 8;
+
+    @Override
+    public void init() throws Exception {
+        DatabaseManager.connect();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        DatabaseManager.disconnect();
+    }
 
     @Override
     public void start(Stage stage) throws IOException {

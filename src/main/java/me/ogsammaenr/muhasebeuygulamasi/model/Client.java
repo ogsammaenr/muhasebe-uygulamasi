@@ -5,7 +5,6 @@ import java.time.LocalDate;
 public class Client {
     private int id;
     private String companyName;
-    private int productCount;
     private LocalDate registrationDate;
     private LocalDate lastActionDate;
     private String eMailAddress;
@@ -15,14 +14,10 @@ public class Client {
     /**
      * For new Clients
      *
-     * @param id
      * @param companyName
-     * @param productCount
      */
-    public Client(int id, String companyName, int productCount) {
-        this.id = id;
+    public Client(String companyName) {
         this.companyName = companyName;
-        this.productCount = productCount;
         this.registrationDate = LocalDate.now();
     }
 
@@ -31,23 +26,14 @@ public class Client {
      *
      * @param id
      * @param companyName
-     * @param productCount
      * @param registrationDate
      * @param lastActionDate
      */
-    public Client(int id, String companyName, int productCount, LocalDate registrationDate, LocalDate lastActionDate) {
+    public Client(int id, String companyName, LocalDate registrationDate, LocalDate lastActionDate) {
         this.id = id;
         this.companyName = companyName;
-        this.productCount = productCount;
         this.registrationDate = registrationDate;
         this.lastActionDate = lastActionDate;
-    }
-
-    /**
-     * add 1 to productCount
-     */
-    public void addProduct() {
-        productCount++;
     }
 
     public void setLastActionDate() {
@@ -66,13 +52,13 @@ public class Client {
         this.notes = notes;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     /*      Getters     */
     public int getId() {
         return id;
-    }
-
-    public int getProductCount() {
-        return productCount;
     }
 
     public LocalDate getLastActionDate() {
@@ -87,11 +73,15 @@ public class Client {
         return companyName;
     }
 
-    public String geteMailAddress() {
+    public String getEMailAddress() {
         return eMailAddress;
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public String getNotes() {
+        return notes;
     }
 }

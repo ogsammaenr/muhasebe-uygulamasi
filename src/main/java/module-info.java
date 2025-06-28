@@ -12,6 +12,7 @@ module me.ogsammaenr.muhasebeuygulamasi {
     requires com.almasb.fxgl.all;
     requires annotations;
     requires FX.BorderlessScene;
+    requires java.sql;
 
     opens me.ogsammaenr.muhasebeuygulamasi to javafx.fxml;
     exports me.ogsammaenr.muhasebeuygulamasi;
