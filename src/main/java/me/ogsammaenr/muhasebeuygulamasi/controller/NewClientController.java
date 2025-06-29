@@ -2,82 +2,66 @@ package me.ogsammaenr.muhasebeuygulamasi.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.function.UnaryOperator;
 
 public class NewClientController {
     @FXML
     public void initialize() {
         txt_eMail.textProperty().addListener((obs, oldVal, newVal) -> checkEMail(newVal));
         txt_phoneNumber.textProperty().addListener((obs, oldVal, newVal) -> checkPhoneNumber(newVal));
-        txt_registerDate.textProperty().addListener((obs, oldText, newText) -> {
-            // 1) Sadece rakam ve / kabul et
-            StringBuilder filtered = new StringBuilder();
-            for (char c : newText.toCharArray()) {
-                if (Character.isDigit(c) || c == '/') {
-                    filtered.append(c);
-                }
-            }
-            String filteredText = filtered.toString();
+        UnaryOperator<TextFormatter.Change> dateFilter = change -> {
+            String newText = change.getControlNewText();
+            String oldText = change.getControlText();
 
-            if (!filteredText.equals(newText)) {
-                txt_registerDate.setText(filteredText);
-                return;
+            // Sadece rakam ve / karakterlerini al
+            String digitsOnly = newText.replaceAll("[^0-9]", "");
+
+            // En fazla 8 rakam (ddMMyyyy)
+            if (digitsOnly.length() > 8) {
+                return null;
             }
 
-            // 2) Maksimum uzunluk 10 karakter
-            if (filteredText.length() > 10) {
-                txt_registerDate.setText(oldText);
-                return;
-            }
-
-            // 3) / konulması gereken yerlere otomatik / ekle
-            String digitsOnly = filteredText.replaceAll("/", "");
             StringBuilder formatted = new StringBuilder();
+            int rawCaretPos = change.getCaretPosition(); // caret'in ham pozisyonunu al
 
-            for (int i = 0; i < digitsOnly.length() && i < 8; i++) { // 8 rakam max (ddMMyyyy)
+            for (int i = 0; i < digitsOnly.length(); i++) {
                 if (i == 2 || i == 4) {
                     formatted.append('/');
+                    // Eğer caret bu noktadan ileri gidiyorsa 1 artır
+                    if (i < rawCaretPos) {
+                        rawCaretPos++;
+                    }
                 }
                 formatted.append(digitsOnly.charAt(i));
             }
 
-            if (!formatted.toString().equals(filteredText)) {
-                int caretPos = txt_registerDate.getCaretPosition();
-                txt_registerDate.setText(formatted.toString());
+            String finalText = formatted.toString();
+            change.setText(finalText);
+            change.setRange(0, oldText.length());
 
-                // İmleci son pozisyona ayarla (kullanıcı deneyimi için)
-                if (caretPos > formatted.length()) {
-                    caretPos = formatted.length();
+            if (digitsOnly.length() == 8) {
+                if (!isValidDate(finalText)) {
+                    // Geçersizse metni reddet
+                    txt_registerDate.setStyle("-fx-border-color: red;");
+                } else {
+                    txt_registerDate.setStyle(null);
                 }
-                txt_registerDate.positionCaret(caretPos);
             }
-        });
 
-//        txt_registerDate.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-//            int caretPos = txt_registerDate.getCaretPosition();
-//            String text = txt_registerDate.getText();
-//
-//            if (event.getCode() == KeyCode.BACK_SPACE) {
-//                if (caretPos > 0 && text.length() > 0) {
-//                    // Eğer silinen karakter '/' ise önceki rakamla beraber sil
-//                    if (text.charAt(caretPos - 1) == '/') {
-//                        if (caretPos - 2 >= 0 && caretPos <= text.length()) {
-//                            StringBuilder sb = new StringBuilder(text);
-//                            sb.delete(caretPos - 2, caretPos);
-//                            txt_registerDate.setText(sb.toString());
-//                            txt_registerDate.positionCaret(caretPos - 2);
-//                        }
-//                        event.consume();
-//                    }
-//                }
-//            }
-//        });
+            // Caret pozisyonunu ayarla
+            int finalCaretPos = Math.min(rawCaretPos, finalText.length());
+            change.setCaretPosition(finalCaretPos);
+            change.setAnchor(finalCaretPos); // seçili alanı sıfırla
+
+            return change;
+        };
+
+        txt_registerDate.setTextFormatter(new TextFormatter<>(dateFilter));
+
     }
 
     @FXML
@@ -86,6 +70,7 @@ public class NewClientController {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             txt_registerDate.setText(LocalDate.now().format(formatter));
             txt_registerDate.setEditable(false);
+            txt_registerDate.setStyle(null);
         } else {
             txt_registerDate.setText("");
             txt_registerDate.setEditable(true);
@@ -139,6 +124,17 @@ public class NewClientController {
         // Sadece 10 haneli rakam (örnek: 5XXXXXXXXX)
         String phoneRegex = "^5\\d{9}$";
         return phone.matches(phoneRegex);
+    }
+
+    public boolean isValidDate(String date) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate localDate = LocalDate.parse(date, formatter);
+
+            return localDate.isBefore(LocalDate.now());
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @FXML
