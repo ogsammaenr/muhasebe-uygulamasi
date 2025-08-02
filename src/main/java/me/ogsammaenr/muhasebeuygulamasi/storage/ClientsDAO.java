@@ -17,17 +17,17 @@ public class ClientsDAO {
      */
     public void addClient(Client client) {
         String sql = "INSERT INTO clients (company_name, registration_date, last_action_date, email, telephone, notes) " +
-                     "VALUES (?, ?, ?, ?, ?, ?, ?)";
+                "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, client.getCompanyName());
-            pstmt.setString(2, client.getRegistrationDate().toString());
-            pstmt.setString(4, client.getLastActionDate() != null ? client.getLastActionDate().toString() : null);
-            pstmt.setString(5, client.getEMailAddress() != null ? client.getEMailAddress() : null);
-            pstmt.setString(6, client.getPhoneNumber() != null ? client.getPhoneNumber() : null);
-            pstmt.setString(7, client.getNotes() != null ? client.getNotes() : null);
+            pstmt.setString(2, client.getRegistrationDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            pstmt.setString(3, client.getLastActionDate() != null ? client.getLastActionDate().toString() : null);
+            pstmt.setString(4, client.getEMailAddress() != null ? client.getEMailAddress() : null);
+            pstmt.setString(5, client.getPhoneNumber() != null ? client.getPhoneNumber() : null);
+            pstmt.setString(6, client.getNotes() != null ? client.getNotes() : null);
 
             int affectedRows = pstmt.executeUpdate();
 
@@ -35,14 +35,14 @@ public class ClientsDAO {
                 throw new SQLException("Client eklenemedi, etkilenen satır yok.");
             }
 
-            try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    client.setId(generatedKeys.getInt(1)); // 🔑 Burada id nesneye atanıyor
+            try (Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery("SELECT last_insert_rowid()")) {
+                if (rs.next()) {
+                    client.setId(rs.getInt(1));
                 } else {
-                    throw new SQLException("Client eklendi ama ID alınamadı.");
+                    throw new SQLException("Client Eklenemedi, Hiçbir satır etkilenmedi");
                 }
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

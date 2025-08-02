@@ -48,6 +48,10 @@ public class ClientsController {
             stage.setResizable(false);
             stage.setTitle("Yeni Müşteri");
 
+            NewClientController controller = loader.getController();
+            controller.setClientsManager(clientsManager);
+
+
             stage.show();
 
 
@@ -78,13 +82,12 @@ public class ClientsController {
     private void handleClientButtonAction(MouseEvent event, Client client) {
         if (event.getButton() == MouseButton.PRIMARY) {
             lbl_companyName.setText(client.getCompanyName());
-            lbl_registerDate.setText(client.getRegistrationDate().toString());
-            lbl_lastActionDate.setText(client.getLastActionDate().toString());
-            lbl_eMail.setText(client.getEMailAddress());
-            lbl_telNo.setText(client.getPhoneNumber());
-            lbl_notes.setText(client.getNotes());
+            lbl_registerDate.setText(client.getRegistrationDate() != null ? client.getRegistrationDate().toString() : "");
+            lbl_lastActionDate.setText(client.getLastActionDate() != null ? client.getLastActionDate().toString() : "");
+            lbl_eMail.setText(client.getEMailAddress() != null ? client.getEMailAddress() : "");
+            lbl_telNo.setText(client.getPhoneNumber() != null ? client.getPhoneNumber() : "");
+            lbl_notes.setText(client.getNotes() != null ? client.getNotes() : "");
         }
-
     }
 
     @FXML

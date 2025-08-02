@@ -16,9 +16,9 @@ public class Client {
      *
      * @param companyName
      */
-    public Client(String companyName) {
+    public Client(String companyName, LocalDate registrationDate) {
         this.companyName = companyName;
-        this.registrationDate = LocalDate.now();
+        this.registrationDate = registrationDate;
     }
 
     /**
@@ -34,6 +34,10 @@ public class Client {
         this.companyName = companyName;
         this.registrationDate = registrationDate;
         this.lastActionDate = lastActionDate;
+    }
+
+    public void setRegistrationDate(LocalDate registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
     public void setLastActionDate() {

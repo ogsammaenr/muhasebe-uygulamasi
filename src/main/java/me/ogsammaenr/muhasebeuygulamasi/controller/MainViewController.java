@@ -67,13 +67,12 @@ public class MainViewController {
     @FXML
     public void onClientsClick(MouseEvent event) {
         if (main_pane.getChildren().size() > 0 &&
-            "clients-view.fxml".equals(main_pane.getChildren().get(0).getId())) {
+                "clients-view.fxml".equals(main_pane.getChildren().get(0).getId())) {
             return; // zaten yüklü
         }
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/me/ogsammaenr/muhasebeuygulamasi/clients-view.fxml"));
             Parent newClientsView = loader.load();
-
 
             main_pane.getChildren().clear();
             main_pane.getChildren().add(newClientsView);
