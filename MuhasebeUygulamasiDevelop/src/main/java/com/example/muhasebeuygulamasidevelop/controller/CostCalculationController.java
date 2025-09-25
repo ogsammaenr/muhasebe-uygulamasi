@@ -72,19 +72,13 @@ public class CostCalculationController {
         addExtraLaborButton.setOnAction(e -> addExtraLaborButtonOnAction(e) );
         saveButton.setOnAction(e -> saveButtonOnAction(e));
 
-        addMdfItem("18mm", "12.5 m²", "120 ₺", "1.500 ₺");
-        addMdfItem("22mm", "8 m²", "150 ₺", "1.200 ₺");
-        addMdfItem("18mm", "12.5 m²", "120 ₺", "1.500 ₺");
-        addMdfItem("22mm", "8 m²", "150 ₺", "1.200 ₺");
-        addMdfItem("18mm", "12.5 m²", "120 ₺", "1.500 ₺");
-        addMdfItem("22mm", "8 m²", "150 ₺", "1.200 ₺");
-
+        addMdfItem("18mm", "12.5 m²", "120 ₺", "1.500 ₺", "10", "5");
     }
 
     @FXML
     private VBox mdfList;
 
-    public void addMdfItem(String name, String quantity, String price, String totalPrice) {
+    public void addMdfItem(String name, String quantity, String price, String totalPrice, String drillTime, String patternTime) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/items/MDF-item.fxml"));
             VBox mdfItem = loader.load();
@@ -94,6 +88,13 @@ public class CostCalculationController {
             controller.setMdfQuantity(quantity);
             controller.setMdfPrice(price);
             controller.setMdfTotalPrice(totalPrice);
+
+            controller.setMdfDrillTime(drillTime);
+            controller.setMdfPatternTime(patternTime);
+
+            int dt = Integer.parseInt(drillTime);
+            int pt = Integer.parseInt(patternTime);
+            controller.setMdfTotalTime(String.valueOf(dt+pt));
 
             mdfList.getChildren().add(mdfItem);
 

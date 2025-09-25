@@ -130,19 +130,35 @@
 
 .mdf-item {
     -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
     -fx-padding: 8;
-    -fx-background-radius: 4;
-    -fx-border-radius: 4;
-    -fx-border-color: #ecf0f1;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 4, 0.2, 0, 2);
 }
 
 .mdf-name {
+    -fx-font-size: 15px;
     -fx-font-weight: bold;
-    -fx-text-fill: #34495e;
+    -fx-text-fill: #2c3e50;
 }
 
-.mdf-quantity, .mdf-price, .mdf-total-price {
+.mdf-extra-label {
+    -fx-text-fill: #34495e;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.mdf-extra-value {
     -fx-text-fill: #7f8c8d;
+    -fx-font-size: 13px;
+}
+
+.mdf-time-details {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6a7475;
+    -fx-font-weight: bold;
+    -fx-alignment: center-left;
 }
 
 /* Form Elemanları */
