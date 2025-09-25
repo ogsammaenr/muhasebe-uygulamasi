@@ -1,14 +1,45 @@
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.control.Label?>
+
+<?import javafx.scene.layout.ColumnConstraints?>
 <VBox xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.muhasebeuygulamasidevelop.controller.items.MdfItemController"
-      styleClass="mdf-item" spacing="6">
+      styleClass="mdf-item"
+      spacing="10"
+      style="-fx-padding: 12;">
 
     <children>
+        <!-- Üst başlık (isim) -->
         <Label fx:id="mdfNameLabel" styleClass="mdf-name" text="18mm" />
-        <Label fx:id="mdfQuantityLabel" styleClass="mdf-quantity" text="Kullanım: -" />
-        <Label fx:id="mdfPriceLabel" styleClass="mdf-price" text="m² Fiyatı: -" />
-        <Label fx:id="mdfTotalPriceLabel" styleClass="mdf-total-price" text="Toplam Fiyat: -" />
+
+        <!-- GridPane ile detaylı bilgiler -->
+        <GridPane hgap="12" vgap="6">
+            <columnConstraints>
+                <!-- Sol kolon: etiketler -->
+                <ColumnConstraints halignment="RIGHT" minWidth="120"/>
+                <!-- Sağ kolon: değerler -->
+                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <!-- Satırlar -->
+            <children>
+                <Label text="Kullanım:" styleClass="mdf-extra-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <Label fx:id="mdfQuantityLabel" styleClass="mdf-extra-value" text="-" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="m² Fiyatı:" styleClass="mdf-extra-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <Label fx:id="mdfPriceLabel" styleClass="mdf-extra-value" text="-" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Toplam Fiyat:" styleClass="mdf-extra-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <Label fx:id="mdfTotalPriceLabel" styleClass="mdf-extra-value" text="-" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Desen Zamanı:" styleClass="mdf-extra-label" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <Label fx:id="mdfPatternTimeLabel" styleClass="mdf-extra-value" text="-" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Label text="Delik Zamanı:" styleClass="mdf-extra-label" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <Label fx:id="mdfDrillTimeLabel" styleClass="mdf-extra-value" text="-" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            </children>
+        </GridPane>
     </children>
 </VBox>
