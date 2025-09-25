@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.muhasebeuygulamasidevelop.controller.ClientsViewController" styleClass="clients-container">
+    <left>
+        <!-- Sol Panel - Müşteri Listesi -->
+        <VBox prefWidth="320.0" styleClass="clients-list-panel" BorderPane.alignment="CENTER">
+            <children>
+                <!-- Header -->
+                <VBox styleClass="clients-list-header">
+                    <children>
+                        <Label text="Müşteri Listesi" styleClass="clients-list-title" />
+                    </children>
+                </VBox>
+
+                <!-- Müşteri Listesi -->
+                <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                    <content>
+                        <VBox fx:id="clientsListContainer" styleClass="clients-list-container">
+                            <children>
+                                <!-- Örnek Müşteri Butonu -->
+                                <Button fx:id="sampleClientBtn" mnemonicParsing="false"
+                                        styleClass="client-button"
+                                        text="🏢  Örnek Firma A.Ş."
+                                        maxWidth="Infinity" />
+
+                                <Button mnemonicParsing="false"
+                                        styleClass="client-button"
+                                        text="🏭  Test Şirketi Ltd."
+                                        maxWidth="Infinity" />
+
+                                <Button mnemonicParsing="false"
+                                        styleClass="client-button"
+                                        text="🏪  Demo İşletmesi"
+                                        maxWidth="Infinity" />
+
+                                <Button mnemonicParsing="false"
+                                        styleClass="client-button"
+                                        text="🏬  Deneme Ticaret"
+                                        maxWidth="Infinity" />
+
+                                <Button mnemonicParsing="false"
+                                        styleClass="client-button"
+                                        text="🏢  Prototip A.Ş."
+                                        maxWidth="Infinity" />
+                            </children>
+                        </VBox>
+                    </content>
+                </ScrollPane>
+            </children>
+        </VBox>
+    </left>
+
+    <center>
+        <!-- Sağ Panel - Müşteri Detayları -->
+        <ScrollPane fitToWidth="true" fitToHeight="true">
+            <content>
+                <VBox fx:id="clientDetailsContainer" styleClass="client-details-panel">
+                    <children>
+                        <!-- Boş Durum Ekranı -->
+                        <VBox fx:id="emptyStateContainer" styleClass="empty-state" VBox.vgrow="ALWAYS">
+                            <children>
+                                <Label text="👥" styleClass="empty-state-icon" />
+                                <Label text="Müşteri Seçiniz" styleClass="empty-state-title" />
+                                <Label text="Sol taraftan görüntülemek istediğiniz müşteriyi seçin" styleClass="empty-state-subtitle" />
+                            </children>
+                        </VBox>
+
+                        <!-- Müşteri Detay Ekranı (Başlangıçta gizli) -->
+                        <VBox fx:id="clientDetailsContent" visible="false" managed="false">
+                            <children>
+                                <!-- Header -->
+                                <VBox styleClass="client-details-header">
+                                    <children>
+                                        <Label fx:id="clientNameLabel" text="Firma Adı" styleClass="client-details-title" />
+                                        <Label text="Müşteri Detay Bilgileri" styleClass="client-details-subtitle" />
+                                    </children>
+                                </VBox>
+
+                                <!-- Detay Bilgileri Listesi - Alt Alta -->
+                                <VBox styleClass="details-list">
+                                    <children>
+                                        <!-- Kayıt Tarihi -->
+                                        <VBox styleClass="detail-item">
+                                            <children>
+                                                <Label text="KAYIT TARİHİ" styleClass="detail-label" />
+                                                <Label fx:id="registrationDateLabel" text="--" styleClass="detail-value" />
+                                            </children>
+                                        </VBox>
+
+                                        <!-- Son Aktivite -->
+                                        <VBox styleClass="detail-item">
+                                            <children>
+                                                <Label text="SON AKTİVİTE" styleClass="detail-label" />
+                                                <Label fx:id="lastActivityLabel" text="--" styleClass="detail-value" />
+                                            </children>
+                                        </VBox>
+
+                                        <!-- Toplam Katkı -->
+                                        <VBox styleClass="detail-item">
+                                            <children>
+                                                <Label text="TOPLAM KATKI" styleClass="detail-label" />
+                                                <HBox spacing="5.0">
+                                                    <children>
+                                                        <Label fx:id="totalContributionLabel" text="--" styleClass="detail-value amount" />
+                                                        <Label text="TL" styleClass="detail-value amount" />
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+
+                                        <!-- Telefon -->
+                                        <VBox styleClass="detail-item">
+                                            <children>
+                                                <Label text="TELEFON" styleClass="detail-label" />
+                                                <Label fx:id="phoneLabel" text="--" styleClass="detail-value contact" />
+                                            </children>
+                                        </VBox>
+
+                                        <!-- E-posta -->
+                                        <VBox styleClass="detail-item">
+                                            <children>
+                                                <Label text="E-POSTA" styleClass="detail-label" />
+                                                <Label fx:id="emailLabel" text="--" styleClass="detail-value contact" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </VBox>
+
+                                <!-- Not Alanı -->
+                                <VBox styleClass="notes-section">
+                                    <children>
+                                        <Label text="NOTLAR" styleClass="notes-title" />
+                                        <VBox styleClass="notes-container">
+                                            <children>
+                                                <TextArea fx:id="notesArea" editable="false" styleClass="notes-area"
+                                                          text="Bu müşteri hakkında özel notlar burada görüntülenecektir..."
+                                                          wrapText="true" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

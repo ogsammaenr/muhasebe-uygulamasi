@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.muhasebeuygulamasidevelop.controller.MainViewController"
+            styleClass="main-container">
+
+    <!-- Sol Menü -->
+    <left>
+        <VBox prefWidth="280.0" styleClass="sidebar" BorderPane.alignment="CENTER">
+            <children>
+
+                <!-- Başlık -->
+                <VBox alignment="CENTER" styleClass="sidebar-header">
+                    <children>
+                        <Label text="Muhasebe Sistemi" styleClass="app-title" />
+                        <Label text="Yönetim Paneli" styleClass="app-subtitle">
+                            <VBox.margin>
+                                <Insets top="5.0" />
+                            </VBox.margin>
+                        </Label>
+                    </children>
+                </VBox>
+
+                <Separator styleClass="menu-separator" />
+
+                <!-- Menü -->
+                <VBox styleClass="navigation-container">
+                    <children>
+                        <Label text="MÜŞTERİ İŞLEMLERİ" styleClass="category-label">
+                            <VBox.margin>
+                                <Insets bottom="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+
+                        <Button fx:id="musteriEkleBtn" styleClass="menu-button" text="👤  Müşteri Ekle" />
+                        <Button fx:id="musteriGoruntuleBtn" styleClass="menu-button" text="👥  Müşterileri Görüntüle" />
+
+                        <Separator styleClass="menu-separator">
+                            <VBox.margin>
+                                <Insets top="15.0" bottom="10.0" />
+                            </VBox.margin>
+                        </Separator>
+
+                        <Label text="ÜRÜN İŞLEMLERİ" styleClass="category-label">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Label>
+
+                        <Button fx:id="urunEkleBtn" styleClass="menu-button" text="📦  Yeni Ürün Ekle" />
+                        <Button fx:id="urunGoruntuleBtn" styleClass="menu-button" text="📋  Ürünleri Görüntüle" />
+
+                        <Separator styleClass="menu-separator">
+                            <VBox.margin>
+                                <Insets top="15.0" bottom="10.0" />
+                            </VBox.margin>
+                        </Separator>
+
+                        <Label text="RAPORLAR" styleClass="category-label">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Label>
+
+                        <Button fx:id="genelDurumBtn" styleClass="menu-button" text="📊  Genel Durum" />
+                        <Button fx:id="hammaddeBtn" styleClass="menu-button" text="📦  Hammadde Fiyatları" />
+                    </children>
+                </VBox>
+
+                <!-- Boşluk -->
+                <Region VBox.vgrow="ALWAYS" />
+
+                <!-- Footer -->
+                <VBox alignment="CENTER" styleClass="sidebar-footer">
+                    <children>
+                        <Label text="v1.0.0" styleClass="version-label" />
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </left>
+
+    <!-- Ana İçerik -->
+    <center>
+        <AnchorPane fx:id="mainContentArea" styleClass="main-content-area">
+            <children>
+                <VBox styleClass="welcome-container"
+                      AnchorPane.topAnchor="0.0"
+                      AnchorPane.bottomAnchor="0.0"
+                      AnchorPane.leftAnchor="0.0"
+                      AnchorPane.rightAnchor="0.0">
+                    <children>
+                        <Label text="📈" styleClass="welcome-icon">
+                            <VBox.margin>
+                                <Insets bottom="20.0" />
+                            </VBox.margin>
+                        </Label>
+
+                        <Label text="Muhasebe Yönetim Sistemi" styleClass="welcome-title">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Label>
+
+                        <Label text="Sol menüden yapmak istediğiniz işlemi seçiniz" styleClass="welcome-subtitle" />
+
+                        <!-- Hızlı Erişim -->
+                        <VBox alignment="CENTER" spacing="20.0">
+                            <VBox.margin>
+                                <Insets top="50.0" />
+                            </VBox.margin>
+                            <children>
+                                <Label text="Hızlı Erişim" styleClass="quick-access-title" />
+                                <VBox styleClass="stats-card">
+                                    <children>
+                                        <Label text="💼  Toplam Müşteri: --" styleClass="stats-label" />
+                                        <Label text="📦  Toplam Ürün: --" styleClass="stats-label" />
+                                        <Label text="💰  Bu Ay Satış: --" styleClass="stats-sales" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </center>
+
+</BorderPane>

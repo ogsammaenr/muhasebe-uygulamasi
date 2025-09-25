@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.muhasebeuygulamasidevelop.controller.NewClientViewController"
+            styleClass="form-container">
+
+    <!-- Üst Bar -->
+    <top>
+        <HBox style="-fx-background-color: #34495E;" alignment="CENTER_LEFT" prefHeight="50" spacing="15">
+            <padding>
+                <Insets left="15" right="15"/>
+            </padding>
+            <children>
+                <Label text="👤 Yeni Müşteri Ekle" styleClass="header-title"/>
+            </children>
+        </HBox>
+    </top>
+
+    <!-- Alt Bar (Kaydet Butonu) -->
+    <bottom>
+        <HBox style="-fx-background-color: #34495E;" alignment="CENTER_RIGHT" prefHeight="50">
+            <padding>
+                <Insets left="15" right="15"/>
+            </padding>
+            <children>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="💾 Kaydet" fx:id="saveCustomerButton" styleClass="form-save-button"/>
+            </children>
+        </HBox>
+    </bottom>
+
+    <!-- Orta Kısım -->
+    <center>
+        <VBox spacing="20" styleClass="form-panel">
+            <padding>
+                <Insets top="20" right="30" bottom="20" left="30"/>
+            </padding>
+            <children>
+
+                <GridPane hgap="20" vgap="15">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" minWidth="120"/>
+                        <ColumnConstraints halignment="LEFT" hgrow="ALWAYS"/>
+                    </columnConstraints>
+
+                    <children>
+                        <!-- Firma Adı -->
+                        <Label text="🏢 Firma Adı:" styleClass="form-label"
+                               GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <TextField fx:id="companyNameField" promptText="Firma adını giriniz"
+                                   styleClass="form-field" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                        <!-- Telefon -->
+                        <Label text="📞 Telefon:" styleClass="form-label"
+                               GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <TextField fx:id="phoneField" promptText="+90..."
+                                   styleClass="form-field" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                        <!-- E-Posta -->
+                        <Label text="📧 E-Posta:" styleClass="form-label"
+                               GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                        <TextField fx:id="emailField" promptText="example@firma.com"
+                                   styleClass="form-field" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                        <!-- Ek Not -->
+                        <Label text="📝 Not:" styleClass="form-label"
+                               GridPane.rowIndex="3" GridPane.columnIndex="0" alignment="TOP_CENTER"/>
+                        <TextArea fx:id="noteField" promptText="Müşteri hakkında ek notlar..."
+                                  styleClass="form-textarea"
+                                  prefRowCount="5" wrapText="true"
+                                  GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                    </children>
+                </GridPane>
+
+            </children>
+        </VBox>
+    </center>
+
+</BorderPane>
