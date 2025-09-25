@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="700.0" styleClass="main_pane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.ogsammaenr.muhasebeuygulamasi.controller.ClientsController">
+   <children>
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="350.0" styleClass="main_pane" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <VBox fx:id="clientsVBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" styleClass="main_pane">
+               <children>
+                  <Group>
+                     <children>
+                        <TextField fx:id="txt_searchBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefColumnCount="1" prefHeight="30.0" prefWidth="300.0" promptText="Ara" styleClass="text-field" stylesheets="@style.css" />
+                        <Button fx:id="btn_search" layoutX="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/Search.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </Group>
+                  <Button fx:id="btn_clientScreen" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="330.0" styleClass="client_display" stylesheets="@style.css" visible="false" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <Group layoutX="502.0" layoutY="25.0" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <Label prefHeight="30.0" prefWidth="150.0" styleClass="subtitle" stylesheets="@style.css" text="Toplam Müşteri Sayısı" />
+            <Label fx:id="lbl_totalClient" layoutY="30.0" prefHeight="30.0" prefWidth="150.0" styleClass="subcost_display" stylesheets="@style.css" />
+         </children>
+      </Group>
+      <VBox layoutX="414.0" layoutY="157.0" prefHeight="370.0" prefWidth="320.0" spacing="5.0" AnchorPane.rightAnchor="10.0">
+         <children>
+            <Label prefHeight="35.0" prefWidth="320.0" styleClass="subtitle" stylesheets="@style.css" text="Seçilen Müşteri Bilgileri" />
+            <Group>
+               <children>
+                  <Label prefHeight="30.0" prefWidth="120.0" styleClass="subtitle" stylesheets="@style.css" text="Firma Adı : " />
+                  <Label fx:id="lbl_companyName" layoutX="120.0" prefHeight="30.0" prefWidth="200.0" styleClass="subcost_display" />
+               </children>
+            </Group>
+            <Group>
+               <children>
+                  <Label prefHeight="30.0" prefWidth="120.0" styleClass="subtitle" stylesheets="@style.css" text="Ürün Sayısı :" />
+                  <Label fx:id="lbl_productCount" layoutX="120.0" prefHeight="30.0" prefWidth="200.0" styleClass="subcost_display" stylesheets="@style.css" />
+               </children>
+            </Group>
+            <Group>
+               <children>
+                  <Label prefHeight="30.0" prefWidth="120.0" styleClass="subtitle" stylesheets="@style.css" text="Toplam Katkı :" />
+                  <Label fx:id="lbl_totalPayment" layoutX="120.0" prefHeight="30.0" prefWidth="200.0" styleClass="subcost_display" stylesheets="@style.css" />
+               </children>
+            </Group>
+            <Group>
+               <children>
+                  <Label prefHeight="30.0" prefWidth="120.0" styleClass="subtitle" stylesheets="@style.css" text="Kayıt Tarihi :" />
+                  <Label fx:id="lbl_registerDate" layoutX="120.0" prefHeight="30.0" prefWidth="200.0" styleClass="subcost_display" stylesheets="@style.css" />
+               </children>
+            </Group>
+            <Group>
+               <children>
+                  <Label prefHeight="30.0" prefWidth="120.0" styleClass="subtitle" stylesheets="@style.css" text="Son İşlem Tarihi :" />
+                  <Label fx:id="lbl_lastActionDate" layoutX="120.0" prefHeight="30.0" prefWidth="200.0" styleClass="subcost_display" stylesheets="@style.css" />
+               </children>
+            </Group>
+            <Group>
+               <children>
+                  <Label prefHeight="30.0" prefWidth="120.0" styleClass="subtitle" stylesheets="@style.css" text="E posta :" />
+                  <Label fx:id="lbl_eMail" layoutX="120.0" prefHeight="30.0" prefWidth="200.0" styleClass="subcost_display" />
+               </children>
+            </Group>
+            <Group>
+               <children>
+                  <Label prefHeight="30.0" prefWidth="120.0" styleClass="subtitle" text="Telefon No :" />
+                  <Label fx:id="lbl_telNo" layoutX="120.0" prefHeight="30.0" prefWidth="200.0" styleClass="subcost_display" />
+               </children>
+            </Group>
+            <Group>
+               <children>
+                  <Label prefHeight="30.0" prefWidth="120.0" styleClass="subtitle" stylesheets="@style.css" text="Notlar :" />
+                  <Label fx:id="lbl_notes" alignment="TOP_LEFT" layoutX="120.0" prefHeight="100.0" prefWidth="200.0" styleClass="subcost_display" stylesheets="@style.css" wrapText="true" />
+               </children>
+            </Group>
+         </children>
+      </VBox>
+      <Button fx:id="btn_newClient" layoutX="149.0" layoutY="535.0" mnemonicParsing="false" onAction="#onNewClientClick" text="yeni Müşteri" AnchorPane.bottomAnchor="5.0" />
+   </children>
+</AnchorPane>
