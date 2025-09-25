@@ -81,7 +81,7 @@
 /* Ana Arka Plan */
 .products-container {
     -fx-background-color: #ffffff;
-    -fx-padding: 15;
+    -fx-padding: 0;
     -fx-font-family: "Segoe UI", sans-serif;
 }
 
@@ -209,6 +209,11 @@
 .form-value:hover {
     -fx-background-color: #bdc3c7; /* hafif koyulaşma */
     -fx-cursor: hand;
+}
+
+.section-separator {
+    -fx-padding: 5;
+
 }
 
 /* Ek İşçilik Butonu */
