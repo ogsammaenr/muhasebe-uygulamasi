@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.muhasebeuygulamasidevelop.controller.MdfInputViewController"
+            styleClass="mdf-input-container"
+            fx:id="mainPane">
+
+    <!-- Başlık -->
+    <top>
+        <VBox alignment="CENTER" spacing="10" BorderPane.alignment="CENTER" styleClass="header-section">
+            <children>
+                <Label text="🪵 MDF Ölçü Girişi" styleClass="page-title" />
+                <Separator />
+            </children>
+            <padding>
+                <Insets top="20" bottom="10" left="20" right="20"/>
+            </padding>
+        </VBox>
+    </top>
+
+    <!-- MDF Satırları + Ekle Butonu -->
+    <center>
+        <VBox spacing="10">
+            <children>
+                <!-- 🟧 Başlık Etiketleri Satırı -->
+                <HBox spacing="15" alignment="CENTER_LEFT">
+                    <children>
+                        <!-- <Label text="" prefWidth="5" styleClass="mdf-input-header" /> -->
+                        <Label text="En (cm)" prefWidth="80" styleClass="mdf-input-header"/>
+                        <Label text="Boy (cm)" prefWidth="80" styleClass="mdf-input-header"/>
+                        <Label text="Kalınlık" prefWidth="100" styleClass="mdf-input-header"/>
+                        <Label text="Desen (dk)" prefWidth="100" styleClass="mdf-input-header"/>
+                        <Label text="Delik (dk)" prefWidth="100" styleClass="mdf-input-header"/>
+                        <Label text="Toplam (dk)" prefWidth="90" styleClass="mdf-input-header"/>
+                        <Label text="" prefWidth="30" styleClass="mdf-input-header"/>
+                    </children>
+                    <padding>
+                        <Insets top="10" left="20" right="20"/>
+                    </padding>
+                </HBox>
+
+                <!-- Scroll ile MDF girişleri -->
+                <ScrollPane fitToWidth="true" fitToHeight="true" >
+                    <content>
+                        <VBox fx:id="mdfInputsContainer" spacing="15" styleClass="mdf-inputs-list">
+                            <padding>
+                                <Insets top="10" bottom="10" left="20" right="20"/>
+                            </padding>
+                        </VBox>
+                    </content>
+                </ScrollPane>
+
+                <!-- Altındaki + Butonu -->
+                <HBox alignment="CENTER" styleClass="mdf-add-button-bar">
+                    <children>
+                        <Button fx:id="addMdfButton" styleClass="action-button"/>
+                    </children>
+                    <padding>
+                        <Insets top="10" bottom="10" left="20" right="20"/>
+                    </padding>
+                </HBox>
+
+            </children>
+        </VBox>
+    </center>
+
+    <!-- Alt Bar: Sonraki Butonu + Renkli Şerit -->
+    <bottom>
+        <HBox spacing="20" alignment="CENTER_RIGHT" styleClass="bottom-bar">
+            <children>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="nextButton" text="Sonraki " styleClass="next-button" />
+            </children>
+            <padding>
+                <Insets top="10" bottom="10" left="20" right="20"/>
+            </padding>
+        </HBox>
+    </bottom>
+</BorderPane>

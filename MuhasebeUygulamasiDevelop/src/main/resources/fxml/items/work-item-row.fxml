@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<HBox xmlns="http://javafx.com/javafx/17.0.1"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="10"
+      alignment="CENTER_LEFT">
+
+    <TextField fx:id="nameField" promptText="İsim giriniz" prefWidth="120" styleClass="form-field"/>
+
+    <TextField fx:id="priceField" promptText="Fiyat" disable="true" styleClass="form-field"/>
+
+    <ComboBox fx:id="unitComboBox" promptText="Parametre">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Alan"/>
+                <String fx:value="Süre"/>
+            </FXCollections>
+        </items>
+    </ComboBox>
+    <Label fx:id="unitLabel" text="" disable="true" styleClass="form-label"/>
+
+    <Button fx:id="actionButton" text="Kaydet" />
+</HBox>

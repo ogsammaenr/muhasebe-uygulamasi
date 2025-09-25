@@ -1,0 +1,575 @@
+/* Muhasebe Sistemi Ana Menü Stilleri */
+
+/* Ana Container */
+.main-container {
+    -fx-background-color: #ecf0f1;
+}
+
+/* Sol Kenar Çubuğu */
+.sidebar {
+    -fx-background-color: #2c3e50;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 2, 0);
+}
+
+/* Header Bölümü */
+.sidebar-header {
+    -fx-background-color: #34495e;
+    -fx-padding: 20;
+}
+
+.app-title {
+    -fx-text-fill: white;
+    -fx-font-family: "System Bold";
+    -fx-font-size: 18px;
+}
+
+.app-subtitle {
+    -fx-text-fill: #bdc3c7;
+    -fx-font-size: 12px;
+}
+
+/* Navigasyon Bölümü */
+.navigation-container {
+    -fx-padding: 20 15 20 15;
+    -fx-spacing: 8;
+}
+
+/* Kategori Etiketleri */
+.category-label {
+    -fx-text-fill: #95a5a6;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+/* Menü Butonları */
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-alignment: center-left;
+    -fx-padding: 0 0 0 20;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-pref-height: 45;
+    -fx-pref-width: 250;
+    -fx-cursor: hand;
+}
+
+.menu-button:hover {
+    -fx-background-color: #495470;
+    -fx-border-color: rgba(88, 100, 133, 0.6);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.menu-button:pressed {
+    -fx-background-color: #495a8c;
+    -fx-border-color: rgba(55, 67, 105, 0.6);
+    -fx-text-fill: #ceecff;
+}
+
+.menu-button:focused {
+    -fx-background-color: #34495e;
+    -fx-border-color: rgba(55, 67, 105, 0.6);
+    -fx-text-fill: #ceecff;
+    -fx-border-width: 2;
+}
+
+/* Ayraçlar */
+.menu-separator {
+    -fx-background-color: #34495e;
+}
+
+/* Footer */
+.sidebar-footer {
+    -fx-background-color: #34495e;
+    -fx-padding: 15;
+}
+
+.version-label {
+    -fx-text-fill: #7f8c8d;
+    -fx-font-size: 10px;
+}
+
+/* Ana İçerik Alanı */
+.main-content-area {
+    -fx-background-color: #ecf0f1;
+}
+
+/* Hoş Geldiniz Ekranı */
+.welcome-container {
+    -fx-alignment: center;
+    -fx-spacing: 20;
+}
+
+.welcome-icon {
+    -fx-font-size: 72px;
+}
+
+.welcome-title {
+    -fx-text-fill: #2c3e50;
+    -fx-font-family: "System Bold";
+    -fx-font-size: 28px;
+}
+
+.welcome-subtitle {
+    -fx-text-fill: #7f8c8d;
+    -fx-font-size: 16px;
+}
+
+.quick-access-title {
+    -fx-text-fill: #34495e;
+    -fx-font-family: "System Bold";
+    -fx-font-size: 18px;
+}
+
+/* Hızlı Erişim Kartı */
+.stats-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-padding: 30;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-alignment: center;
+    -fx-spacing: 15;
+}
+
+.stats-label {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 14px;
+}
+
+.stats-sales {
+    -fx-text-fill: #27ae60;
+    -fx-font-family: "System Bold";
+    -fx-font-size: 14px;
+}
+
+/* Animasyonlar ve Geçişler */
+.menu-button {
+    -fx-transition: all 0.3s ease;
+}
+
+/* Müşteri Görüntüleme Ekranı Stilleri */
+
+/* Ana Container */
+.clients-container {
+    -fx-background-color: #ecf0f1;
+}
+
+/* Sol Panel - Müşteri Listesi */
+.clients-list-panel {
+    -fx-background-color: #34495e;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 2, 0);
+}
+
+.clients-list-header {
+    -fx-background-color: #2c3e50;
+    -fx-padding: 20;
+    -fx-alignment: center;
+}
+
+.clients-list-title {
+    -fx-text-fill: white;
+    -fx-font-family: "System Bold";
+    -fx-font-size: 18px;
+}
+
+.clients-list-container {
+    -fx-padding: 15;
+    -fx-spacing: 8;
+}
+
+/* Müşteri Butonları */
+.client-button {
+    -fx-background-color: #dadada;
+    -fx-text-fill: #3e739b;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: center-left;
+    -fx-padding: 15 20;
+    -fx-background-radius: 8;
+    -fx-border-radius: 10;
+    -fx-pref-height: 50;
+    -fx-cursor: hand;
+    -fx-border-color: rgba(255, 255, 255, 0.6);
+    -fx-border-width: 2;
+}
+
+.client-button:hover {
+    -fx-background-color: #6e7da6;
+    -fx-border-color: rgba(88, 100, 133, 0.6);
+    -fx-text-fill: #ceecff;
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.client-button:pressed {
+    -fx-background-color: #495a8c;
+    -fx-border-color: rgba(55, 67, 105, 0.6);
+    -fx-text-fill: #ceecff;
+}
+
+.client-button.selected {
+    -fx-background-color: #37516e;
+    -fx-border-color: #2f4860;
+    -fx-text-fill: #ceecff;
+}
+
+/* Sağ Panel - Müşteri Detayları */
+.client-details-panel {
+    -fx-background-color: white;
+    -fx-padding: 30;
+    -fx-alignment: center;
+}
+
+.client-details-header {
+    -fx-alignment: center;
+    -fx-font-weight: bold;
+    -fx-spacing: 15;
+    -fx-padding: 0 0 30 0;
+}
+
+.client-details-title {
+    -fx-text-fill: #2c3e50;
+    -fx-font-family: "JetBrains Mono ExtraBold";
+    -fx-font-size: 30px;
+}
+
+.client-details-subtitle {
+    -fx-text-fill: #7f8c8d;
+    -fx-font-size: 16px;
+}
+
+/* Detay Listesi - Alt Alta */
+.details-list {
+    -fx-spacing: 15;
+    -fx-alignment: center;
+    -fx-max-width: 500;
+    -fx-padding: 20 0;
+}
+
+.detail-item {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 12;
+    -fx-padding: 20 25;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);
+    -fx-spacing: 8;
+    -fx-alignment: center-left;
+    -fx-pref-width: 500;
+}
+
+.detail-item:hover {
+    -fx-background-color: #e9ecef;
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.detail-label {
+    -fx-text-fill: #6c757d;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-alignment: left;
+}
+
+.detail-value {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-alignment: left;
+}
+
+.detail-value.amount {
+    -fx-text-fill: #27ae60;
+    -fx-font-size: 22px;
+}
+
+.detail-value.contact {
+    -fx-text-fill: #3498db;
+    -fx-font-size: 16px;
+}
+
+/* Not Alanı */
+.notes-section {
+    -fx-spacing: 12;
+    -fx-padding: 20 0 0 0;
+    -fx-alignment: center;
+    -fx-max-width: 500;
+}
+
+.notes-title {
+    -fx-text-fill: #2c3e50;
+    -fx-font-family: "System Bold";
+    -fx-font-size: 18px;
+    -fx-text-alignment: center;
+}
+
+.notes-container {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 12;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);
+    -fx-pref-width: 500;
+}
+
+.notes-area {
+    -fx-background-color: transparent;
+    -fx-text-fill: #495057;
+    -fx-font-size: 15px;
+    -fx-pref-height: 120;
+    -fx-border-color: transparent;
+}
+
+/* Boş Durum Ekranı */
+.empty-state {
+    -fx-alignment: center;
+    -fx-spacing: 20;
+}
+
+.empty-state-icon {
+    -fx-text-fill: #bdc3c7;
+    -fx-font-size: 64px;
+}
+
+.empty-state-title {
+    -fx-text-fill: #7f8c8d;
+    -fx-font-family: "System Bold";
+    -fx-font-size: 20px;
+}
+
+.empty-state-subtitle {
+    -fx-text-fill: #95a5a6;
+    -fx-font-size: 14px;
+}
+/*  Products View   */
+
+/* ==== Genel Stil ==== */
+.products-container {
+    -fx-background-color: #f9fafb;
+    -fx-padding: 0;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #1f2937;
+}
+
+/* ==== Sol Panel ==== */
+.products-list-panel {
+    -fx-background-color: #ffffff;
+    -fx-padding: 20;
+    -fx-spacing: 15;
+    -fx-border-color: #e5e7eb;
+    -fx-border-width: 0 1 0 0;
+}
+
+.products-list-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #111827;
+}
+
+.filter-button {
+    -fx-background-color: #2563eb;
+    -fx-text-fill: white;
+    -fx-font-weight: 500;
+    -fx-padding: 6 12;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+.filter-button:hover {
+    -fx-background-color: #1e40af;
+}
+
+/* ==== Ürün Butonları ==== */
+.product-button {
+    -fx-background-color: #f3f4f6;
+    -fx-text-fill: #111827;
+    -fx-padding: 10 12;
+    -fx-background-radius: 6;
+    -fx-alignment: CENTER_LEFT;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, transparent, 0, 0, 0, 0);
+    -fx-transition: all 0.2s ease;
+}
+
+.product-button:hover {
+    -fx-background-color: #e5e7eb;
+}
+
+/* ==== Boş Durum Ekranı ==== */
+.empty-state {
+    -fx-alignment: center;
+    -fx-spacing: 10;
+    -fx-padding: 60;
+    -fx-opacity: 0.5;
+}
+
+.empty-state-icon {
+    -fx-font-size: 42px;
+}
+.empty-state-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: 600;
+}
+.empty-state-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #6b7280;
+}
+
+/* ==== Sağ Panel - Detaylar ==== */
+.product-details-panel {
+    -fx-background-color: #ffffff;
+    -fx-padding: 30;
+    -fx-spacing: 20;
+}
+
+.product-details-header {
+    -fx-spacing: 5;
+}
+.product-details-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111827;
+}
+.product-details-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #6b7280;
+}
+
+/* ==== İçerik Yapısı ==== */
+.product-details-body {
+    -fx-spacing: 30;
+}
+
+/* ==== MDF Bölümü ==== */
+.mdf-details-section {
+    -fx-padding: 20;
+    -fx-spacing: 12;
+    -fx-background-color: #f9fafb;
+    -fx-border-color: #d1d5db;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #374151;
+}
+
+.mdf-item {
+    -fx-padding: 10;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e5e7eb;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-spacing: 4;
+}
+
+.mdf-name {
+    -fx-font-weight: 600;
+}
+
+.mdf-quantity, .mdf-price, .mdf-total-price {
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 13px;
+}
+
+
+/* ==== Maliyet Detayları ==== */
+.cost-details-section {
+    -fx-padding: 20;
+    -fx-spacing: 12;
+    -fx-background-color: #f9fafb;
+    -fx-border-color: #d1d5db;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+GridPane {
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+GridPane Label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #374151;
+}
+
+.summary-cards {
+    -fx-padding: 20 0 0 0;
+    -fx-alignment: center;
+}
+
+.summary-card {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d1d5db;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 20;
+    -fx-spacing: 10;
+    -fx-pref-width: 220;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 4, 0, 0, 2);
+}
+
+.summary-title {
+    -fx-font-size: 14px;
+    -fx-text-fill: #6b7280;
+    -fx-font-weight: 500;
+}
+
+.summary-value {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111827;
+}
+
+.summary-subvalue {
+    -fx-font-size: 16px;
+    -fx-text-fill: #1e40af;
+    -fx-font-weight: 600;
+}
+
+/* Responsive Tasarım için Medya Sorguları */
+/*
+@media (max-width: 1200px) {
+
+    .sidebar {
+        -fx-pref-width: 250;
+    }
+
+    .menu-button {
+        -fx-pref-width: 220;
+    }
+
+    .clients-list-panel {
+        -fx-pref-width: 280;
+    }
+}
+
+@media (max-width: 800px) {
+    .sidebar {
+        -fx-pref-width: 200;
+    }
+
+    .menu-button {
+        -fx-pref-width: 180;
+        -fx-font-size: 12px;
+    }
+
+    .app-title {
+        -fx-font-size: 16px;
+    }
+
+    .clients-list-panel {
+        -fx-pref-width: 250;
+    }
+
+    .client-details-title {
+        -fx-font-size: 30px;
+    }
+
+}
+ */

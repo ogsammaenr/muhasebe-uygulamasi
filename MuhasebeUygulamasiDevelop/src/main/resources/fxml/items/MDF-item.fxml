@@ -1,0 +1,14 @@
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<VBox xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.muhasebeuygulamasidevelop.controller.items.MdfItemController"
+      styleClass="mdf-item" spacing="6">
+
+    <children>
+        <Label fx:id="mdfNameLabel" styleClass="mdf-name" text="18mm" />
+        <Label fx:id="mdfQuantityLabel" styleClass="mdf-quantity" text="Kullanım: -" />
+        <Label fx:id="mdfPriceLabel" styleClass="mdf-price" text="m² Fiyatı: -" />
+        <Label fx:id="mdfTotalPriceLabel" styleClass="mdf-total-price" text="Toplam Fiyat: -" />
+    </children>
+</VBox>
