@@ -2,6 +2,7 @@ package com.example.muhasebeuygulamasidevelop.controller;
 
 import com.example.muhasebeuygulamasidevelop.controller.items.MdfItemController;
 import com.example.muhasebeuygulamasidevelop.controller.items.WorkItemRowController;
+import com.example.muhasebeuygulamasidevelop.model.MdfData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -72,29 +73,26 @@ public class CostCalculationController {
         addExtraLaborButton.setOnAction(e -> addExtraLaborButtonOnAction(e) );
         saveButton.setOnAction(e -> saveButtonOnAction(e));
 
-        addMdfItem("18mm", "12.5 m²", "120 ₺", "1.500 ₺", "10", "5");
+        addMdfItem(18, 450, 450, 5, 0, 1000);
+        addMdfItem(22, 450, 450, 10, 5, 1500);
+        addMdfItem(30, 450, 450, 5, 0, 1000);
+
+
     }
 
     @FXML
     private VBox mdfList;
 
-    public void addMdfItem(String name, String quantity, String price, String totalPrice, String drillTime, String patternTime) {
+    public void addMdfItem(int thickness, double width, double height, double patternTime, double drillTime, double unitPrice) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/items/MDF-item.fxml"));
             VBox mdfItem = loader.load();
 
+            MdfData data = new MdfData(thickness, width, height, patternTime, drillTime, unitPrice);
+
             MdfItemController controller = loader.getController();
-            controller.setMdfName(name);
-            controller.setMdfQuantity(quantity);
-            controller.setMdfPrice(price);
-            controller.setMdfTotalPrice(totalPrice);
 
-            controller.setMdfDrillTime(drillTime);
-            controller.setMdfPatternTime(patternTime);
-
-            int dt = Integer.parseInt(drillTime);
-            int pt = Integer.parseInt(patternTime);
-            controller.setMdfTotalTime(String.valueOf(dt+pt));
+            controller.setData(data);
 
             mdfList.getChildren().add(mdfItem);
 

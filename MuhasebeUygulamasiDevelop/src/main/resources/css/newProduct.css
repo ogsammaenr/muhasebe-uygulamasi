@@ -156,10 +156,37 @@
 
 .mdf-time-details {
     -fx-font-size: 12px;
-    -fx-text-fill: #6a7475;
+    -fx-text-fill: #7f8c8d;
     -fx-font-weight: bold;
     -fx-alignment: center-left;
 }
+
+.mdf-info-icon {
+    -fx-background-color: rgba(0,0,0,0.1);
+    -fx-text-fill: rgba(0,0,0,0.5);
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-padding: 2 6;
+    -fx-background-radius: 50%;
+    -fx-cursor: hand;
+}
+
+.mdf-info-icon:hover {
+    -fx-background-color: rgba(0,0,0,0.2);
+    -fx-text-fill: rgba(0,0,0,0.8);
+}
+
+.custom-tooltip {
+    -fx-background-color: #99a9aa;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 13px;
+    -fx-padding: 8 12;
+    -fx-background-radius: 8;
+    -fx-effect: none;
+    -fx-border-color: #dfe6e9;
+    -fx-border-radius: 12;
+}
+
 
 /* Form Elemanları */
 .form-label {

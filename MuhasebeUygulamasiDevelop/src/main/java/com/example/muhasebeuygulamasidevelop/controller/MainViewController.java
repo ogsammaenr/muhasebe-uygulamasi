@@ -129,7 +129,7 @@ public class MainViewController implements Initializable {
     private void urunEkleAction() {
         System.out.println("Ürün Ekleme sayfası açılıyor...");
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MDF-input-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/cost-calculation-view.fxml"));
             Parent mdfInputView = loader.load();
 
             Scene mdfInputScene = new Scene(mdfInputView);
@@ -137,9 +137,9 @@ public class MainViewController implements Initializable {
             Stage stg = new Stage();
             stg.setScene(mdfInputScene);
             stg.setTitle("MDF Input");
-            stg.setMinHeight(400);
-            stg.setMinWidth(670);
-            stg.setMaxWidth(670);
+            stg.setMinHeight(700);
+            stg.setMinWidth(1200);
+            stg.setMaxWidth(1200);
             stg.show();
 
 
