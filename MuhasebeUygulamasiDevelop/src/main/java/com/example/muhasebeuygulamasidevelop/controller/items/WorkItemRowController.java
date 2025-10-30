@@ -17,13 +17,11 @@ public class WorkItemRowController {
     @FXML
     private TextField priceField;
     @FXML
-    private ComboBox<String> unitComboBox;
-    @FXML
-    private Label unitLabel;
-    @FXML
     private Button actionButton;
     @FXML
     private Label nameLabel;
+    @FXML
+    private Label totalPriceLabel;
 
     private HBox root;
 
@@ -53,28 +51,25 @@ public class WorkItemRowController {
 
     private void onActionClicked() {
         if (!saved) {
-            // Kullanıcı kaydet'e bastığında
-            if(nameField.getText().isEmpty() && unitComboBox.getSelectionModel().getSelectedItem() == null){
-                ((HBox) actionButton.getParent()).getChildren().clear();
-                return;
-            }
             saved = true;
 
             // İsim -> Label'a dönüşsün
             String name = nameField.getText();
-            nameField.setDisable(true);
-            nameLabel.setDisable(false);
+            nameField.setVisible(false);
+            nameField.setManaged(false);
+
+            nameLabel.setVisible(true);
+            nameLabel.setManaged(true);
             nameLabel.setText(name);
             ((HBox) nameField.getParent()).getChildren().set(0, nameLabel);
 
             // Fiyat -> TextField aktif olsun
-            priceField.setDisable(false);
+            priceField.setVisible(true);
+            priceField.setManaged(true);
 
-            // ComboBox -> Label'a dönüşsün
-            String selected = unitComboBox.getSelectionModel().getSelectedItem();
-            unitLabel.setText(selected != null ? selected : "");
-            unitComboBox.setVisible(false);
-            unitLabel.setVisible(true);
+            // Fiyat -> Label aktif olsun
+            totalPriceLabel.setVisible(true);
+            totalPriceLabel.setManaged(true);
 
             // Kaydet -> Sil butonuna dönüşsün
             actionButton.setText("Sil");

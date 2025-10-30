@@ -138,8 +138,7 @@ public class MainViewController implements Initializable {
             stg.setScene(mdfInputScene);
             stg.setTitle("MDF Input");
             stg.setMinHeight(700);
-            stg.setMinWidth(1200);
-            stg.setMaxWidth(1200);
+            stg.setMinWidth(1400);
             stg.show();
 
 

@@ -4,83 +4,108 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
+            xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.muhasebeuygulamasidevelop.controller.MdfInputViewController"
-            styleClass="mdf-input-container"
-            fx:id="mainPane">
+            styleClass="root">
 
-    <!-- Başlık -->
-    <top>
-        <VBox alignment="CENTER" spacing="10" BorderPane.alignment="CENTER" styleClass="header-section">
-            <children>
-                <Label text="🪵 MDF Ölçü Girişi" styleClass="page-title" />
-                <Separator />
-            </children>
-            <padding>
-                <Insets top="20" bottom="10" left="20" right="20"/>
-            </padding>
-        </VBox>
-    </top>
-
-    <!-- MDF Satırları + Ekle Butonu -->
     <center>
-        <VBox spacing="10">
-            <children>
-                <!-- 🟧 Başlık Etiketleri Satırı -->
-                <HBox spacing="15" alignment="CENTER_LEFT">
-                    <children>
-                        <!-- <Label text="" prefWidth="5" styleClass="mdf-input-header" /> -->
-                        <Label text="En (cm)" prefWidth="80" styleClass="mdf-input-header"/>
-                        <Label text="Boy (cm)" prefWidth="80" styleClass="mdf-input-header"/>
-                        <Label text="Kalınlık" prefWidth="100" styleClass="mdf-input-header"/>
-                        <Label text="Desen (dk)" prefWidth="100" styleClass="mdf-input-header"/>
-                        <Label text="Delik (dk)" prefWidth="100" styleClass="mdf-input-header"/>
-                        <Label text="Toplam (dk)" prefWidth="90" styleClass="mdf-input-header"/>
-                        <Label text="" prefWidth="30" styleClass="mdf-input-header"/>
-                    </children>
-                    <padding>
-                        <Insets top="10" left="20" right="20"/>
-                    </padding>
+        <HBox spacing="30" alignment="TOP_CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <!-- Sol: Giriş Formu -->
+            <GridPane hgap="10" vgap="10" styleClass="mdf-form">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" minWidth="120"/>
+                    <ColumnConstraints halignment="LEFT" hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <!-- Genişlik -->
+                <Label text="Genişlik:" styleClass="mdf-form-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtGenislik" promptText="mm" styleClass="mdf-form-input" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <!-- Uzunluk -->
+                <Label text="Uzunluk :" styleClass="mdf-form-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtUzunluk" promptText="mm" styleClass="mdf-form-input" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <!-- Kalınlık -->
+                <Label text="MDF Kalınlığı:" styleClass="mdf-form-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <HBox spacing="10" GridPane.rowIndex="2" GridPane.columnIndex="1" alignment="CENTER_LEFT">
+                    <!-- Normal Kalınlık -->
+                    <ComboBox fx:id="cmbKalinlik" styleClass="mdf-form-input">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="12mm"/>
+                                <String fx:value="15mm"/>
+                                <String fx:value="18mm"/>
+                                <String fx:value="25mm"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+
+                    <!-- Gizli ikinci ComboBox -->
+                    <ComboBox fx:id="cmbKalinlik2" styleClass="mdf-form-input" visible="false">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="12mm"/>
+                                <String fx:value="15mm"/>
+                                <String fx:value="18mm"/>
+                                <String fx:value="25mm"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+
+                    <!-- Özel checkbox -->
+                    <CheckBox fx:id="chkOzel" text="Özel"/>
                 </HBox>
 
-                <!-- Scroll ile MDF girişleri -->
-                <ScrollPane fitToWidth="true" fitToHeight="true" >
-                    <content>
-                        <VBox fx:id="mdfInputsContainer" spacing="15" styleClass="mdf-inputs-list">
-                            <padding>
-                                <Insets top="10" bottom="10" left="20" right="20"/>
-                            </padding>
-                        </VBox>
-                    </content>
-                </ScrollPane>
+                <!-- Desen süresi -->
+                <Label text="Desen Süresi :" styleClass="mdf-form-label" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtDesenSure" promptText="dk" styleClass="mdf-form-input" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
-                <!-- Altındaki + Butonu -->
-                <HBox alignment="CENTER" styleClass="mdf-add-button-bar">
-                    <children>
-                        <Button fx:id="addMdfButton" styleClass="action-button"/>
-                    </children>
-                    <padding>
-                        <Insets top="10" bottom="10" left="20" right="20"/>
-                    </padding>
-                </HBox>
+                <!-- Delik süresi -->
+                <Label text="Delik Süresi :" styleClass="mdf-form-label" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtDelikSure" promptText="dk" styleClass="mdf-form-input" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 
-            </children>
-        </VBox>
+                <!--adet-->
+                <Label text="Adet :" styleClass="mdf-form-label" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtAdet" promptText="Adet" styleClass="mdf-form-input" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <!-- Sağ: Hesaplanan Bilgiler Alt Alta -->
+            <VBox spacing="20" styleClass="mdf-result-container">
+                <!-- Alan Paneli -->
+                <VBox spacing="5" styleClass="mdf-result-card">
+                    <Label text="Alan" styleClass="mdf-result-title"/>
+                    <Label fx:id="lblAlan" text="- m²" styleClass="mdf-result-value"/>
+                </VBox>
+
+                <!-- Toplam Süre Paneli -->
+                <VBox spacing="5" styleClass="mdf-result-card">
+                    <Label text="Toplam Süre" styleClass="mdf-result-title"/>
+                    <Label fx:id="lblToplamSure" text="- dk" styleClass="mdf-result-value"/>
+                </VBox>
+
+                <!-- Toplam Fiyat Paneli -->
+                <VBox spacing="5" styleClass="mdf-result-card">
+                    <Label text="Toplam Fiyat" styleClass="mdf-result-title"/>
+                    <Label fx:id="lblToplamFiyat" text="- ₺" styleClass="mdf-result-value"/>
+                </VBox>
+            </VBox>
+        </HBox>
     </center>
 
-    <!-- Alt Bar: Sonraki Butonu + Renkli Şerit -->
     <bottom>
-        <HBox spacing="20" alignment="CENTER_RIGHT" styleClass="bottom-bar">
-            <children>
-                <Region HBox.hgrow="ALWAYS" />
-                <Button fx:id="nextButton" text="Sonraki " styleClass="next-button" />
-            </children>
+        <HBox alignment="CENTER_RIGHT" spacing="10">
             <padding>
-                <Insets top="10" bottom="10" left="20" right="20"/>
+                <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
+            <Button text="Kaydet" styleClass="mdf-form-button, mdf-form-button-save" fx:id="btnKaydet"/>
+            <Button text="İptal" styleClass="mdf-form-button, mdf-form-button-cancel" fx:id="btnIptal"/>
         </HBox>
     </bottom>
 </BorderPane>

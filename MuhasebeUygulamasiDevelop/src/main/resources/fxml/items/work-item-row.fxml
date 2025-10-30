@@ -5,24 +5,21 @@
 
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <HBox xmlns="http://javafx.com/javafx/17.0.1"
       xmlns:fx="http://javafx.com/fxml"
-      spacing="10"
+      spacing="30"
       alignment="CENTER_LEFT">
+    <padding>
+        <Insets left="20" right="20" top="10" bottom="10"/>
+    </padding>
+    <Label fx:id="nameLabel" visible="false" managed="false" prefWidth="125" styleClass="form-label"/>
 
     <TextField fx:id="nameField" promptText="İsim giriniz" prefWidth="120" styleClass="form-field"/>
 
-    <TextField fx:id="priceField" promptText="Fiyat" disable="true" styleClass="form-field"/>
+    <TextField fx:id="priceField" promptText="₺" visible="false" managed="false" prefWidth="120" styleClass="form-field"/>
 
-    <ComboBox fx:id="unitComboBox" promptText="Parametre">
-        <items>
-            <FXCollections fx:factory="observableArrayList">
-                <String fx:value="Alan"/>
-                <String fx:value="Süre"/>
-            </FXCollections>
-        </items>
-    </ComboBox>
-    <Label fx:id="unitLabel" text="" disable="true" styleClass="form-label"/>
+    <Label fx:id="totalPriceLabel" text="- ₺" visible="false" managed="false" styleClass="form-value"/>
 
     <Button fx:id="actionButton" text="Kaydet" />
 </HBox>

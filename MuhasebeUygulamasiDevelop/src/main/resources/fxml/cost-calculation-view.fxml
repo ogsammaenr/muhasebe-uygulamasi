@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.Group?>
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.muhasebeuygulamasidevelop.controller.CostCalculationController"
@@ -50,19 +51,45 @@
                                 <Separator />
 
                                 <!-- MDF ekleme butonu -->
-                                <Button fx:id="addMdfButton" text="➕ MDF Ekle" />
-
-                                <VBox spacing="8" styleClass="mdf-item">
+                                <HBox alignment="CENTER">
                                     <children>
-                                        <Label text="⏱ Takım Toplam Süresi" styleClass="section-title" />
-                                        <Label fx:id="teamTotalTimeLabel" text="0 dk" />
+                                        <Button fx:id="addMdfButton" text="MDF Ekle" styleClass="add-mdf-button"/>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+
+                        <!-- orta sol sütun -->
+                        <VBox spacing="10" styleClass="product-details-section" minWidth="200">
+                            <children>
+                                <VBox styleClass="summary-card-small">
+                                    <children>
+                                        <Label text="Takım Toplam Süresi" styleClass="summary-title-small" />
+                                        <Label fx:id="teamTotalTimeLabel" text="- dk" styleClass="summary-value-small" />
                                     </children>
                                 </VBox>
+
+                                <VBox styleClass="summary-card-small">
+                                    <children>
+                                        <Label text="Takım Toplam Alanı" styleClass="summary-title-small" />
+                                        <Label fx:id="teamTotalAreaLabel" text="- m²" styleClass="summary-value-small" />
+                                    </children>
+                                </VBox>
+
+                                <Label text="Dolar Kuru" styleClass="form-label" />
+                                <TextField fx:id="dollarRateField" styleClass="form-field" promptText="Örn: 36,5" />
+
+                                <Label text="PVC Rengi" styleClass="form-label" />
+                                <TextField fx:id="pvcColorField" styleClass="form-field" promptText="Renk" />
+
+                                <Label text="PVC Firması" styleClass="form-label" />
+                                <TextField fx:id="pvcCompanyField" styleClass="form-field" promptText="Firma Adı" />
+
                             </children>
                         </VBox>
 
                         <!-- Maliyet ve Özellikler -->
-                        <ScrollPane fitToWidth="true" fitToHeight="true" minWidth="600" maxWidth="800">
+                        <ScrollPane fitToWidth="true" fitToHeight="true" minWidth="600" maxWidth="800" >
                             <content>
                                 <VBox spacing="10.0" styleClass="cost-details-section">
                                     <padding>
@@ -73,69 +100,54 @@
 
                                         <GridPane hgap="30" vgap="10" styleClass="cost-details-section">
                                             <columnConstraints>
-                                                <ColumnConstraints halignment="LEFT" />
-                                                <ColumnConstraints halignment="CENTER" />
-                                                <ColumnConstraints halignment="RIGHT" />
+                                                <ColumnConstraints halignment="LEFT" prefWidth="120" />
+                                                <ColumnConstraints halignment="CENTER" prefWidth="120" />
+                                                <ColumnConstraints halignment="RIGHT"  prefWidth="120"/>
                                             </columnConstraints>
 
-                                            <!-- 1️⃣ Dolar Kuru -->
-                                            <Label text="💱 Dolar Kuru" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-                                            <TextField fx:id="dollarRateField" styleClass="form-field" promptText="Örn: 36,5" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                                            <!-- Hammaddeler -->
+                                            <Label text="PVC Fiyatı" styleClass="form-label" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                                            <TextField fx:id="pvcDollarPriceField" styleClass="form-field" promptText="\$" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                                            <Label fx:id="pvcTotalLabel" styleClass="form-value" text="- $" GridPane.rowIndex="1" GridPane.columnIndex="2" />
 
-                                            <Separator styleClass="section-separator" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="3" />
+                                            <Label text="Zımpara Maliyeti" styleClass="form-label" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                                            <TextField fx:id="sandingMaterialField" styleClass="form-field" promptText="₺" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+                                            <Label fx:id="sandingMaterialTotalLabel" styleClass="form-value" text="- ₺" GridPane.rowIndex="2" GridPane.columnIndex="2" />
 
-                                            <!-- 2️⃣ PVC Bilgileri -->
-                                            <Label text="PVC Rengi" styleClass="form-label" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-                                            <TextField fx:id="pvcColorField" styleClass="form-field" promptText="Renk" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+                                            <Label text="Tutkal" styleClass="form-label" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                                            <TextField fx:id="glueField" styleClass="form-field" promptText="₺" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+                                            <Label fx:id="glueTotalLabel" styleClass="form-value" text="- ₺" GridPane.rowIndex="3" GridPane.columnIndex="2" />
 
-                                            <Label text="PVC Firması" styleClass="form-label" GridPane.rowIndex="3" GridPane.columnIndex="0" />
-                                            <TextField fx:id="pvcCompanyField" styleClass="form-field" promptText="Firma Adı" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+                                            <Label text="Ambalaj" styleClass="form-label" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+                                            <TextField fx:id="packagingField" styleClass="form-field" promptText="₺" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+                                            <Label fx:id="packagingTotalLabel" styleClass="form-value" text="- ₺" GridPane.rowIndex="4" GridPane.columnIndex="2" />
 
-                                            <Label text="PVC Fiyatı" styleClass="form-label" GridPane.rowIndex="4" GridPane.columnIndex="0" />
-                                            <TextField fx:id="pvcDollarPriceField" styleClass="form-field" promptText="USD Fiyatı" GridPane.rowIndex="4" GridPane.columnIndex="1" />
-                                            <Label fx:id="pvcTotalLabel" styleClass="form-value" text="-" GridPane.rowIndex="4" GridPane.columnIndex="2" />
+                                            <Label text="Nakliye" styleClass="form-label" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+                                            <TextField fx:id="shippingField" styleClass="form-field" promptText="₺" GridPane.rowIndex="5" GridPane.columnIndex="1" />
+                                            <Label fx:id="shippingTotalLabel" styleClass="form-value" text="- ₺" GridPane.rowIndex="5" GridPane.columnIndex="2" />
 
-                                            <Separator styleClass="section-separator" GridPane.rowIndex="5" GridPane.columnIndex="0" GridPane.columnSpan="3" />
+                                            <Separator styleClass="section-separator" GridPane.rowIndex="7" GridPane.columnIndex="0" GridPane.columnSpan="3" />
 
-                                            <!-- 3️⃣ Diğer Hammaddeler -->
-                                            <Label text="Zımpara Maliyeti" styleClass="form-label" GridPane.rowIndex="6" GridPane.columnIndex="0" />
-                                            <TextField fx:id="sandingMaterialField" styleClass="form-field" GridPane.rowIndex="6" GridPane.columnIndex="1" />
-                                            <Label fx:id="sandingMaterialTotalLabel" styleClass="form-value" text="-" GridPane.rowIndex="6" GridPane.columnIndex="2" />
+                                            <!-- İşçilikler -->
+                                            <Label text="CNC (dk)" styleClass="form-label" GridPane.rowIndex="9" GridPane.columnIndex="0" />
+                                            <TextField fx:id="cncUnitField" styleClass="form-field" promptText="₺" GridPane.rowIndex="9" GridPane.columnIndex="1" />
+                                            <Label fx:id="cncTotalLabel" styleClass="form-value" text="- ₺" GridPane.rowIndex="9" GridPane.columnIndex="2" />
 
-                                            <Label text="Tutkal" styleClass="form-label" GridPane.rowIndex="7" GridPane.columnIndex="0" />
-                                            <TextField fx:id="glueField" styleClass="form-field" GridPane.rowIndex="7" GridPane.columnIndex="1" />
-                                            <Label fx:id="glueTotalLabel" styleClass="form-value" text="-" GridPane.rowIndex="7" GridPane.columnIndex="2" />
+                                            <Label text="Kesim" styleClass="form-label" GridPane.rowIndex="10" GridPane.columnIndex="0" />
+                                            <TextField fx:id="cuttingUnitField" styleClass="form-field" promptText="₺" GridPane.rowIndex="10" GridPane.columnIndex="1" />
+                                            <Label fx:id="cuttingTotalLabel" styleClass="form-value" text="- ₺" GridPane.rowIndex="10" GridPane.columnIndex="2" />
 
-                                            <Label text="Ambalaj" styleClass="form-label" GridPane.rowIndex="8" GridPane.columnIndex="0" />
-                                            <TextField fx:id="packagingField" styleClass="form-field" GridPane.rowIndex="8" GridPane.columnIndex="1" />
-                                            <Label fx:id="packagingTotalLabel" styleClass="form-value" text="-" GridPane.rowIndex="8" GridPane.columnIndex="2" />
+                                            <Label text="Zımpara İşçiliği" styleClass="form-label" GridPane.rowIndex="11" GridPane.columnIndex="0" />
+                                            <TextField fx:id="sandingLaborField" styleClass="form-field" promptText="₺" GridPane.rowIndex="11" GridPane.columnIndex="1" />
+                                            <Label fx:id="sandingLaborTotalLabel" styleClass="form-value" text="- ₺" GridPane.rowIndex="11" GridPane.columnIndex="2" />
 
-                                            <Label text="Nakliye" styleClass="form-label" GridPane.rowIndex="9" GridPane.columnIndex="0" />
-                                            <TextField fx:id="shippingField" styleClass="form-field" GridPane.rowIndex="9" GridPane.columnIndex="1" />
-                                            <Label fx:id="shippingTotalLabel" styleClass="form-value" text="-" GridPane.rowIndex="9" GridPane.columnIndex="2" />
+                                            <Label text="Paletleme İşçiliği" styleClass="form-label" GridPane.rowIndex="12" GridPane.columnIndex="0" />
+                                            <TextField fx:id="palletingField" styleClass="form-field" promptText="₺" GridPane.rowIndex="12" GridPane.columnIndex="1" />
+                                            <Label fx:id="palletingTotalLabel" styleClass="form-value" text="- ₺" GridPane.rowIndex="12" GridPane.columnIndex="2" />
 
-                                            <Separator styleClass="section-separator" GridPane.rowIndex="10" GridPane.columnIndex="0" GridPane.columnSpan="3" />
-
-                                            <!-- 4️⃣ İşçilikler -->
-                                            <Label text="CNC (dk)" styleClass="form-label" GridPane.rowIndex="11" GridPane.columnIndex="0" />
-                                            <TextField fx:id="cncUnitField" styleClass="form-field" GridPane.rowIndex="11" GridPane.columnIndex="1" />
-                                            <Label fx:id="cncTotalLabel" styleClass="form-value" text="-" GridPane.rowIndex="11" GridPane.columnIndex="2" />
-
-                                            <Label text="Kesim" styleClass="form-label" GridPane.rowIndex="12" GridPane.columnIndex="0" />
-                                            <TextField fx:id="cuttingUnitField" styleClass="form-field" GridPane.rowIndex="12" GridPane.columnIndex="1" />
-                                            <Label fx:id="cuttingTotalLabel" styleClass="form-value" text="-" GridPane.rowIndex="12" GridPane.columnIndex="2" />
-
-                                            <Label text="Zımpara İşçiliği" styleClass="form-label" GridPane.rowIndex="13" GridPane.columnIndex="0" />
-                                            <TextField fx:id="sandingLaborField" styleClass="form-field" GridPane.rowIndex="13" GridPane.columnIndex="1" />
-                                            <Label fx:id="sandingLaborTotalLabel" styleClass="form-value" text="-" GridPane.rowIndex="13" GridPane.columnIndex="2" />
-
-                                            <Label text="Paletleme İşçiliği" styleClass="form-label" GridPane.rowIndex="14" GridPane.columnIndex="0" />
-                                            <TextField fx:id="palletingField" styleClass="form-field" GridPane.rowIndex="14" GridPane.columnIndex="1" />
-                                            <Label fx:id="palletingTotalLabel" styleClass="form-value" text="-" GridPane.rowIndex="14" GridPane.columnIndex="2" />
-
-                                            <Label text="Basım İşçiliği" styleClass="form-label" GridPane.rowIndex="15" GridPane.columnIndex="0" />
-                                            <TextField fx:id="printingLaborField" styleClass="form-field" GridPane.rowIndex="15" GridPane.columnIndex="1" />
-                                            <Label fx:id="printingLaborTotalLabel" styleClass="form-value" text="-" GridPane.rowIndex="15" GridPane.columnIndex="2" />
+                                            <Label text="Basım İşçiliği" styleClass="form-label" GridPane.rowIndex="13" GridPane.columnIndex="0" />
+                                            <TextField fx:id="printingLaborField" styleClass="form-field" promptText="₺" GridPane.rowIndex="13" GridPane.columnIndex="1" />
+                                            <Label fx:id="printingLaborTotalLabel" styleClass="form-value" text="- ₺" GridPane.rowIndex="13" GridPane.columnIndex="2" />
 
                                          </GridPane>
 <!--                                        <GridPane hgap="30" vgap="10">-->
@@ -204,37 +216,47 @@
                         </ScrollPane>
 
                         <!-- Sağ Panel -->
-                        <VBox spacing="20" styleClass="summary-card-sidebar" minWidth="200">
+                        <VBox spacing="20" styleClass="summary-card-sidebar" minWidth="200" >
                             <children>
+                                <VBox spacing="5" styleClass="summary-card">
+                                    <children>
+                                        <Label text="👤 Müşteri Seçimi" styleClass="summary-title" />
+                                        <TextField fx:id="searchCustomerField" promptText="Müşteri ara..." styleClass="form-search" />
+                                        <ComboBox fx:id="customerComboBox" promptText="Müşteri Seçin" styleClass="form-combo" minWidth="150" prefWidth="150"/>
+                                        <Button fx:id="addCustomerButton" text="Müşteri ekle"/>
+                                    </children>
+                                </VBox>
                                 <VBox styleClass="summary-card">
                                     <children>
                                         <Label text="📈 Kâr" styleClass="summary-title" />
-                                        <Label fx:id="profitRateSummaryLabel" text="Oran: %10" styleClass="summary-value" />
-                                        <Label fx:id="profitValueLabel" text="Kâr: 120 TL" styleClass="summary-subvalue" />
+                                        <Label fx:id="profitRateSummaryLabel" text="Oran: %-" styleClass="summary-value" />
+                                        <Label fx:id="profitValueLabel" text="Kâr: - TL" styleClass="summary-subvalue" />
                                     </children>
                                 </VBox>
 
                                 <VBox styleClass="summary-card">
                                     <children>
                                         <Label text="💰 Toplam Fiyat" styleClass="summary-title" />
-                                        <Label fx:id="totalPerM2Label" text="m² Başına: 250 TL" styleClass="summary-value" />
-                                        <Label fx:id="totalOverallLabel" text="Toplam: 3.000 TL" styleClass="summary-subvalue" />
+                                        <Label fx:id="totalPerM2Label" text="m² Başına: - TL" styleClass="summary-value" />
+                                        <Label fx:id="totalOverallLabel" text="Toplam: - TL" styleClass="summary-subvalue" />
                                     </children>
                                 </VBox>
 
                                 <VBox styleClass="summary-card">
                                     <children>
                                         <Label text="🔧 İşçilik" styleClass="summary-title" />
-                                        <Label fx:id="laborPerM2Label" text="m² Başına: 75 TL" styleClass="summary-value" />
-                                        <Label fx:id="laborTotalLabel" text="Toplam: 900 TL" styleClass="summary-subvalue" />
+                                        <Label fx:id="laborPerM2Label" text="m² Başına: - TL" styleClass="summary-value" />
+                                        <Label fx:id="laborTotalLabel" text="Toplam: - TL" styleClass="summary-subvalue" />
+                                        <Label fx:id="laborRateLabel" text="Oran: %-" styleClass="summary-rate"/>
                                     </children>
                                 </VBox>
 
                                 <VBox styleClass="summary-card">
                                     <children>
                                         <Label text="Hammadde" styleClass="summary-title" />
-                                        <Label fx:id="materialPerM2Label" text="m² Başına: 100 TL" styleClass="summary-value" />
-                                        <Label fx:id="materialTotalLabel" text="Toplam: 1.200 TL" styleClass="summary-subvalue" />
+                                        <Label fx:id="materialPerM2Label" text="m² Başına: - TL" styleClass="summary-value" />
+                                        <Label fx:id="materialTotalLabel" text="Toplam: - TL" styleClass="summary-subvalue" />
+                                        <Label fx:id="materialRateLabel" text="Oran: %-" styleClass="summary-rate"/>
                                     </children>
                                 </VBox>
 

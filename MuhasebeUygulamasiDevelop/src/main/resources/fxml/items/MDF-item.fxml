@@ -5,6 +5,7 @@
 
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.Button?>
 <VBox xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.muhasebeuygulamasidevelop.controller.items.MdfItemController"
@@ -38,19 +39,62 @@
 
             <children>
                 <!-- Ölçü (genişlik x uzunluk yan yana) -->
-                <Label text="Ölçü:" styleClass="mdf-extra-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <Label fx:id="mdfSizeLabel" styleClass="mdf-extra-value" text="- x -"
-                       GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <Label text="Ölçü:"
+                       styleClass="mdf-extra-label"
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="0"/>
+                <Label fx:id="mdfSizeLabel"
+                       styleClass="mdf-extra-value"
+                       text="- x -"
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="1"/>
 
                 <!-- Toplam Fiyat -->
-                <Label text="Toplam Fiyat:" styleClass="mdf-extra-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <Label fx:id="mdfTotalPriceLabel" styleClass="mdf-extra-value" text="-"
-                       GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <Label text="Toplam Fiyat:"
+                       styleClass="mdf-extra-label"
+                       GridPane.rowIndex="1"
+                       GridPane.columnIndex="0"/>
+                <Label fx:id="mdfTotalPriceLabel"
+                       styleClass="mdf-extra-value"
+                       text="-"
+                       GridPane.rowIndex="1"
+                       GridPane.columnIndex="1"/>
 
                 <!-- Toplam Zaman -->
-                <Label text="Toplam Zaman:" styleClass="mdf-extra-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                <Label fx:id="mdfTotalTimeLabel" styleClass="mdf-extra-value" text="-"
-                       GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <Label text="Toplam Zaman:"
+                       styleClass="mdf-extra-label"
+                       GridPane.rowIndex="2"
+                       GridPane.columnIndex="0"/>
+                <Label fx:id="mdfTotalTimeLabel"
+                       styleClass="mdf-extra-value"
+                       text="-"
+                       GridPane.rowIndex="2"
+                       GridPane.columnIndex="1"/>
+
+                <!-- Adet -->
+                <Label text="Adet:"
+                       styleClass="mdf-extra-label"
+                       GridPane.rowIndex="3"
+                       GridPane.columnIndex="0"/>
+                <HBox spacing="6"
+                      alignment="CENTER_LEFT"
+                      GridPane.rowIndex="3"
+                      GridPane.columnIndex="1">
+
+                    <!-- Adet değeri -->
+                    <Label fx:id="mdfCountLabel"
+                           text="-"
+                           styleClass="mdf-extra-value"/>
+
+                    <Region HBox.hgrow="ALWAYS"/>
+
+                    <!-- Silme butonu -->
+                    <Button fx:id="deleteButton"
+                            text="✖"
+                            styleClass="mdf-delete-button"
+                            focusTraversable="false"
+                            mnemonicParsing="false"/>
+                </HBox>
             </children>
         </GridPane>
 

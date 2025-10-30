@@ -9,13 +9,16 @@ public class MdfData {
     private double drillTime;
     private double unitPrice;
 
-    public MdfData(int thickness, double width, double height, double patternTime, double drillTime, double unitPrice) {
+    private int count;
+
+    public MdfData(int thickness, double width, double height, double patternTime, double drillTime, double unitPrice,  int count) {
         this.thickness = thickness;
         this.width = width;
         this.height = height;
         this.patternTime = patternTime;
         this.drillTime = drillTime;
         this.unitPrice = unitPrice;
+        this.count = count;
     }
 
     public double getDrillTime() {
@@ -42,8 +45,18 @@ public class MdfData {
         return thickness;
     }
 
+    /**
+     * @return mm^2
+     */
     public double getArea(){
         return width*height;
+    }
+
+    /**
+     * @return mm^2
+     */
+    public double getTotalArea(){
+        return width*height*count;
     }
 
     public double getTotalTime(){
@@ -54,5 +67,7 @@ public class MdfData {
         return unitPrice*(patternTime+drillTime);
     }
 
-
+    public int getCount() {
+        return count;
+    }
 }

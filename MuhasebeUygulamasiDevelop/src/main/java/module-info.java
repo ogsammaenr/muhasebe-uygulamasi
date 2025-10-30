@@ -10,6 +10,7 @@ module com.example.muhasebeuygulamasidevelop {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires java.desktop;
+    requires javafx.graphics;
 
     opens com.example.muhasebeuygulamasidevelop.controller to javafx.fxml;
     exports com.example.muhasebeuygulamasidevelop;

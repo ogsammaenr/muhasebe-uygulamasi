@@ -450,11 +450,7 @@
     -fx-background-radius: 8;
 }
 
-.section-title {
-    -fx-font-size: 16px;
-    -fx-font-weight: 600;
-    -fx-text-fill: #374151;
-}
+
 
 .mdf-item {
     -fx-padding: 10;
@@ -477,14 +473,7 @@
 
 
 /* ==== Maliyet Detayları ==== */
-.cost-details-section {
-    -fx-padding: 20;
-    -fx-spacing: 12;
-    -fx-background-color: #f9fafb;
-    -fx-border-color: #d1d5db;
-    -fx-border-radius: 8;
-    -fx-background-radius: 8;
-}
+
 
 GridPane {
     -fx-hgap: 10;

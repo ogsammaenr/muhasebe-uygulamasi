@@ -80,7 +80,7 @@
 
 /* Ana Arka Plan */
 .products-container {
-    -fx-background-color: #ffffff;
+    -fx-background-color: #f7f7f7;
     -fx-padding: 0;
     -fx-font-family: "Segoe UI", sans-serif;
 }
@@ -176,6 +176,17 @@
     -fx-text-fill: rgba(0,0,0,0.8);
 }
 
+.mdf-delete-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: red;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+.mdf-delete-button:hover {
+    -fx-background-color: rgba(70, 0, 0, 0.20);
+    -fx-text-fill: darkred;
+}
+
 .custom-tooltip {
     -fx-background-color: #99a9aa;
     -fx-text-fill: #ffffff;
@@ -187,37 +198,103 @@
     -fx-border-radius: 12;
 }
 
+.add-mdf-button {
+    -fx-background-color: linear-gradient(to right, #0054aa, #34495e);
+    -fx-text-fill: #dedede;
+    -fx-font-size: 10pt;
+    -fx-font-weight: bold;
+    -fx-padding: 8 20 8 20;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5,0,0,2);
+}
+
+.add-mdf-button:hover {
+    -fx-background-color: linear-gradient(to right, #003d7c, #1f2c39);
+}
+
+.add-mdf-button:pressed {
+    -fx-background-color: #34495e;
+}
+
+/* orta sol panel */
+.product-details-section{
+    -fx-background-color: #f4f6f8;
+    -fx-padding: 15;
+    -fx-spacing: 12;
+    -fx-border-color: #d1d5da;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.summary-card-small {
+    -fx-background-color: #ffffff;
+    -fx-padding: 10;
+    -fx-spacing: 5;
+    -fx-alignment: CENTER;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 4, 0, 0, 2);
+}
+
+.summary-title-small {
+    -fx-font-size: 11pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e;
+}
+
+.summary-value-small {
+    -fx-font-size: 13pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* orta sağ panel */
+.cost-details-section {
+    -fx-padding: 20;
+    -fx-spacing: 12;
+    -fx-background-color: #f9fafb;
+    -fx-border-color: #d1d5db;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
 
 /* Form Elemanları */
 .form-label {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2c3e50; /* koyu gri, okunabilir */
+    -fx-text-fill: #2c3e50;
     -fx-font-family: "Segoe UI", "Roboto", sans-serif;
 
     -fx-border-color: #dcdfe3;
 
-    -fx-border-width: 0 0 1 0; /* sadece alt çizgi */
+    -fx-border-width: 0 0 1 0;
     -fx-padding: 0 0 5 0;
 
     /* boyut sabitleme */
-    -fx-pref-width: 120; /* tercih edilen genişlik */
-    -fx-min-width: 100;  /* minimum genişlik */
-    -fx-max-width: 150;  /* maksimum genişlik */
+    -fx-pref-width: 120;
+    -fx-min-width: 120;
+    -fx-max-width: 120;
 }
 
 .form-field {
-    -fx-background-color: #f4f6f8; /* açık gri, beyazdan daha yumuşak */
+    -fx-background-color: #f4f6f8;
     -fx-border-color: #34495e;
     -fx-border-radius: 8;
     -fx-background-radius: 8;
     -fx-padding: 8 10 8 10;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 4,0,0,1);
+
+    -fx-pref-width: 120;
+    -fx-min-width: 120;
+    -fx-max-width: 120;
 }
 
 .form-field:focused {
-    -fx-border-color: #1e5f85; /* canlı mavi */
-    -fx-background-color: #eaf3fb; /* hafif mavi-gri ton */
+    -fx-border-color: #1e5f85;
+    -fx-background-color: #eaf3fb;
     -fx-effect: dropshadow(gaussian, rgba(41,128,185,0.15), 6,0,0,2);
 }
 
@@ -237,21 +314,108 @@
 .form-value {
     -fx-font-weight: bold;
     -fx-text-fill: #2c3e50;
-    -fx-background-color: #ecf0f1; /* açık gri arka plan */
-    -fx-padding: 5 10 5 10; /* üst sağ alt sol */
-    -fx-background-radius: 5; /* köşeleri yuvarlat */
+    -fx-background-color: #ecf0f1;
+    -fx-padding: 5 10 5 10;
+    -fx-background-radius: 5;
 
     /* boyut sabitleme */
-    -fx-pref-width: 120; /* tercih edilen genişlik */
-    -fx-min-width: 100;  /* minimum genişlik */
-    -fx-max-width: 150;  /* maksimum genişlik */
+    -fx-pref-width: 120;
+    -fx-min-width: 120;
+    -fx-max-width: 120;
 
-    -fx-alignment: center; /* metni ortala */
+    -fx-alignment: center;
 }
 
 .form-value:hover {
-    -fx-background-color: #bdc3c7; /* hafif koyulaşma */
+    -fx-background-color: #d1d5d6;
     -fx-cursor: hand;
+}
+
+.form-search{
+    -fx-background-color: #f4f5f7;
+    -fx-border-color: #c7ccd1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 6 10;
+    -fx-font-size: 13px;
+    -fx-text-fill: #2c3e50;
+    -fx-focus-color: transparent;
+}
+
+.form-combo{
+    -fx-background-color: #f4f5f7;
+    -fx-border-color: #c7ccd1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 6 10;
+    -fx-font-size: 13px;
+    -fx-text-fill: #2c3e50;
+    -fx-focus-color: transparent;
+}
+
+.form-search:focused, .form-combo:focused {
+    -fx-border-color: #34495E;
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(52, 73, 94, 0.2), 5, 0.3, 0, 0);
+}
+
+.form-search .text, .form-combo .text {
+    -fx-prompt-text-fill: #9ba3aa;
+}
+/* Müşteri ekle butonu */
+#addCustomerButton {
+    -fx-background-color: #34495E;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 6 12;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(52, 73, 94, 0.25), 6, 0.2, 0, 1);
+}
+
+/* Hover efekti */
+#addCustomerButton:hover {
+    -fx-background-color: #3e5871;
+}
+
+/* Tıklama efekti */
+#addCustomerButton:pressed {
+    -fx-background-color: #2c3e50;
+}
+
+/* === Açılır liste hücreleri === */
+.list-cell {
+    -fx-font-size: 13px;
+    -fx-padding: 5 10;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #2c3e50;
+    -fx-background-radius: 6;
+}
+
+/* Hover efekti — çok açık gri */
+.list-cell:hover {
+    -fx-background-color: #ecf0f1;
+    -fx-background-radius: 6;
+}
+
+/* Seçili öğe — yumuşak lacivert degrade + beyaz yazı */
+.list-cell:selected {
+    -fx-background-color: linear-gradient(to bottom, rgba(52,73,94,0.9), rgba(44,62,80,0.9));
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 4, 0.3, 0, 0);
+}
+
+/* === Scrollbar — sade gri ton === */
+.scroll-bar:vertical {
+    -fx-pref-width: 8;
+}
+.scroll-bar .thumb {
+    -fx-background-color: #b5b8bb;
+    -fx-background-radius: 4;
+}
+.scroll-bar .thumb:hover {
+    -fx-background-color: #9fa2a6;
 }
 
 .section-separator {
@@ -261,15 +425,22 @@
 
 /* Ek İşçilik Butonu */
 #addExtraLaborButton {
-    -fx-background-color: #34495e;
-    -fx-text-fill: #ffffff;
-    -fx-padding: 8 14;
-    -fx-background-radius: 6;
+    -fx-background-color: linear-gradient(to right, #0054aa, #34495e);
+    -fx-text-fill: #dedede;
+    -fx-font-size: 10pt;
+    -fx-font-weight: bold;
+    -fx-padding: 8 20 8 20;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5,0,0,2);
 }
 #addExtraLaborButton:hover {
-    -fx-background-color: #2c3e50;
-}
+    -fx-background-color: linear-gradient(to right, #003d7c, #1f2c39);
 
+}
+#addExtraLaborButton:pressed {
+    -fx-background-color: #34495e;
+}
 /* Sağ Panel */
 .summary-card-sidebar {
     -fx-spacing: 15;
@@ -299,7 +470,13 @@
 
 .summary-subvalue {
     -fx-font-size: 13px;
-    -fx-text-fill: #7f8c8d;
+    -fx-text-fill: #265688;
+}
+
+.summary-rate{
+    -fx-font-size: 10pt;
+    -fx-text-fill: #bababa;
+    -fx-font-style: italic;
 }
 
 /* Kaydet Butonu */
@@ -312,4 +489,89 @@
 }
 .cost-save-button:hover {
     -fx-background-color: #2c3e50;
+}
+
+
+    /*=======   MDF EKLEME SAHNESİ  =======*/
+
+
+
+.root {
+    -fx-background-color: #f9f9f9;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 13px;
+}
+
+/* Etiketler */
+.mdf-form-label {
+    -fx-text-fill: #333;
+    -fx-font-weight: bold;
+}
+
+/* Giriş alanları */
+.mdf-form-input {
+    -fx-background-color: #fff;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 5 8 5 8;
+    -fx-pref-width: 120;
+}
+.mdf-form-input:focused {
+    -fx-border-color: #4a90e2;
+    -fx-effect: dropshadow(three-pass-box, rgba(74,144,226,0.2), 5, 0, 0, 0);
+}
+
+.mdf-result-value {
+    -fx-background-color: #f5f5f5;
+    -fx-text-fill: #333;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-min-width: 120px; /* isteğe göre genişlik ayarı */
+    -fx-alignment: center-left;
+}
+
+/* Butonlar */
+.mdf-form-button {
+    -fx-background-radius: 5;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: 6 14 6 14;
+}
+
+/* Kaydet butonu */
+.mdf-form-button-save {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+}
+.mdf-form-button-save:hover {
+    -fx-background-color: #45a049;
+}
+
+/* İptal butonu */
+.mdf-form-button-cancel {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+}
+.mdf-form-button-cancel:hover {
+    -fx-background-color: #c0392b;
+}
+
+.mdf-result-card {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 8, 0, 0, 0);
+}
+
+.mdf-result-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
 }
