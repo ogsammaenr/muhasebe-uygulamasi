@@ -11,5 +11,6 @@ module me.ogsammaenr.muhasebeuygulamasiv3 {
     requires eu.hansolo.tilesfx;
 
     opens me.ogsammaenr.muhasebeuygulamasiv3 to javafx.fxml;
+    opens me.ogsammaenr.muhasebeuygulamasiv3.controller to javafx.fxml;
     exports me.ogsammaenr.muhasebeuygulamasiv3;
 }
