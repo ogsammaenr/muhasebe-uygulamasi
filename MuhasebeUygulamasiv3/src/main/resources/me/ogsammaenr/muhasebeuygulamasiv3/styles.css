@@ -1,0 +1,113 @@
+/* --- GENEL AYARLAR --- */
+.root {
+    -fx-font-family: 'Segoe UI', sans-serif; /* Modern yazı tipi */
+    -fx-background-color: #f4f7f6; /* Açık gri arka plan */
+}
+
+/* --- SOL MENÜ (SIDEBAR) --- */
+.sidebar {
+    -fx-background-color: #2c3e50; /* Koyu lacivert */
+    -fx-pref-width: 260px;
+}
+
+.sidebar-header {
+    -fx-padding: 0 0 40 0;
+}
+
+.app-title {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.app-subtitle {
+    -fx-text-fill: #95a5a6;
+    -fx-font-size: 12px;
+}
+
+/* --- MENÜ BUTONLARI --- */
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ecf0f1;
+    -fx-font-size: 15px;
+    -fx-alignment: CENTER-LEFT; /* Yazıyı sola yasla */
+    -fx-padding: 12 20 12 20;
+    -fx-cursor: hand;
+    -fx-background-radius: 5;
+}
+
+.menu-button:hover {
+    -fx-background-color: #34495e; /* Üzerine gelince biraz daha açık */
+    -fx-text-fill: #3498db; /* Yazı rengi mavi olsun */
+}
+
+.menu-button:pressed {
+    -fx-background-color: #1abc9c;
+    -fx-text-fill: white;
+}
+
+/* --- ORTA ALAN (CONTENT) --- */
+.content-area {
+    -fx-background-color: #f4f7f6;
+}
+
+.section-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* --- BİLGİ KARTLARI (CARDS) --- */
+.info-card {
+    -fx-background-color: white;
+    -fx-pref-width: 300;
+    -fx-pref-height: 150;
+    -fx-padding: 20;
+    -fx-background-radius: 15;
+    /* Hafif gölge efekti (Modern görünüm için şart) */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+}
+
+.card-title {
+    -fx-font-size: 16px;
+    -fx-text-fill: #7f8c8d;
+    -fx-font-weight: bold;
+}
+
+.card-value {
+    -fx-font-size: 42px;
+    -fx-font-weight: bold;
+    -fx-padding: 5 0 5 0;
+}
+
+.card-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #95a5a6;
+}
+
+/* Kart Renkleri (Sol kenar çizgisi için) */
+.card-blue {
+    -fx-border-color: transparent transparent transparent #3498db;
+    -fx-border-width: 0 0 0 5;
+}
+.card-blue .card-value {
+    -fx-text-fill: #2980b9;
+}
+
+.card-orange {
+    -fx-border-color: transparent transparent transparent #e67e22;
+    -fx-border-width: 0 0 0 5;
+}
+.card-orange .card-value {
+    -fx-text-fill: #d35400;
+}
+
+/* Placeholder (Boş Alan Göstergesi) */
+.placeholder-box {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-alignment: CENTER;
+    -fx-border-color: #bdc3c7;
+    -fx-border-style: dashed;
+    -fx-border-width: 2;
+}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="mainContainer" prefHeight="720.0" prefWidth="1080.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.ogsammaenr.muhasebeuygulamasiv3.MainController">
+
+    <left>
+        <VBox styleClass="sidebar">
+            <VBox alignment="CENTER" styleClass="sidebar-header">
+                <Label styleClass="app-title" text="Muhasebe v3" />
+                <Label styleClass="app-subtitle" text="Yönetim Paneli" />
+            </VBox>
+
+            <VBox spacing="10.0" styleClass="sidebar-menu">
+                <Button fx:id="btnMusteriEkle" maxWidth="Infinity" styleClass="menu-button" text="➕ Müşteri Ekle" />
+                <Button fx:id="btnUrunEkle" maxWidth="Infinity" styleClass="menu-button" text="📦 Ürün Ekle" />
+                <Button fx:id="btnMusteriListesi" maxWidth="Infinity" styleClass="menu-button" text="👥 Müşterileri Görüntüle" />
+                <Button fx:id="btnUrunListesi" maxWidth="Infinity" styleClass="menu-button" text="📋 Ürünleri Görüntüle" />
+                <Button fx:id="btnHammadde" maxWidth="Infinity" styleClass="menu-button" text="💰 Hammadde Fiyatları" />
+            </VBox>
+            <padding>
+                <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+            </padding>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="30.0" styleClass="content-area">
+            <padding>
+                <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+            </padding>
+
+            <Label styleClass="section-title" text="Genel Durum" />
+
+            <HBox spacing="30.0">
+                <VBox styleClass="info-card, card-blue">
+                    <Label styleClass="card-title" text="Toplam Müşteri" />
+                    <Label fx:id="lblToplamMusteri" styleClass="card-value" text="124" />
+                    <Label styleClass="card-subtitle" text="Aktif kayıtlı müşteri sayısı" />
+                </VBox>
+
+                <VBox styleClass="info-card, card-orange">
+                    <Label styleClass="card-title" text="Toplam Ürün" />
+                    <Label fx:id="lblToplamUrun" styleClass="card-value" text="856" />
+                    <Label styleClass="card-subtitle" text="Stoktaki toplam ürün adedi" />
+                </VBox>
+            </HBox>
+
+            <VBox prefHeight="200.0" styleClass="placeholder-box">
+                <Label text="Son İşlemler Tablosu Buraya Gelecek..." />
+            </VBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>
