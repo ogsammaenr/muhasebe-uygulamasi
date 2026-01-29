@@ -7,28 +7,61 @@
        #DDE6ED -> En Açık (Buz Mavisi)
     */
 
-    /* 1. ANA RENKLER */
-    -color-primary: #526D82;        /* Butonlar ve Vurgular (Orta Koyu) */
-    -color-primary-dark: #27374D;   /* Koyu Yazılar (En Koyu) */
+    /* === ANA PALETİ RENKLERİ === */
+    -color-primary: #526D82;                    /* Butonlar ve Vurgular (Orta Koyu Çelik Mavisi) */
+    -color-primary-dark: #27374D;               /* En Koyu Renk (Lacivert) - Başlıklar ve Vurgular */
+    -color-secondary: #27374D;                  /* Menü Arkaplanı (En Koyu Lacivert) */
+    -color-secondary-light: #526D82;            /* Menü Hover Durumu (Orta Koyu Çelik Mavisi) */
+    -color-accent: #9DB2BF;                     /* İkincil Vurgu (Orta Açık Gri-Mavi) */
+    -color-accent-dark: #526D82;                /* Vurgu Metin Rengi (Orta Koyu) */
 
-    /* 2. MENÜ RENKLERİ */
-    -color-secondary: #27374D;      /* Menü Arkaplanı (En Koyu) */
-    -color-secondary-light: #526D82;/* Menü Hover (Bir ton açığı) */
+    /* === ZEMİN VE ARKA PLAN RENKLERİ === */
+    -color-bg-main: #DDE6ED;                    /* Sayfa Arka Planı (En Açık Buz Mavisi) */
+    -color-bg-card: #EFEFEF;                    /* Kart Arka Planı (Hafif Gri) */
 
-    /* 3. İKİNCİL VURGU (Eski Turuncu yerine) */
-    -color-accent: #9DB2BF;         /* İkinci kart veya detay rengi (Orta Açık) */
-    -color-accent-dark: #526D82;    /* Vurgu metin rengi */
+    /* === METİN RENKLERİ === */
+    -color-text-dark: #27374D;                  /* Başlıklar ve Ana Metinler (En Koyu) */
+    -color-text-light: #c3ccd3;                 /* Menü Yazıları (Açık Gri-Mavi) */
+    -color-text-muted: #526D82;                 /* Açıklamalar ve Yardımcı Metinler (Orta Koyu) */
 
-    /* 4. ZEMİN ve YAZI */
-    -color-bg-main: #DDE6ED;       /* Sayfa Arka Planı (En Açık) */
-    -color-bg-card: #EFEFEF;       /* Kartlar Beyaz kalsın ki zeminle karışmasın */
+    /* === FORM RENKLERI === */
+    -color-form-border: #D0D8E0;                /* Form Input Bordurları (Açık Gri) */
+    -color-form-bg: white;                      /* Form Alan Arka Planı (Beyaz) */
+    -color-form-title-bg: -color-primary-dark;  /* Form Başlık Şeridi (En Koyu) */
+    -color-form-title-text: white;              /* Form Başlık Yazısı (Beyaz) */
+    -color-form-subtitle-text: rgba(255, 255, 255, 0.85);  /* Form Alt Başlık (Yarı Saydam Beyaz) */
 
-    -color-text-dark: #27374D;     /* Başlıklar (En Koyu) */
-    -color-text-light: #DDE6ED;    /* Menü Yazıları (En Açık) */
-    -color-text-muted: #526D82;    /* Açıklamalar (Orta Koyu) */
+    /* === BUTTON RENKLERİ === */
+    -color-btn-primary-bg: -color-primary;      /* Birincil Buton Arka Planı (Orta Koyu) */
+    -color-btn-primary-text: white;             /* Birincil Buton Yazısı (Beyaz) */
+    -color-btn-secondary-bg: #F0F4F8;           /* İkincil Buton Arka Planı (Çok Açık Mavi) */
+    -color-btn-secondary-text: -color-text-dark; /* İkincil Buton Yazısı (Koyu) */
+    -color-btn-secondary-border: #D0D8E0;       /* İkincil Buton Borduru (Açık Gri) */
+    -color-btn-secondary-hover-bg: #E8F0F8;     /* İkincil Buton Hover Arka Planı (Açık Mavi) */
+    -color-btn-secondary-pressed-bg: #DFE8F0;   /* İkincil Buton Pressed Arka Planı (Daha Açık Mavi) */
+
+    /* === SIDEBAR RENKLERİ === */
+    -sidebar-bg-color: -color-secondary;                        /* Sidebar Arka Planı */
+    -sidebar-header-bg-color: derive(-color-secondary, -15%);   /* Sidebar Başlık Arka Planı */
+    -sidebar-header-text-color: -color-text-light;              /* Sidebar Başlık Yazısı */
+    -sidebar-hover-text: #efefef;                               /* Sidebar Button Hover Yazı Rengi (Açık Gri) */
+
+    /* === GÖLGE VE EFEKT RENKLERİ === */
+    -color-shadow-dark: rgba(39, 55, 77, 0.15);                 /* Koyu Gölge Efekti */
+    -color-shadow-darker: rgba(39, 55, 77, 0.12);               /* Daha Koyu Gölge */
+    -color-shadow-light: rgba(82, 109, 130, 0.25);              /* Hafif Gölge */
+    -color-shadow-lighter: rgba(82, 109, 130, 0.2);             /* Daha Hafif Gölge */
+    -color-shadow-medium: rgba(39, 55, 77, 0.08);               /* Orta Koyu Gölge */
+    -color-shadow-lightest: rgba(39, 55, 77, 0.05);             /* En Hafif Gölge */
+    -color-shadow-darkest-black: rgba(0, 0, 0, 0.2);            /* En Koyu Siyah Gölge */
+    -color-shadow-dark-black: rgba(0, 0, 0, 0.4);               /* Koyu Siyah Gölge */
+
+    /* === OVERLAY VE BORDER RENKLERİ === */
+    -color-menu-overlay: rgba(255, 255, 255, 0.05);             /* Menü Overlay (Çok Hafif Beyaz) */
+    -color-menu-overlay-border: rgba(255, 255, 255, 0.1);       /* Menü Borduru Overlay */
+    -color-border-subtle: rgba(157, 178, 191, 0.2);             /* Hafif Bordur Rengi */
 }
-
-/* --- AŞAĞIDAKİ KODLAR AYNI KALACAK --- */
+}
 
 /* --- GENEL AYARLAR --- */
 .root {
@@ -38,12 +71,30 @@
 
 /* --- SOL MENÜ --- */
 .sidebar {
-    -fx-background-color: -color-secondary;
+    -fx-background-color: -sidebar-bg-color;
     -fx-pref-width: 260px;
+    -fx-spacing: 12px;
 }
 
-.sidebar-header {
-    -fx-padding: 0 0 40 0;
+.sidebar-header-container {
+    -fx-background-color: -sidebar-header-bg-color; /* Bir tık daha koyu arka plan */
+    -fx-padding: 15px 10px 24px 10px; /* İç boşluk */
+    -fx-alignment: center; /* İçerik ortalama */
+    -fx-background-radius: 10px; /* Hafif yuvarlatılmış köşeler */
+
+    -fx-border-radius: 10px;
+    -fx-border-width: 0 0 1px 0; /* Sadece alta kenarlık */
+    -fx-border-color: derive(-sidebar-header-bg-color, +50%); /* Başlık renginden biraz açık bir kenarlık */
+}
+.sidebar-header-container .header-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -sidebar-header-text-color;
+    -fx-padding: 0 0 5px 0; /* Başlık ile alt başlık arasına boşluk */
+}
+.sidebar-header-container .header-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: derive(-sidebar-header-text-color, -20%); /* Biraz daha soluk metin rengi */
 }
 
 .app-title {
@@ -59,23 +110,43 @@
 
 /* --- MENÜ BUTONLARI --- */
 .menu-button {
-    -fx-background-color: transparent;
-    -fx-text-fill: -color-accent; /* Pasif ikonlar gri-mavi */
-    -fx-font-size: 15px;
-    -fx-alignment: CENTER-LEFT;
+    -fx-background-color: -color-menu-overlay;
+
+    -fx-border-color: -color-menu-overlay-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+
+    -fx-text-fill: -color-accent;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
     -fx-padding: 12 20 12 20;
     -fx-cursor: hand;
-    -fx-background-radius: 5;
+    -fx-background-radius: 8;
+
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 3);
 }
 
+/* Hover Efekti */
 .menu-button:hover {
-    -fx-background-color: -color-secondary-light;
-    -fx-text-fill: white;
+    /* Daha belirgin bir arka plan rengi */
+    -fx-background-color: -color-secondary-light; /* #526D82 */
+
+    -fx-text-fill: -sidebar-hover-text;
+
+    /* Kenarlığı tema rengine çek */
+    -fx-border-color: -color-accent;
+
+    /* Gölgeyi güçlendir (daha yakına gelmiş hissi verir) */
+    -fx-effect: dropshadow(three-pass-box, -color-shadow-dark-black, 8, 0, 0, 4);
 }
 
+/* Pressed Efekti */
 .menu-button:pressed {
-    -fx-background-color: -color-accent; /* Tıklanınca açık renk olsun */
+    -fx-background-color: -color-accent;
     -fx-text-fill: -color-secondary;
+    -fx-effect: dropshadow(two-pass-box, -color-shadow-darkest-black, 2, 0, 0, 1);
+    -fx-translate-y: 1;
 }
 
 /* --- ORTA ALAN --- */
@@ -96,7 +167,7 @@
     -fx-pref-height: 150;
     -fx-padding: 20;
     -fx-background-radius: 15;
-    -fx-effect: dropshadow(three-pass-box, rgba(39, 55, 77, 0.15), 10, 0, 0, 5); /* Gölgeyi de temaya uydurdum */
+    -fx-effect: dropshadow(three-pass-box, -color-shadow-dark, 10, 0, 0, 5);
 }
 
 .card-title {
@@ -146,4 +217,152 @@
 /* İçindeki label için özel ayar (eğer css ile yakalamıyorsa) */
 .placeholder-box .label {
     -fx-text-fill: -color-text-muted;
+}
+
+/* --- MÜŞTERI EKLEME FORMU --- */
+.form-container {
+    -fx-background-color: -color-bg-card;
+    -fx-padding: 40px;
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(three-pass-box, -color-shadow-darker, 12, 0, 0, 6);
+    -fx-border-color: -color-border-subtle;
+    -fx-border-width: 1;
+    -fx-border-radius: 20;
+    -fx-max-width: 650;
+}
+
+/* Form Başlığı Container - Şeritli Tasarım */
+.form-title-container {
+    -fx-background-color: -color-form-title-bg;
+    -fx-padding: 24px 40px;
+    -fx-background-radius: 12 12 0 0;
+    -fx-margin: -40px -40px 0px -40px;
+}
+
+/* Form Başlığı */
+.form-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-form-title-text;
+}
+
+.form-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: -color-form-subtitle-text;
+}
+
+/* Form Alanları Container */
+.form-fields {
+    -fx-padding: 20px 0;
+}
+
+/* Form Label */
+.form-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-dark;
+}
+
+/* Form TextField (Input) */
+.form-input {
+    -fx-font-size: 13px;
+    -fx-text-fill: -color-text-dark;
+    -fx-padding: 12px 14px;
+    -fx-background-color: -color-form-bg;
+    -fx-background-radius: 8;
+    -fx-border-color: -color-form-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-cursor: text;
+}
+
+/* TextField Focus State */
+.form-input:focused {
+    -fx-border-color: -color-primary;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, -color-shadow-lighter, 8, 0, 0, 4);
+}
+
+/* Form TextArea */
+.form-textarea {
+    -fx-font-size: 13px;
+    -fx-text-fill: -color-text-dark;
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-padding: 12px 14px;
+    -fx-background-color: -color-form-bg;
+    -fx-background-radius: 8;
+    -fx-border-color: -color-form-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-control-inner-background: -color-form-bg;
+    -fx-pref-height: 100px;
+    -fx-cursor: text;
+}
+
+/* TextArea Focus State */
+.form-textarea:focused {
+    -fx-border-color: -color-primary;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, -color-shadow-lighter, 8, 0, 0, 4);
+}
+
+/* Form Buttons Container */
+.form-buttons {
+    -fx-padding: 20px 0 0 0;
+    -fx-alignment: center;
+}
+
+/* Primary Button (Kaydet) */
+.btn-primary {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-btn-primary-text;
+    -fx-padding: 14px 28px;
+    -fx-background-color: -color-btn-primary-bg;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, -color-shadow-light, 8, 0, 0, 4);
+}
+
+/* Primary Button Hover */
+.btn-primary:hover {
+    -fx-background-color: derive(-color-btn-primary-bg, 10%);
+    -fx-effect: dropshadow(three-pass-box, -color-shadow-light, 10, 0, 0, 5);
+}
+
+/* Primary Button Pressed */
+.btn-primary:pressed {
+    -fx-background-color: derive(-color-btn-primary-bg, -10%);
+    -fx-effect: dropshadow(two-pass-box, -color-shadow-lighter, 4, 0, 0, 2);
+    -fx-translate-y: 2;
+}
+
+/* Secondary Button (İptal) */
+.btn-secondary {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-btn-secondary-text;
+    -fx-padding: 14px 28px;
+    -fx-background-color: -color-btn-secondary-bg;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: -color-btn-secondary-border;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, -color-shadow-medium, 6, 0, 0, 3);
+}
+
+/* Secondary Button Hover */
+.btn-secondary:hover {
+    -fx-background-color: -color-btn-secondary-hover-bg;
+    -fx-border-color: -color-primary;
+    -fx-effect: dropshadow(three-pass-box, -color-shadow-lighter, 8, 0, 0, 4);
+}
+
+/* Secondary Button Pressed */
+.btn-secondary:pressed {
+    -fx-background-color: -color-btn-secondary-pressed-bg;
+    -fx-effect: dropshadow(two-pass-box, -color-shadow-lightest, 3, 0, 0, 1);
+    -fx-translate-y: 1;
 }

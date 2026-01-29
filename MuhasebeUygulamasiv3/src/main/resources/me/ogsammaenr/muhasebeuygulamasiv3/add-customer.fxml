@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="formRoot" spacing="20.0" styleClass="form-container" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+    </padding>
+
+    <!-- Form Title Şeridi -->
+    <VBox spacing="8.0" styleClass="form-title-container">
+        <Label styleClass="form-title" text="Yeni Müşteri Ekle" />
+        <Label styleClass="form-subtitle" text="Müşteri bilgilerini aşağıdaki forma giriniz" />
+    </VBox>
+
+    <!-- Form Alanları -->
+    <VBox spacing="16.0" styleClass="form-fields">
+        <!-- Firma Adı -->
+        <VBox spacing="6.0">
+            <Label styleClass="form-label" text="Firma Adı *" />
+            <TextField fx:id="tfFirmaAdi" promptText="Örn: ABC Şirkets A.Ş." styleClass="form-input" />
+        </VBox>
+
+        <!-- E-posta ve Telefon (Yan Yana) -->
+        <HBox spacing="20.0">
+            <!-- E-posta -->
+            <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                <Label styleClass="form-label" text="E-posta *" />
+                <TextField fx:id="tfEposta" promptText="örnek@firma.com" styleClass="form-input" />
+            </VBox>
+
+            <!-- Telefon Numarası -->
+            <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                <Label styleClass="form-label" text="Telefon Numarası *" />
+                <TextField fx:id="tfTelefon" promptText="+90 555 123 45 67" styleClass="form-input" />
+            </VBox>
+        </HBox>
+
+        <!-- Not -->
+        <VBox spacing="6.0">
+            <Label styleClass="form-label" text="Notlar" />
+            <TextArea fx:id="taNotlar" promptText="Müşteri hakkında ek bilgiler..." styleClass="form-textarea" wrapText="true" />
+        </VBox>
+    </VBox>
+
+    <!-- Butonlar -->
+    <HBox spacing="12.0" styleClass="form-buttons">
+        <Button fx:id="btnKaydet" minWidth="120.0" styleClass="btn-primary" text="✔️ Kaydet" HBox.hgrow="ALWAYS" />
+        <Button fx:id="btnIptal" minWidth="120.0" styleClass="btn-secondary" text="✕ İptal" HBox.hgrow="ALWAYS" />
+    </HBox>
+
+</VBox>
+

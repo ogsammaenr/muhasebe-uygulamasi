@@ -11,9 +11,9 @@
 
     <left>
         <VBox styleClass="sidebar">
-            <VBox alignment="CENTER" styleClass="sidebar-header">
-                <Label styleClass="app-title" text="Muhasebe v3" />
-                <Label styleClass="app-subtitle" text="Yönetim Paneli" />
+            <VBox styleClass="sidebar-header-container">
+                <Label text="MuhasebeV3" styleClass="header-title"/>
+                <Label text="Yönetim Paneli" styleClass="header-subtitle"/>
             </VBox>
 
             <VBox spacing="10.0" styleClass="sidebar-menu">
@@ -40,13 +40,13 @@
             <HBox spacing="30.0">
                 <VBox styleClass="info-card, card-blue">
                     <Label styleClass="card-title" text="Toplam Müşteri" />
-                    <Label fx:id="lblToplamMusteri" styleClass="card-value" text="124" />
+                    <Label fx:id="lblToplamMusteri" styleClass="card-value" text="-" />
                     <Label styleClass="card-subtitle" text="Aktif kayıtlı müşteri sayısı" />
                 </VBox>
 
                 <VBox styleClass="info-card, card-orange">
                     <Label styleClass="card-title" text="Toplam Ürün" />
-                    <Label fx:id="lblToplamUrun" styleClass="card-value" text="856" />
+                    <Label fx:id="lblToplamUrun" styleClass="card-value" text="-" />
                     <Label styleClass="card-subtitle" text="Stoktaki toplam ürün adedi" />
                 </VBox>
             </HBox>
