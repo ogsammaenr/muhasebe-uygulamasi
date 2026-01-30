@@ -9,6 +9,7 @@ module me.ogsammaenr.muhasebeuygulamasiv3 {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires java.desktop;
 
     opens me.ogsammaenr.muhasebeuygulamasiv3 to javafx.fxml;
     opens me.ogsammaenr.muhasebeuygulamasiv3.controller to javafx.fxml;

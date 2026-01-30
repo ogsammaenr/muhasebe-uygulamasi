@@ -6,9 +6,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import me.ogsammaenr.muhasebeuygulamasiv3.manager.CustomerManager;
+import me.ogsammaenr.muhasebeuygulamasiv3.model.Customer;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 public class AddCustomerController implements Initializable {
 
@@ -57,17 +60,27 @@ public class AddCustomerController implements Initializable {
             return;
         }
 
-        // TODO: Veritabanına kaydet
+        // Yeni müşteri oluştur ve CustomerManager'a ekle
+        Customer newCustomer = new Customer(
+                UUID.randomUUID().toString(),
+                firmaAdi,
+                eposta,
+                telefon,
+                notlar
+        );
+
+        CustomerManager.getInstance().addCustomer(newCustomer);
+
         System.out.println("Müşteri Kaydedildi:");
         System.out.println("Firma Adı: " + firmaAdi);
         System.out.println("E-posta: " + eposta);
         System.out.println("Telefon: " + telefon);
         System.out.println("Notlar: " + notlar);
 
-        // Formu temizle ve ana ekrana dön
+        // Formu temizle ve müşteri listesine dön
         temizleForm();
         if (mainController != null) {
-            mainController.loadDashboard();
+            mainController.loadCustomerList();
         }
     }
 

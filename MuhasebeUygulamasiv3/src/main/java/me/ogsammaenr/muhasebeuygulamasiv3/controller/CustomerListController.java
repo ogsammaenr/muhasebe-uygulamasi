@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
+import me.ogsammaenr.muhasebeuygulamasiv3.manager.CustomerManager;
 import me.ogsammaenr.muhasebeuygulamasiv3.model.Customer;
 
 import java.io.IOException;
@@ -52,6 +53,7 @@ public class CustomerListController implements Initializable {
 
     private MainController mainController;
     private ObservableList<Customer> customers;
+    private CustomerManager customerManager;
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
@@ -59,7 +61,9 @@ public class CustomerListController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        customers = FXCollections.observableArrayList();
+        // CustomerManager singleton'ından müşteri listesini al
+        CustomerManager customerManager = CustomerManager.getInstance();
+        customers = FXCollections.observableArrayList(customerManager.getAllCustomers());
         customerListView.setItems(customers);
 
         // Özel ListCell oluştur
@@ -79,22 +83,6 @@ public class CustomerListController implements Initializable {
         btnSil.setOnAction(event -> deleteSelectedCustomer());
         btnDuzenle.setOnAction(event -> editSelectedCustomer());
         btnKapat.setOnAction(event -> clearDetails());
-
-        // Örnek müşteri verisi ekle (demo için)
-        addSampleCustomers();
-    }
-
-    /**
-     * Örnek müşteri verisi ekler (demo için)
-     */
-    private void addSampleCustomers() {
-        customers.addAll(
-                new Customer(UUID.randomUUID().toString(), "ABC Şirketler A.Ş.", "contact@abc.com", "+90 555 123 4567", "İstanbul'da bulunan üretim şirketi"),
-                new Customer(UUID.randomUUID().toString(), "XYZ Ticaret Ltd.", "info@xyz.com", "+90 555 234 5678", "İhracat ve ithalatla uğraşan firma"),
-                new Customer(UUID.randomUUID().toString(), "Tekno İnova Teknolojileri", "sales@tekno.com", "+90 555 345 6789", "Yazılım geliştirme ve danışmanlık"),
-                new Customer(UUID.randomUUID().toString(), "Marmara Lojistik", "logistics@marmara.com", "+90 555 456 7890", "Ulaştırma ve depolama hizmetleri"),
-                new Customer(UUID.randomUUID().toString(), "Doğu Harita Mühendislik", "engineering@doguharita.com", "+90 555 567 8901", "İnşaat ve harita mühendisliği")
-        );
     }
 
     /**
@@ -127,6 +115,7 @@ public class CustomerListController implements Initializable {
         Customer selected = customerListView.getSelectionModel().getSelectedItem();
         if (selected != null) {
             customers.remove(selected);
+            CustomerManager.getInstance().removeCustomer(selected);
             clearDetails();
             System.out.println("Müşteri silindi: " + selected.getFirmaAdi());
         }
@@ -164,6 +153,7 @@ public class CustomerListController implements Initializable {
                 notlar
         );
         customers.add(newCustomer);
+        CustomerManager.getInstance().addCustomer(newCustomer);
         System.out.println("Müşteri eklendi: " + firmaAdi);
     }
 

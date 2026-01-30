@@ -36,7 +36,7 @@ public class MainController implements Initializable {
         btnHammadde.setOnAction(event -> System.out.println("Hammadde Fiyatları Açılacak"));
     }
 
-    private void loadCustomerList() {
+    public void loadCustomerList() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(
                     getClass().getResource("/me/ogsammaenr/muhasebeuygulamasiv3/customer-list.fxml")
