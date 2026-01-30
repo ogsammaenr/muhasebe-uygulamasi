@@ -31,12 +31,27 @@ public class MainController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         btnMusteriEkle.setOnAction(event -> loadAddCustomerForm());
         btnUrunEkle.setOnAction(event -> System.out.println("Ürün Ekle Sayfası Açılacak"));
-        btnMusteriListesi.setOnAction(event -> System.out.println("Müşteri Listesi Açılacak"));
+        btnMusteriListesi.setOnAction(event -> loadCustomerList());
         btnUrunListesi.setOnAction(event -> System.out.println("Ürün Listesi Açılacak"));
         btnHammadde.setOnAction(event -> System.out.println("Hammadde Fiyatları Açılacak"));
     }
 
-    private void loadAddCustomerForm() {
+    private void loadCustomerList() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    getClass().getResource("/me/ogsammaenr/muhasebeuygulamasiv3/customer-list.fxml")
+            );
+            CustomerListController controller = new CustomerListController();
+            controller.setMainController(this);
+            fxmlLoader.setController(controller);
+            mainContainer.setCenter(fxmlLoader.load());
+        } catch (IOException e) {
+            System.err.println("Müşteri listesi yüklenemedi: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void loadAddCustomerForm() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(
                     getClass().getResource("/me/ogsammaenr/muhasebeuygulamasiv3/add-customer.fxml")

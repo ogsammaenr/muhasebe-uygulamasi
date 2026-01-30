@@ -189,7 +189,7 @@
 
 /* Kart Renkleri */
 .card-blue {
-    -fx-border-color: transparent transparent transparent -color-primary;
+    -fx-border-color: -color-primary;
     -fx-border-width: 0 0 0 5;
 }
 .card-blue .card-value {
@@ -197,8 +197,7 @@
 }
 
 .card-orange {
-    /* Artık turuncu değil, senin paletindeki açık mavi/gri oldu */
-    -fx-border-color: transparent transparent transparent -color-accent;
+    -fx-border-color: -color-accent;
     -fx-border-width: 0 0 0 5;
 }
 .card-orange .card-value {
@@ -209,12 +208,12 @@
     -fx-background-color: -color-bg-card;
     -fx-background-radius: 10;
     -fx-alignment: CENTER;
-    -fx-border-color: -color-accent; /* Çizgiler gri-mavi */
+    -fx-border-color: -color-accent;
     -fx-border-style: dashed;
     -fx-border-width: 2;
-    -fx-text-fill: -color-text-muted; /* İçindeki yazı rengi */
+    -fx-text-fill: -color-text-muted;
 }
-/* İçindeki label için özel ayar (eğer css ile yakalamıyorsa) */
+
 .placeholder-box .label {
     -fx-text-fill: -color-text-muted;
 }
@@ -370,3 +369,130 @@
     -fx-effect: dropshadow(two-pass-box, -color-shadow-lightest, 3, 0, 0, 1);
     -fx-translate-y: 1;
 }
+
+/* --- MÜŞTERİ LİSTESİ SAYFASI --- */
+
+/* Müşteri Listesi Kontainer */
+.customer-list-container {
+    -fx-background-color: -color-bg-main;
+}
+
+/* Müşteri Listesi Bölümü (Sol Taraf) */
+.customer-list-section {
+    -fx-background-color: -color-bg-card;
+    -fx-padding: 16px;
+    -fx-background-radius: 12px;
+    -fx-border-color: -color-border-subtle;
+    -fx-border-width: 1;
+    -fx-border-radius: 12px;
+    -fx-effect: dropshadow(three-pass-box, -color-shadow-lighter, 6, 0, 0, 3);
+}
+
+/* Müşteri Detayları Bölümü (Sağ Taraf) */
+.customer-details-section {
+    -fx-background-color: -color-bg-card;
+    -fx-padding: 16px;
+    -fx-background-radius: 12px;
+    -fx-border-color: -color-border-subtle;
+    -fx-border-width: 1;
+    -fx-border-radius: 12px;
+    -fx-effect: dropshadow(three-pass-box, -color-shadow-lighter, 6, 0, 0, 3);
+}
+
+/* Bölüm Alt Başlığı */
+.section-subtitle {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-dark;
+    -fx-padding: 0 0 8px 0;
+    -fx-border-color: -color-primary;
+    -fx-border-width: 0 0 2 0;
+    -fx-padding: 0 0 12px 0;
+}
+
+/* Müşteri Liste Görünümü */
+.customer-list-view {
+    -fx-background-color: -color-form-bg;
+    -fx-background-radius: 8px;
+    -fx-border-color: -color-form-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 8px;
+    -fx-padding: 4px;
+}
+
+/* Müşteri Liste Öğesi */
+.customer-list-item {
+    -fx-background-color: -color-form-bg;
+    -fx-border-color: -color-form-border;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-spacing: 12px;
+}
+
+/* Müşteri Liste Öğesi Hover Durumu */
+.customer-list-item:hover {
+    -fx-background-color: -color-secondary-light;
+    -fx-border-color: -color-primary;
+    -fx-effect: dropshadow(two-pass-box, -color-shadow-lighter, 4, 0, 0, 2);
+}
+
+/* Müşteri Liste Öğesi Firma Adı */
+.customer-item-firma-name {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-dark;
+}
+
+/* Detay Kutusu */
+.details-box {
+    -fx-background-color: derive(-color-form-bg, 2%);
+    -fx-padding: 16px;
+    -fx-background-radius: 8px;
+    -fx-border-color: derive(-color-form-border, 20%);
+    -fx-border-width: 1;
+    -fx-border-radius: 8px;
+}
+
+/* Detay Etiketi */
+.detail-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-muted;
+    -fx-padding: 0;
+}
+
+/* Detay Değeri */
+.detail-value {
+    -fx-font-size: 14px;
+    -fx-text-fill: -color-text-dark;
+    -fx-font-weight: 500;
+    -fx-padding: 4px 0;
+}
+
+/* Detay Değeri (Notlar) */
+.detail-value-notes {
+    -fx-font-size: 13px;
+    -fx-text-fill: -color-text-dark;
+    -fx-padding: 4px 0;
+    -fx-font-style: italic;
+}
+
+/* Detay Ayırıcı Çizgi */
+.detail-separator {
+    -fx-min-height: 1px;
+    -fx-background-color: derive(-color-form-border, 20%);
+}
+
+/* Liste Butonları */
+.list-buttons {
+    -fx-padding: 8px 0 0 0;
+    -fx-alignment: center;
+}
+
+/* Detay Butonları */
+.detail-buttons {
+    -fx-padding: 8px 0 0 0;
+    -fx-alignment: center;
+}
+

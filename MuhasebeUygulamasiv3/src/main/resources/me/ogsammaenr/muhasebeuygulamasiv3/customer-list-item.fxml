@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox spacing="12.0" styleClass="customer-list-item" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+    </padding>
+
+    <!-- Firma Adı -->
+    <Label fx:id="lblFirmaAdi" styleClass="customer-item-firma-name" text="Firma Adı" HBox.hgrow="ALWAYS" />
+
+</HBox>
+

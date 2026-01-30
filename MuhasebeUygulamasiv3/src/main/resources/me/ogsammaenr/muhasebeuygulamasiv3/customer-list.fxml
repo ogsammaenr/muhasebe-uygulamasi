@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListCell?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="20.0" styleClass="customer-list-container" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <!-- Başlık Şeridi -->
+    <VBox spacing="8.0" styleClass="form-title-container">
+        <Label styleClass="form-title" text="Müşteri Listesi" />
+        <Label styleClass="form-subtitle" text="Kayıtlı müşteriler" />
+    </VBox>
+
+    <!-- Ana İçerik (Hbox - Sol: Liste, Sağ: Detaylar) -->
+    <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+
+        <!-- SOL TARAF - Müşteri Listesi -->
+        <VBox spacing="12.0" styleClass="customer-list-section" HBox.hgrow="ALWAYS">
+            <Label styleClass="section-subtitle" text="Müşteriler" />
+
+            <!-- Liste -->
+            <ListView fx:id="customerListView" styleClass="customer-list-view" VBox.vgrow="ALWAYS" />
+
+            <!-- Alt Butonlar -->
+            <HBox spacing="10.0" styleClass="list-buttons">
+                <Button fx:id="btnYeniMusteri" styleClass="btn-primary" text="➕ Yeni Müşteri" HBox.hgrow="ALWAYS" />
+                <Button fx:id="btnSil" styleClass="btn-secondary" text="🗑️ Sil" />
+            </HBox>
+        </VBox>
+
+        <!-- SAĞ TARAF - Müşteri Detayları -->
+        <VBox spacing="16.0" styleClass="customer-details-section" HBox.hgrow="ALWAYS">
+            <!-- Detaylar başlığı -->
+            <Label styleClass="section-subtitle" text="Müşteri Detayları" />
+
+            <!-- Detay Container -->
+            <VBox fx:id="detailsContainer" spacing="14.0" styleClass="details-box" VBox.vgrow="ALWAYS">
+                <!-- Şirket Bilgileri -->
+                <VBox spacing="8.0">
+                    <Label styleClass="detail-label" text="Firma Adı" />
+                    <Label fx:id="lblFirmaAdi" styleClass="detail-value" text="---" />
+                </VBox>
+
+                <Region styleClass="detail-separator" VBox.vgrow="NEVER" />
+
+                <!-- E-posta Bilgileri -->
+                <VBox spacing="8.0">
+                    <Label styleClass="detail-label" text="E-posta" />
+                    <Label fx:id="lblEposta" styleClass="detail-value" text="---" />
+                </VBox>
+
+                <Region styleClass="detail-separator" VBox.vgrow="NEVER" />
+
+                <!-- Telefon Bilgileri -->
+                <VBox spacing="8.0">
+                    <Label styleClass="detail-label" text="Telefon" />
+                    <Label fx:id="lblTelefon" styleClass="detail-value" text="---" />
+                </VBox>
+
+                <Region styleClass="detail-separator" VBox.vgrow="NEVER" />
+
+                <!-- Notlar Bilgileri -->
+                <VBox spacing="8.0" VBox.vgrow="ALWAYS">
+                    <Label styleClass="detail-label" text="Notlar" />
+                    <Label fx:id="lblNotlar" styleClass="detail-value-notes" text="---" />
+                </VBox>
+            </VBox>
+
+            <!-- Detay Butonları -->
+            <HBox spacing="10.0" styleClass="detail-buttons">
+                <Button fx:id="btnDuzenle" styleClass="btn-primary" text="✏️ Düzenle" HBox.hgrow="ALWAYS" />
+                <Button fx:id="btnKapat" styleClass="btn-secondary" text="✕ Kapat" HBox.hgrow="ALWAYS" />
+            </HBox>
+        </VBox>
+
+    </HBox>
+
+</VBox>
+
