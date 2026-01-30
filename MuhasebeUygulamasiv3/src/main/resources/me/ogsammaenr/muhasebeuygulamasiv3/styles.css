@@ -25,8 +25,8 @@
     -color-text-muted: #526D82;                 /* Açıklamalar ve Yardımcı Metinler (Orta Koyu) */
 
     /* === FORM RENKLERI === */
-    -color-form-border: #D0D8E0;                /* Form Input Bordurları (Açık Gri) */
-    -color-form-bg: white;                      /* Form Alan Arka Planı (Beyaz) */
+    -color-form-border: #D0D8E0;                /* Form Input Borderları (Açık Gri) */
+    -color-form-bg: -color-bg-main;                      /* Form Alan Arka Planı (Beyaz) */
     -color-form-title-bg: -color-primary-dark;  /* Form Başlık Şeridi (En Koyu) */
     -color-form-title-text: white;              /* Form Başlık Yazısı (Beyaz) */
     -color-form-subtitle-text: rgba(255, 255, 255, 0.85);  /* Form Alt Başlık (Yarı Saydam Beyaz) */
@@ -221,7 +221,7 @@
 
 /* --- MÜŞTERI EKLEME FORMU --- */
 .form-container {
-    -fx-background-color: -color-bg-card;
+    -fx-background-color: derive(-color-bg-main, -2%);
     -fx-padding: 40px;
     -fx-background-radius: 20;
     -fx-effect: dropshadow(three-pass-box, -color-shadow-darker, 12, 0, 0, 6);
@@ -235,8 +235,12 @@
 .form-title-container {
     -fx-background-color: -color-form-title-bg;
     -fx-padding: 24px 40px;
-    -fx-background-radius: 12 12 0 0;
+    -fx-background-radius: 12px;
     -fx-margin: -40px -40px 0px -40px;
+
+    -fx-border-radius: 12px;
+    -fx-border-width: 0 0 3x 0;
+    -fx-border-color: derive(-color-form-title-bg, +50%);
 }
 
 /* Form Başlığı */
