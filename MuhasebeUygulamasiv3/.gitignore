@@ -3,6 +3,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 .kotlin
+*.xlsx
+MEBRAN MAALİYET HESAPLAMA -2025.txt
 
 ### IntelliJ IDEA ###
 .idea/modules.xml

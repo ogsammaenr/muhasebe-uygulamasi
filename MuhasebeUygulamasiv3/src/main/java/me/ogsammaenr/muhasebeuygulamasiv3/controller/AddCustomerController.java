@@ -38,6 +38,8 @@ public class AddCustomerController implements Initializable {
 
     private MainController mainController;
 
+    private CustomerManager customerManager;
+
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
@@ -46,6 +48,8 @@ public class AddCustomerController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         btnKaydet.setOnAction(event -> kaydetMusteri());
         btnIptal.setOnAction(event -> iptalET());
+
+        customerManager = CustomerManager.getInstance();
     }
 
     private void kaydetMusteri() {
@@ -69,7 +73,7 @@ public class AddCustomerController implements Initializable {
                 notlar
         );
 
-        CustomerManager.getInstance().addCustomer(newCustomer);
+        customerManager.addCustomer(newCustomer);
 
         System.out.println("Müşteri Kaydedildi:");
         System.out.println("Firma Adı: " + firmaAdi);

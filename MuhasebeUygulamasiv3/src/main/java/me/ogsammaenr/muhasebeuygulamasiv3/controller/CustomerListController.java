@@ -25,31 +25,19 @@ public class CustomerListController implements Initializable {
     private ListView<Customer> customerListView;
 
     @FXML
-    private Label lblFirmaAdi;
-
-    @FXML
-    private Label lblEposta;
-
-    @FXML
-    private Label lblTelefon;
-
-    @FXML
-    private Label lblNotlar;
+    private Label lblFirmaAdi,
+            lblEposta,
+            lblTelefon,
+            lblNotlar;
 
     @FXML
     private VBox detailsContainer;
 
     @FXML
-    private Button btnYeniMusteri;
-
-    @FXML
-    private Button btnSil;
-
-    @FXML
-    private Button btnDuzenle;
-
-    @FXML
-    private Button btnKapat;
+    private Button btnYeniMusteri,
+            btnSil,
+            btnDuzenle,
+            btnKapat;
 
     private MainController mainController;
     private ObservableList<Customer> customers;
