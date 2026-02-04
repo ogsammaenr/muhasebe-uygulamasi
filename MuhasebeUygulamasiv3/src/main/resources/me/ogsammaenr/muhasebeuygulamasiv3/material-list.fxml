@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="materialListRoot" spacing="0.0" styleClass="material-list-container" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.ogsammaenr.muhasebeuygulamasiv3.controller.MaterialListController">
+
+    <!-- Başlık Şeridi -->
+    <VBox spacing="8.0" styleClass="page-title-container">
+        <padding>
+            <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
+        </padding>
+        <Label styleClass="page-title" text="Hammadde Fiyatları" />
+        <Label styleClass="page-subtitle" text="Malzeme fiyatlarını görüntüleyin ve düzenleyin" />
+    </VBox>
+
+    <Separator prefHeight="2.0" style="-fx-padding: 0; -fx-background-color: -color-form-border;" />
+
+    <!-- Ana İçerik Alanı -->
+    <HBox spacing="20.0" VBox.vgrow="ALWAYS" styleClass="material-content-wrapper">
+        <padding>
+            <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
+        </padding>
+
+        <!-- === SOL TARAF: LİSTE === -->
+        <VBox spacing="16.0" HBox.hgrow="ALWAYS" styleClass="material-list-left-section">
+
+            <!-- Başlık -->
+            <Label styleClass="section-subtitle" text="Hammaddeler" />
+
+            <!-- Arama ve Filtreleme -->
+            <VBox spacing="12.0">
+                <!-- Arama Alanı -->
+                <TextField fx:id="tfSearch" promptText="Hammadde adı ara..." styleClass="form-input" />
+
+                <!-- Tarih Seçimi -->
+                <VBox spacing="6.0">
+                    <Label styleClass="form-label" text="Tarih Seçimi" />
+                    <ComboBox fx:id="cbDateFilter" promptText="Tarih seç..." styleClass="form-input" />
+                </VBox>
+            </VBox>
+
+            <!-- Hammaddeler Listesi -->
+            <ScrollPane fitToWidth="true" styleClass="material-list-scroll-pane" VBox.vgrow="ALWAYS">
+                <ListView fx:id="lvMaterials" styleClass="material-list-view" />
+            </ScrollPane>
+
+        </VBox>
+
+        <!-- === SAĞ TARAF: DETAY VE DÜZENLEME === -->
+        <VBox spacing="12.0" HBox.hgrow="ALWAYS" styleClass="material-list-right-section">
+
+            <!-- Başlık -->
+            <Label styleClass="section-subtitle" text="Detaylar" />
+
+            <!-- Detay Kartı -->
+            <VBox spacing="16.0" styleClass="material-detail-card" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+                </padding>
+
+                <!-- Boş Durum Mesajı -->
+                <Label fx:id="lblEmptyState" styleClass="empty-state-label" text="Lütfen bir hammadde seçiniz" visible="true" managed="true" />
+
+                <!-- Hammadde Bilgileri (gizli olarak başlar) -->
+                <VBox fx:id="vbMaterialInfo" spacing="16.0" visible="false" managed="false">
+
+                    <!-- Hammadde Adı -->
+                    <VBox spacing="6.0">
+                        <Label styleClass="material-detail-label" text="Hammadde Adı" />
+                        <Label fx:id="lblDetailName" styleClass="material-detail-value" text="" />
+                    </VBox>
+
+                    <!-- Birim Tipi -->
+                    <VBox spacing="6.0">
+                        <Label styleClass="material-detail-label" text="Birim Tipi" />
+                        <Label fx:id="lblDetailUnit" styleClass="material-detail-value" text="" />
+                    </VBox>
+
+                    <!-- Güncel Fiyat -->
+                    <VBox spacing="6.0">
+                        <Label styleClass="material-detail-label" text="Güncel Birim Fiyatı" />
+                        <HBox spacing="8.0" alignment="CENTER_LEFT">
+                            <Label fx:id="lblDetailPrice" styleClass="material-detail-price" text="" />
+                            <Label fx:id="lblDetailCurrency" styleClass="material-detail-currency" text="" />
+                        </HBox>
+                    </VBox>
+
+                    <!-- Para Birimi -->
+                    <VBox spacing="6.0">
+                        <Label styleClass="material-detail-label" text="Para Birimi" />
+                        <Label fx:id="lblDetailCurrencyName" styleClass="material-detail-value" text="" />
+                    </VBox>
+
+                    <!-- Ayırıcı Çizgi (İnce) -->
+                    <Separator styleClass="material-separator-thick" VBox.vgrow="NEVER" />
+
+                    <!-- Düzenleme Alanları -->
+                    <Label styleClass="material-edit-header" text="Fiyat Güncelle" />
+
+                    <!-- Yeni Fiyat -->
+                    <VBox spacing="6.0">
+                        <Label styleClass="form-label" text="Yeni Birim Fiyatı" />
+                        <TextField fx:id="tfNewPrice" promptText="0.00" styleClass="form-input" />
+                    </VBox>
+
+                    <!-- Düzenleme Butonları -->
+                    <HBox spacing="12.0" alignment="CENTER_RIGHT">
+                        <Button fx:id="btnCancel" styleClass="btn-secondary" text="İptal" />
+                        <Button fx:id="btnSave" styleClass="btn-primary" text="Kaydet" />
+                    </HBox>
+
+                </VBox>
+
+            </VBox>
+
+        </VBox>
+
+    </HBox>
+
+</VBox>
+

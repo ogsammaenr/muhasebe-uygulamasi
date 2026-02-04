@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox spacing="12.0" styleClass="material-list-item" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
+    </padding>
+
+    <!-- Sol Taraf: Hammadde Adı ve Birim -->
+    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+        <!-- Hammadde Adı -->
+        <Label fx:id="lblMaterialName" styleClass="material-item-name" text="MDF 08" />
+
+        <!-- Birim Tipi -->
+        <Label fx:id="lblUnitType" styleClass="material-item-unit" text="m²" />
+    </VBox>
+
+    <!-- Sağ Taraf: Fiyat -->
+    <VBox spacing="4.0" styleClass="material-item-price-container">
+        <!-- Fiyat Etiketi -->
+        <Label styleClass="material-item-price-label" text="Birim Fiyat:" />
+
+        <!-- Fiyat Değeri -->
+        <Label fx:id="lblPrice" styleClass="material-item-price-value" text="1.550 TL" />
+    </VBox>
+
+</HBox>
+

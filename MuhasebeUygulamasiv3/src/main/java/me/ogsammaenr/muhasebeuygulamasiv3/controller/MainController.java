@@ -33,7 +33,7 @@ public class MainController implements Initializable {
         btnUrunEkle.setOnAction(event -> System.out.println("Ürün Ekle Sayfası Açılacak"));
         btnMusteriListesi.setOnAction(event -> loadCustomerList());
         btnUrunListesi.setOnAction(event -> System.out.println("Ürün Listesi Açılacak"));
-        btnHammadde.setOnAction(event -> System.out.println("Hammadde Fiyatları Açılacak"));
+        btnHammadde.setOnAction(event -> loadMaterialList());
     }
 
     public void loadCustomerList() {
@@ -75,6 +75,18 @@ public class MainController implements Initializable {
             mainContainer.setCenter(dashboard.getCenter());
         } catch (IOException e) {
             System.err.println("Dashboard yüklenemedi: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void loadMaterialList() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    getClass().getResource("/me/ogsammaenr/muhasebeuygulamasiv3/material-list.fxml")
+            );
+            mainContainer.setCenter(fxmlLoader.load());
+        } catch (IOException e) {
+            System.err.println("Hammadde fiyatları sayfası yüklenemedi: " + e.getMessage());
             e.printStackTrace();
         }
     }

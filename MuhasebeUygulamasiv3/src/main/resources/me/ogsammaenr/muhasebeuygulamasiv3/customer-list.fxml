@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListCell?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.Region?>
@@ -27,6 +28,9 @@
         <!-- SOL TARAF - Müşteri Listesi -->
         <VBox spacing="12.0" styleClass="customer-list-section" HBox.hgrow="ALWAYS">
             <Label styleClass="section-subtitle" text="Müşteriler" />
+
+            <!-- Arama Çubuğu -->
+            <TextField fx:id="tfMusteriAra" promptText="🔍 Müşteri adı ara..." styleClass="form-input" />
 
             <!-- Liste -->
             <ListView fx:id="customerListView" styleClass="customer-list-view" VBox.vgrow="ALWAYS" />

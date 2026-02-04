@@ -497,3 +497,254 @@
     -fx-alignment: center;
 }
 
+
+/* =============================================== */
+/* --- HAMMADDE LİSTESİ SAYFASI STİLLERİ --- */
+/* =============================================== */
+
+/* Sayfa Başlık Container */
+.page-title-container {
+    -fx-background-color: -color-form-title-bg;
+    -fx-padding: 20px 40px 20px 40px;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+.page-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-form-title-text;
+}
+
+.page-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: -color-form-subtitle-text;
+}
+
+.section-subtitle {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-dark;
+}
+
+/* Hammadde Listesi Container */
+.material-list-container {
+    -fx-background-color: -color-bg-main;
+}
+
+.material-content-wrapper {
+    -fx-background-color: -color-bg-main;
+}
+
+/* Hammadde Listesi Item */
+.material-list-item {
+    -fx-background-color: -color-bg-card;
+    -fx-background-radius: 8;
+    -fx-border-color: -color-form-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-effect: dropshadow(two-pass-box, -color-shadow-lightest, 2, 0, 0, 2);
+    -fx-cursor: hand;
+    -fx-padding: 12px 16px;
+}
+
+.material-list-item:hover {
+    -fx-background-color: derive(-color-bg-card, 5%);
+    -fx-border-color: -color-primary;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(two-pass-box, -color-shadow-lighter, 4, 0, 0, 3);
+}
+
+.material-list-item:pressed {
+    -fx-background-color: derive(-color-bg-card, -2%);
+    -fx-border-color: -color-primary-dark;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(two-pass-box, -color-shadow-lightest, 1, 0, 0, 1);
+}
+
+/* Hammadde List Item içi */
+.material-item-name {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-dark;
+}
+
+.material-item-unit {
+    -fx-font-size: 12px;
+    -fx-text-fill: -color-text-muted;
+    -fx-font-style: italic;
+}
+
+.material-item-price-container {
+    -fx-alignment: top_right;
+}
+
+.material-item-price-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: -color-text-muted;
+    -fx-font-weight: bold;
+}
+
+.material-item-price-value {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-primary;
+}
+
+/* ListView Stilü */
+.material-list-view {
+    -fx-background-color: transparent;
+    -fx-control-inner-background: transparent;
+    -fx-padding: 8px;
+    -fx-border-color: transparent;
+}
+
+.material-list-view .list-cell {
+    -fx-padding: 4px;
+    -fx-background-color: transparent;
+}
+
+.material-list-view .list-cell:filled {
+    -fx-background-color: transparent;
+}
+
+.material-list-view .list-cell:filled:selected {
+    -fx-background-color: derive(-color-primary, -30%);
+    -fx-border-color: -color-primary;
+    -fx-border-width: 2;
+    -fx-border-radius: 8;
+    -fx-padding: 3px;
+}
+
+.material-list-view .list-cell:filled:hover {
+    -fx-background-color: derive(-color-primary, -40%);
+}
+
+/* Hammadde Detay Kartı */
+.material-detail-card {
+    -fx-background-color: -color-bg-card;
+    -fx-background-radius: 12;
+    -fx-border-color: -color-form-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, -color-shadow-medium, 8, 0, 0, 4);
+    -fx-padding: 24px;
+}
+
+/* Empty State Label */
+.empty-state-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: -color-text-muted;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-padding: 40px 20px;
+}
+
+/* Hammadde Detay Labels */
+.material-detail-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-muted;
+    -fx-padding: 0;
+}
+
+.material-detail-value {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -color-text-dark;
+    -fx-padding: 4px 0;
+}
+
+.material-detail-price {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-primary;
+}
+
+.material-detail-currency {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-muted;
+    -fx-alignment: center;
+}
+
+/* Düzenleme Başlığı */
+.material-edit-header {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-dark;
+    -fx-padding: 12px 0 0 0;
+}
+
+/* === COMBOBOX STİLLERİ === */
+.combo-box {
+    -fx-background-color: -color-form-bg;
+    -fx-border-color: -color-form-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 12px 14px;
+    -fx-font-size: 13px;
+}
+
+.combo-box:focused {
+    -fx-border-color: -color-primary;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, -color-shadow-lighter, 8, 0, 0, 4);
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: -color-bg-card;
+    -fx-border-color: -color-form-border;
+}
+
+.combo-box-popup .list-view .list-cell {
+    -fx-background-color: -color-bg-card;
+    -fx-text-fill: -color-text-dark;
+    -fx-padding: 10px 15px;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover {
+    -fx-background-color: derive(-color-primary, -30%);
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected {
+    -fx-background-color: -color-primary;
+    -fx-text-fill: white;
+}
+
+/* === SEPARATOR STİLLERİ === */
+.separator {
+    -fx-padding: 0;
+}
+
+.separator:vertical {
+    -fx-padding: 0;
+}
+
+/* === HAMMADDE LİSTESİ SAYFASI - LAYOUT STİLLERİ === */
+
+/* Sol Taraf: Hammadde Listesi */
+.material-list-left-section {
+    -fx-pref-width: 350px;
+}
+
+/* Sağ Taraf: Detaylar */
+.material-list-right-section {
+    -fx-pref-width: 400px;
+}
+
+/* ScrollPane Stilü */
+.material-list-scroll-pane {
+    -fx-border-color: -color-form-border;
+    -fx-border-radius: 8;
+    -fx-background-color: -color-form-bg;
+    -fx-padding: 0;
+}
+
+/* Kalın Separator */
+.material-separator-thick {
+    -fx-padding: 1px 0;
+    -fx-background-color: -color-form-border;
+}
+
