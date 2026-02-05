@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToHeight="true" fitToWidth="true" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox spacing="20.0" styleClass="product-add-container">
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        </padding>
+
+        <!-- Başlık Şeridi -->
+        <VBox spacing="8.0" styleClass="product-page-title-container">
+            <Label styleClass="product-page-title" text="Yeni Ürün Ekle" />
+            <Label styleClass="product-page-subtitle" text="Ürün bilgilerini aşağıya giriniz" />
+        </VBox>
+
+        <!-- Ürün Bilgileri (Firma, Model Adı) -->
+        <VBox spacing="12.0" styleClass="product-info-container">
+            <Label styleClass="section-box-title" text="Ürün Bilgileri" />
+
+            <VBox spacing="6.0">
+                <Label styleClass="form-label" text="Firma Adı" />
+                <TextField fx:id="tfCompanyName" promptText="Firma adı giriniz..." styleClass="form-input" />
+            </VBox>
+
+            <VBox spacing="6.0">
+                <Label styleClass="form-label" text="Model Adı" />
+                <TextField fx:id="tfModelName" promptText="Model adı giriniz..." styleClass="form-input" />
+            </VBox>
+        </VBox>
+
+        <!-- Ana İçerik: Sol, Orta, Sağ -->
+        <HBox spacing="2.0" VBox.vgrow="ALWAYS" style="-fx-padding: 0 16 16 1;">
+
+            <!-- === SOL TARAF: MDF ÖLÇÜLERI VE DOLAR KURU === -->
+            <VBox spacing="8.0" styleClass="product-left-section" HBox.hgrow="ALWAYS" style="-fx-pref-width: 250;">
+                <!-- MDF Ölçüleri Giriş Kartı -->
+                <VBox spacing="8.0" styleClass="input-group-container">
+                    <Label styleClass="section-box-title" text="MDF Ölçüleri" />
+
+                    <!-- Ölçü Listesi -->
+                    <ScrollPane fitToWidth="true" styleClass="material-list-scroll-pane" VBox.vgrow="ALWAYS" prefHeight="200" style="-fx-padding: 0;">
+                        <VBox fx:id="vbMdfDimensions" spacing="2.0" styleClass="cost-list-container" />
+                    </ScrollPane>
+
+                    <!-- Ölçü Ekleme Butonu -->
+                    <Button fx:id="btnAddDimension" styleClass="btn-add-labor" text="➕ Ölçü Ekle" />
+
+                    <Separator />
+
+                    <!-- Toplam m² -->
+                    <VBox spacing="6.0">
+                        <Label styleClass="form-label" text="Toplam m²" />
+                        <Label fx:id="lblTotalM2" styleClass="detail-value" text="0,00 m²" />
+                    </VBox>
+
+                    <!-- Toplam CNC Süresi (Otomatik Hesaplanan) -->
+                    <VBox spacing="6.0">
+                        <Label styleClass="form-label" text="Toplam CNC Süresi (dk)" />
+                        <Label fx:id="lbCncTime" styleClass="detail-value" text="0,0" />
+                    </VBox>
+                </VBox>
+
+                <!-- Dolar Kuru Kartı -->
+                <VBox spacing="8.0" styleClass="input-group-container">
+                    <Label styleClass="section-box-title" text="Dönüşüm Oranı" />
+
+                    <VBox spacing="6.0">
+                        <Label styleClass="form-label" text="Dolar Kuru (₺)" />
+                        <TextField fx:id="tfDollarRate" promptText="40.00" styleClass="form-input" />
+                    </VBox>
+                </VBox>
+            </VBox>
+
+            <!-- === ORTA TARAF: HAMMADDE VE İŞÇİLİK === -->
+            <VBox spacing="12.0" styleClass="product-middle-section" HBox.hgrow="ALWAYS" style="-fx-pref-width: 400;">
+                <!-- Hammadde Bölümü -->
+                <VBox spacing="12.0" VBox.vgrow="ALWAYS">
+                    <Label styleClass="section-box-title" text="Hammaddeler" />
+
+                    <ScrollPane fitToWidth="true" styleClass="material-list-scroll-pane" VBox.vgrow="ALWAYS" prefHeight="200">
+                        <VBox fx:id="vbMaterials" spacing="8.0" styleClass="cost-list-container" />
+                    </ScrollPane>
+
+                    <Button styleClass="btn-add-labor" text="➕ Hammadde Ekle" />
+                </VBox>
+
+                <!-- Ayırıcı Çizgi -->
+                <Separator styleClass="material-separator-thick" />
+
+                <!-- İşçilik Bölümü -->
+                <VBox spacing="12.0" VBox.vgrow="ALWAYS">
+                    <Label styleClass="section-box-title" text="İşçilik" />
+
+                    <ScrollPane fitToWidth="true" styleClass="material-list-scroll-pane" VBox.vgrow="ALWAYS" prefHeight="200">
+                        <VBox fx:id="vbLabor" spacing="8.0" styleClass="cost-list-container" />
+                    </ScrollPane>
+
+                    <Button styleClass="btn-add-labor" text="➕ İşçilik Ekle" />
+                </VBox>
+            </VBox>
+
+            <!-- === SAĞ TARAF: MALİYET KARTLARI === -->
+            <VBox spacing="12.0" styleClass="product-right-section" HBox.hgrow="ALWAYS" style="-fx-pref-width: 300;">
+                <!-- Birim Fiyat Kartı -->
+                <VBox spacing="12.0" styleClass="cost-card">
+                    <Label styleClass="cost-card-title" text="Birim Fiyat (m²)" />
+                    <Label fx:id="lblUnitPrice" styleClass="cost-card-value-m2" text="0,00 ₺" />
+                </VBox>
+
+                <!-- Toplam Fiyat Kartı -->
+                <VBox spacing="12.0" styleClass="cost-card">
+                    <Label styleClass="cost-card-title" text="Toplam Fiyat" />
+                    <Label fx:id="lblTotalPrice" styleClass="cost-card-value-m2" text="0,00 ₺" />
+                </VBox>
+
+                <!-- Ayırıcı -->
+                <Separator />
+
+                <!-- Hammadde Toplamı Kartı -->
+                <VBox spacing="8.0" styleClass="cost-card">
+                    <Label styleClass="cost-card-title" text="Hammadde Toplamı" />
+                    <VBox spacing="4.0">
+                        <Label styleClass="cost-card-label" text="M² Fiyat" />
+                        <Label fx:id="lblMaterialM2" styleClass="cost-card-value-m2" text="0,00 ₺" />
+                    </VBox>
+                    <VBox spacing="4.0">
+                        <Label styleClass="cost-card-label" text="Toplam" />
+                        <Label fx:id="lblMaterialTotal" styleClass="cost-card-value-total" text="0,00 ₺" />
+                    </VBox>
+                </VBox>
+
+                <!-- İşçilik Toplamı Kartı -->
+                <VBox spacing="8.0" styleClass="cost-card">
+                    <Label styleClass="cost-card-title" text="İşçilik Toplamı" />
+                    <VBox spacing="4.0">
+                        <Label styleClass="cost-card-label" text="M² Fiyat" />
+                        <Label fx:id="lblLaborM2" styleClass="cost-card-value-m2" text="0,00 ₺" />
+                    </VBox>
+                    <VBox spacing="4.0">
+                        <Label styleClass="cost-card-label" text="Toplam" />
+                        <Label fx:id="lblLaborTotal" styleClass="cost-card-value-total" text="0,00 ₺" />
+                    </VBox>
+                </VBox>
+
+                <!-- Kar Kartı - Özel Stil -->
+                <VBox spacing="12.0" styleClass="cost-card cost-card-profit">
+                    <Label styleClass="cost-card-title" text="💰 Kar" />
+                    <VBox spacing="8.0">
+                        <VBox spacing="4.0">
+                            <Label styleClass="cost-card-label" text="Kar Oranı" />
+                            <Label fx:id="lblProfitRate" styleClass="cost-card-value-m2" text="0,00 %" />
+                        </VBox>
+                        <VBox spacing="4.0">
+                            <Label styleClass="cost-card-label" text="M² Kar" />
+                            <Label fx:id="lblProfitM2" styleClass="cost-card-value-m2" text="0,00 ₺" />
+                        </VBox>
+                        <VBox spacing="4.0">
+                            <Label styleClass="cost-card-label" text="Toplam Kar" />
+                            <Label fx:id="lblProfitTotal" styleClass="cost-card-value-total" text="0,00 ₺" />
+                        </VBox>
+                    </VBox>
+                </VBox>
+
+                <!-- Spacer -->
+                <Region VBox.vgrow="ALWAYS" />
+
+                <!-- Kaydol/İptal Butonları -->
+                <VBox spacing="8.0" styleClass="product-save-buttons">
+                    <Button fx:id="btnSave" styleClass="btn-primary" text="✓ Kaydol" prefWidth="Infinity" />
+                    <Button fx:id="btnCancel" styleClass="btn-secondary" text="✕ İptal" prefWidth="Infinity" />
+                </VBox>
+            </VBox>
+
+        </HBox>
+    </VBox>
+</ScrollPane>
+

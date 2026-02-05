@@ -30,7 +30,7 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         btnMusteriEkle.setOnAction(event -> loadAddCustomerForm());
-        btnUrunEkle.setOnAction(event -> System.out.println("Ürün Ekle Sayfası Açılacak"));
+        btnUrunEkle.setOnAction(event -> loadAddProductForm());
         btnMusteriListesi.setOnAction(event -> loadCustomerList());
         btnUrunListesi.setOnAction(event -> System.out.println("Ürün Listesi Açılacak"));
         btnHammadde.setOnAction(event -> loadMaterialList());
@@ -87,6 +87,21 @@ public class MainController implements Initializable {
             mainContainer.setCenter(fxmlLoader.load());
         } catch (IOException e) {
             System.err.println("Hammadde fiyatları sayfası yüklenemedi: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void loadAddProductForm() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    getClass().getResource("/me/ogsammaenr/muhasebeuygulamasiv3/add-product.fxml")
+            );
+            AddProductController controller = new AddProductController();
+            controller.setMainController(this);
+            fxmlLoader.setController(controller);
+            mainContainer.setCenter(fxmlLoader.load());
+        } catch (IOException e) {
+            System.err.println("Ürün ekleme formu yüklenemedi: " + e.getMessage());
             e.printStackTrace();
         }
     }

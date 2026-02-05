@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox spacing="12.0" styleClass="cost-item-container" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+    </padding>
+
+    <!-- Hammadde/İşçilik Adı -->
+    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+        <Label styleClass="form-label" text="Adı" />
+        <TextField fx:id="tfCostName" promptText="Hammadde/İşçilik adı..." styleClass="form-input" />
+    </VBox>
+
+    <!-- Birim Fiyat -->
+    <VBox spacing="4.0" prefWidth="150">
+        <Label styleClass="form-label" text="Birim Fiyat (TL)" />
+        <TextField fx:id="tfUnitPrice" promptText="Fiyat" styleClass="form-input" />
+    </VBox>
+
+    <!-- Miktar/Süre -->
+    <VBox spacing="4.0" prefWidth="120">
+        <Label styleClass="form-label" text="Miktar" />
+        <TextField fx:id="tfQuantity" promptText="0" styleClass="form-input" />
+    </VBox>
+
+    <!-- Toplam Fiyat (Otomatik Hesaplanır) -->
+    <VBox spacing="4.0" prefWidth="150">
+        <Label styleClass="form-label" text="Toplam (TL)" />
+        <Label fx:id="lblTotal" styleClass="detail-value" text="0,00 TL" />
+    </VBox>
+
+    <!-- Sil Butonu -->
+    <VBox spacing="4.0" alignment="BOTTOM_CENTER" prefWidth="50">
+        <Label styleClass="form-label" text=" " />
+        <Button fx:id="btnRemove" styleClass="btn-secondary" text="🗑️" prefWidth="50" />
+    </VBox>
+
+</HBox>
+

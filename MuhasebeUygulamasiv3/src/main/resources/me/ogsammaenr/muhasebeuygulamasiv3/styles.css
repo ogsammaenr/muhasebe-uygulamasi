@@ -286,6 +286,14 @@
     -fx-effect: dropshadow(three-pass-box, -color-shadow-lighter, 8, 0, 0, 4);
 }
 
+/* Editable Olmayan TextField */
+.form-input:disabled {
+    -fx-text-fill: -color-text-muted;
+    -fx-background-color: derive(-color-form-bg, -3%);
+    -fx-opacity: 1.0;
+    -fx-border-color: derive(-color-form-border, -10%);
+}
+
 /* Form TextArea */
 .form-textarea {
     -fx-font-size: 13px;
@@ -685,6 +693,7 @@
     -fx-background-radius: 8;
     -fx-padding: 12px 14px;
     -fx-font-size: 13px;
+    -fx-text-fill: -color-text-dark;
 }
 
 .combo-box:focused {
@@ -693,24 +702,42 @@
     -fx-effect: dropshadow(three-pass-box, -color-shadow-lighter, 8, 0, 0, 4);
 }
 
+.combo-box:hover {
+    -fx-border-color: -color-primary;
+}
+
+.combo-box-popup {
+    -fx-background-color: -color-bg-card;
+    -fx-border-color: -color-form-border;
+    -fx-border-width: 1;
+}
+
 .combo-box-popup .list-view {
     -fx-background-color: -color-bg-card;
     -fx-border-color: -color-form-border;
+    -fx-padding: 0;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
 }
 
 .combo-box-popup .list-view .list-cell {
     -fx-background-color: -color-bg-card;
     -fx-text-fill: -color-text-dark;
-    -fx-padding: 10px 15px;
+    -fx-padding: 12px 16px;
+    -fx-font-size: 13px;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
 }
 
 .combo-box-popup .list-view .list-cell:filled:hover {
     -fx-background-color: derive(-color-primary, -30%);
+    -fx-text-fill: white;
 }
 
 .combo-box-popup .list-view .list-cell:filled:selected {
     -fx-background-color: -color-primary;
     -fx-text-fill: white;
+    -fx-font-weight: bold;
 }
 
 /* === SEPARATOR STİLLERİ === */
@@ -746,5 +773,322 @@
 .material-separator-thick {
     -fx-padding: 1px 0;
     -fx-background-color: -color-form-border;
+}
+
+/* === ÜRÜN EKLEME SAYFASI STİLLERİ === */
+
+/* Ürün Ekleme Container */
+.product-add-container {
+    -fx-background-color: -color-bg-main;
+}
+
+/* Sol Bölüm - MDF ve Dolar Kuru */
+.product-left-section {
+    -fx-spacing: 12px;
+}
+
+/* Orta Bölüm - Hammadde ve İşçilik */
+.product-middle-section {
+    -fx-background-color: -color-bg-card;
+    -fx-padding: 20px;
+    -fx-background-radius: 12px;
+    -fx-border-color: -color-form-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 12px;
+    -fx-effect: dropshadow(three-pass-box, -color-shadow-lighter, 6, 0, 0, 3);
+    -fx-spacing: 12px;
+}
+
+/* Sağ Bölüm - Maliyet Kartları */
+.product-right-section {
+    -fx-spacing: 12px;
+}
+
+/* Bölüm Başlığı */
+.section-box-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-dark;
+    -fx-padding: 0 0 12px 0;
+    -fx-border-color: -color-primary;
+    -fx-border-width: 0 0 2 0;
+}
+
+/* Input Grup Container */
+.input-group-container {
+    -fx-background-color: -color-bg-card;
+    -fx-padding: 12px;
+    -fx-background-radius: 10px;
+    -fx-border-color: -color-form-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, -color-shadow-lighter, 4, 0, 0, 2);
+}
+
+/* MDF Girişi */
+.mdf-input-row {
+    -fx-spacing: 12px;
+}
+
+/* Dolar Kuru Container */
+.dollar-rate-container {
+    -fx-background-color: derive(-color-form-bg, 2%);
+    -fx-padding: 16px;
+    -fx-background-radius: 8px;
+    -fx-border-color: derive(-color-form-border, 20%);
+    -fx-border-width: 1;
+    -fx-border-radius: 8px;
+    -fx-margin: 12px 0 0 0;
+}
+
+/* Hammadde/İşçilik Listesi */
+.cost-list-container {
+    -fx-background-color: -color-form-bg;
+    -fx-padding: 4px;
+    -fx-background-radius: 6px;
+    -fx-border-color: -color-form-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 6px;
+}
+
+/* Cost Item Container */
+.cost-item-container {
+    -fx-background-color: derive(-color-bg-card, -2%);
+    -fx-border-color: -color-form-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(two-pass-box, -color-shadow-lightest, 2, 0, 0, 2);
+}
+
+.cost-item-container:hover {
+    -fx-background-color: derive(-color-bg-card, 2%);
+    -fx-effect: dropshadow(two-pass-box, -color-shadow-lighter, 4, 0, 0, 3);
+}
+
+/* İşçilik Ekleme Butonu */
+.btn-add-labor {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-btn-secondary-text;
+    -fx-padding: 12px 16px;
+    -fx-background-color: -color-btn-secondary-bg;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: -color-btn-secondary-border;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, -color-shadow-medium, 6, 0, 0, 3);
+    -fx-margin: 12px 0 0 0;
+}
+
+.btn-add-labor:hover {
+    -fx-background-color: -color-btn-secondary-hover-bg;
+    -fx-border-color: -color-primary;
+    -fx-effect: dropshadow(three-pass-box, -color-shadow-lighter, 8, 0, 0, 4);
+}
+
+/* Maliyet Kartı */
+.cost-card {
+    -fx-background-color: -color-bg-card;
+    -fx-padding: 16px;
+    -fx-background-radius: 10px;
+    -fx-border-color: -color-form-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(two-pass-box, -color-shadow-lightest, 3, 0, 0, 2);
+}
+
+/* Maliyet Kartı Başlığı */
+.cost-card-title {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-muted;
+    -fx-padding: 0 0 8px 0;
+    -fx-border-color: derive(-color-form-border, 20%);
+    -fx-border-width: 0 0 1 0;
+}
+
+/* Maliyet Kartı Değeri (M2) */
+.cost-card-value-m2 {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-primary;
+    -fx-padding: 4px 0;
+}
+
+/* Maliyet Kartı Etiketi */
+.cost-card-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: -color-text-muted;
+    -fx-padding: 2px 0;
+}
+
+/* Maliyet Kartı Değeri (Toplam) */
+.cost-card-value-total {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -color-text-dark;
+    -fx-padding: 4px 0 0 0;
+}
+
+/* Kar Kartı Özel Stil */
+.cost-card-profit {
+    -fx-background-color: derive(-color-bg-card, 5%);
+    -fx-border-color: derive(-color-primary, -10%);
+    -fx-border-width: 2;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow(three-pass-box, derive(-color-primary, -20%), 8, 0, 0, 4);
+}
+
+.cost-card-profit .cost-card-value-m2 {
+    -fx-text-fill: derive(-color-primary, 20%);
+}
+
+.cost-card-profit .cost-card-title {
+    -fx-text-fill: derive(-color-primary, 10%);
+}
+
+/* Sayfa Başlık Container */
+.product-page-title-container {
+    -fx-background-color: -color-form-title-bg;
+    -fx-padding: 24px 40px;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+}
+
+.product-page-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-form-title-text;
+}
+
+.product-page-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: -color-form-subtitle-text;
+}
+
+/* Ürün Bilgileri Container */
+.product-info-container {
+    -fx-background-color: -color-bg-card;
+    -fx-padding: 16px;
+    -fx-background-radius: 10px;
+    -fx-border-color: -color-form-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(two-pass-box, -color-shadow-lightest, 3, 0, 0, 2);
+}
+
+/* Kaydol/İptal Butonları */
+.product-save-buttons {
+    -fx-padding: 20px 0;
+    -fx-alignment: center;
+    -fx-spacing: 12px;
+}
+
+/* MDF Ölçü Item Stil */
+.mdf-dimension-item {
+    -fx-background-color: -color-bg-card;
+    -fx-border-color: -color-form-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-effect: dropshadow(two-pass-box, -color-shadow-lightest, 1, 0, 0, 1);
+}
+
+.mdf-dimension-item:hover {
+    -fx-effect: dropshadow(two-pass-box, -color-shadow-light, 2, 0, 0, 1);
+}
+
+/* MDF Item Label */
+.mdf-item-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-muted;
+}
+
+/* MDF Item Input */
+.mdf-item-input {
+    -fx-font-size: 11px;
+    -fx-padding: 4px 6px;
+    -fx-background-color: -color-form-bg;
+    -fx-border-color: -color-form-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-text-fill: -color-text-dark;
+    -fx-max-width: 125px;
+}
+
+.mdf-item-input:focused {
+    -fx-border-color: -color-primary;
+    -fx-border-width: 1;
+}
+
+/* MDF Item ComboBox */
+.mdf-item-combo {
+    -fx-font-size: 11px;
+    -fx-padding: 4px 6px;
+    -fx-background-color: -color-form-bg;
+    -fx-border-color: -color-form-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+.mdf-item-combo:focused {
+    -fx-border-color: -color-primary;
+    -fx-border-width: 1;
+}
+
+/* MDF Item Value */
+.mdf-item-value {
+    -fx-font-size: 11px;
+    -fx-text-fill: -color-text-dark;
+    -fx-font-weight: 500;
+}
+
+/* Sil Butonu - Küçük Versiyon */
+.btn-delete-cost-small {
+    -fx-padding: 4px 6px;
+    -fx-background-color: derive(-color-primary-dark, 20%);
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-cursor: hand;
+    -fx-min-width: 24px;
+    -fx-min-height: 24px;
+}
+
+.btn-delete-cost-small:hover {
+    -fx-background-color: derive(-color-primary-dark, 30%);
+}
+
+.btn-delete-cost-small:pressed {
+    -fx-background-color: -color-primary-dark;
+}
+
+/* Sil Butonu Stil */
+.btn-delete-cost {
+    -fx-padding: 6px 10px;
+    -fx-background-color: derive(-color-primary-dark, 20%);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.btn-delete-cost:hover {
+    -fx-background-color: derive(-color-primary-dark, 30%);
+}
+
+.btn-delete-cost:pressed {
+    -fx-background-color: -color-primary-dark;
 }
 
