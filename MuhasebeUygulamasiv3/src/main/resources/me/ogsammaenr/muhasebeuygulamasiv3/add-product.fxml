@@ -92,7 +92,7 @@
                         <VBox fx:id="vbMaterials" spacing="8.0" styleClass="cost-list-container" />
                     </ScrollPane>
 
-                    <Button styleClass="btn-add-labor" text="➕ Hammadde Ekle" />
+                    <Button styleClass="btn-add-labor" text="➕ Hammadde Ekle" onAction="#addMaterialRow" />
                 </VBox>
 
                 <!-- Ayırıcı Çizgi -->
@@ -106,7 +106,7 @@
                         <VBox fx:id="vbLabor" spacing="8.0" styleClass="cost-list-container" />
                     </ScrollPane>
 
-                    <Button styleClass="btn-add-labor" text="➕ İşçilik Ekle" />
+                    <Button styleClass="btn-add-labor" text="➕ İşçilik Ekle" onAction="#addLaborRow" />
                 </VBox>
             </VBox>
 

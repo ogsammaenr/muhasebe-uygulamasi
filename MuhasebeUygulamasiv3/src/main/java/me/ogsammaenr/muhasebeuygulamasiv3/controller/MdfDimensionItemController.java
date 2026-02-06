@@ -90,7 +90,6 @@ public class MdfDimensionItemController implements Initializable {
     }
 
     private void deleteThis() {
-        // Bu item'ı parent VBox'tan kaldır
         if (parentContainer != null && vbRoot != null) {
             parentContainer.getChildren().remove(vbRoot);
             if (parentController != null) {
