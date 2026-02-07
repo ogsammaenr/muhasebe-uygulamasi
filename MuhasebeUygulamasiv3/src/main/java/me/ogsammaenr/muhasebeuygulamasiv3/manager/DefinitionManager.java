@@ -31,11 +31,10 @@ public class DefinitionManager {
         addMaterial("MDF 22", 2260, ProductDefinition.UnitType.M2, "TL");
         addMaterial("MDF 25", 3775, ProductDefinition.UnitType.M2, "TL");
         addMaterial("MDF 30", 4530, ProductDefinition.UnitType.M2, "TL");
-        addMaterial("PVC", 288.4, ProductDefinition.UnitType.M2, "USD");  // PVC dolar bazlı
-        addMaterial("Tutkal", 70, ProductDefinition.UnitType.M2, "TL");
-        addMaterial("Zimpara", 10, ProductDefinition.UnitType.M2, "TL");
+        addMaterial("PVC", 0, ProductDefinition.UnitType.M2, "USD");  // PVC dolar bazlı
+        addMaterial("Tutkal", 0, ProductDefinition.UnitType.M2, "TL");
+        addMaterial("Zimpara", 0, ProductDefinition.UnitType.M2, "TL");
 
-        // İşçilikler - TXT dosyasındaki verilerden
         addLabor("Kesim (Plaka)", 250, ProductDefinition.UnitType.PLAKA, "TL");
         addLabor("CNC (Dakika)", 27, ProductDefinition.UnitType.DAKIKA, "TL");
         addLabor("Zimpara İşçiliği", 60, ProductDefinition.UnitType.M2, "TL");

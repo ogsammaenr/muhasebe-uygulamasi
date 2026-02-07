@@ -45,7 +45,14 @@ public class MdfDimensionItemController implements Initializable {
         // TextFields değiştiğinde alan hesaplaması yap
         tfLength.textProperty().addListener((obs, oldVal, newVal) -> calculateArea());
         tfWidth.textProperty().addListener((obs, oldVal, newVal) -> calculateArea());
-        cbThickness.valueProperty().addListener((obs, oldVal, newVal) -> calculateArea());
+        // Kalınlık değişince MDF hammaddesi de güncellenecek
+        cbThickness.valueProperty().addListener((obs, oldVal, newVal) -> {
+            calculateArea();
+            // MDF kalınlığı değiştiğinde hammadde listesini güncelle
+            if (parentController != null && newVal != null) {
+                parentController.updateMaterialFromDimension();
+            }
+        });
 
         // CNC süresi değiştiğinde parent'ı bildir
         tfCncHoleTime.textProperty().addListener((obs, oldVal, newVal) -> {
@@ -83,6 +90,8 @@ public class MdfDimensionItemController implements Initializable {
             // Parent controller'ın toplam m² hesaplamasını güncelle
             if (parentController != null) {
                 parentController.updateTotalM2();
+                // MDF ölçüsü değiştiğinde hammadde listesini güncelle
+                parentController.updateMaterialFromDimension();
             }
         } catch (NumberFormatException e) {
             lblArea.setText("0,00 m²");
@@ -95,6 +104,8 @@ public class MdfDimensionItemController implements Initializable {
             if (parentController != null) {
                 parentController.updateTotalM2();
                 parentController.updateTotalCncTime();
+                // Ölçü silindiğinde hammadde listesini güncelle
+                parentController.updateMaterialFromDimension();
             }
         }
     }

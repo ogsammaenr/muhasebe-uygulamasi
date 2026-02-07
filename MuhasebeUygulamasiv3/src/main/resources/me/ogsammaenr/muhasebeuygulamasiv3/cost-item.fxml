@@ -28,7 +28,7 @@
 
     <!-- Miktar/Süre -->
     <VBox spacing="4.0" prefWidth="120">
-        <Label styleClass="form-label" text="Miktar" />
+        <Label styleClass="form-label" text="Birim" fx:id="lblQuantityType"/>
         <TextField fx:id="tfQuantity" promptText="0" styleClass="form-input" />
     </VBox>
 
@@ -39,10 +39,10 @@
     </VBox>
 
     <!-- Sil Butonu -->
-    <VBox spacing="4.0" alignment="BOTTOM_CENTER" prefWidth="50">
-        <Label styleClass="form-label" text=" " />
-        <Button fx:id="btnRemove" styleClass="btn-secondary" text="🗑️" prefWidth="50" />
-    </VBox>
+<!--    <VBox spacing="4.0" alignment="BOTTOM_CENTER" prefWidth="50">-->
+<!--        <Label styleClass="form-label" text=" " />-->
+<!--        <Button fx:id="btnRemove" styleClass="btn-secondary" text="🗑️" prefWidth="50" />-->
+<!--    </VBox>-->
 
 </HBox>
 

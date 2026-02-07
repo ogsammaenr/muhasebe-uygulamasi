@@ -25,7 +25,10 @@ public class CostItemController implements Initializable {
     private Label lblTotal;
 
     @FXML
-    private Button btnRemove;
+    private Label lblQuantityType;
+
+//    @FXML
+//    private Button btnRemove;
 
     private AddProductController parentController;
     private VBox parentContainer;
@@ -38,7 +41,7 @@ public class CostItemController implements Initializable {
         tfQuantity.textProperty().addListener((obs, oldVal, newVal) -> updateTotal());
 
         // Sil butonu
-        btnRemove.setOnAction(event -> removeSelf());
+//        btnRemove.setOnAction(event -> removeSelf());
     }
 
     public void setParentController(AddProductController parentController) {
@@ -120,6 +123,14 @@ public class CostItemController implements Initializable {
 
     public void setQuantity(double quantity) {
         tfQuantity.setText(String.valueOf(quantity));
+    }
+
+    public double getQuantity() {
+        try {
+            return Double.parseDouble(tfQuantity.getText().isEmpty() ? "0" : tfQuantity.getText());
+        } catch (NumberFormatException e) {
+            return 0.0;
+        }
     }
 
     /**

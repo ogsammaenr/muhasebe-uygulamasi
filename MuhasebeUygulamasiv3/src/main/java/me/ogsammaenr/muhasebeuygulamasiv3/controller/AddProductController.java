@@ -14,7 +14,7 @@ import me.ogsammaenr.muhasebeuygulamasiv3.model.ProductDefinition;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class AddProductController implements Initializable {
     @FXML
@@ -57,9 +57,6 @@ public class AddProductController implements Initializable {
 
         // Definition'ları yükleme işlemini gecikmeli yap
         javafx.application.Platform.runLater(() -> {
-
-            ProductDefinition.MaterialDefinition mdf18 = definitionManager.getMaterialByName("MDF 18");
-                addMaterialRowFromDefinition(mdf18);
 
             ProductDefinition.MaterialDefinition pvc = definitionManager.getMaterialByName("PVC");
                 addMaterialRowFromDefinition(pvc);
@@ -240,6 +237,108 @@ public class AddProductController implements Initializable {
         }
 
         lbCncTime.setText(String.format("%.1f", totalCncTime));
+    }
+
+    /**
+     * MDF ölçüleri değiştiğinde hammadde listesini günceller
+     * Tüm MDF ölçülerinden hangi kalınlıkların kullanıldığını tespit eder ve
+     * karşılık gelen MDF hammaddelerini otomatik olarak ekler/günceller
+     */
+    public void updateMaterialFromDimension() {
+        // Tüm MDF ölçülerinden hangi kalınlıkların kullanıldığını ve toplam m²'yi hesapla
+        Map<String, Double> mdfThicknessMap = new HashMap<>();
+
+        for (Node node : vbMdfDimensions.getChildren()) {
+            Object userData = node.getUserData();
+            if (userData instanceof MdfDimensionItemController) {
+                MdfDimensionItemController itemController = (MdfDimensionItemController) userData;
+                double area = itemController.getArea();
+                String thickness = itemController.getThickness();
+
+                // Kalınlık stringini "mm" cinsinden al (örn: "18 mm" -> "18")
+                String thicknessNum = thickness.replaceAll(" mm", "");
+
+                // Padding yap: "8" -> "08", "18" -> "18"
+                if (thicknessNum.length() == 1) {
+                    thicknessNum = "0" + thicknessNum;
+                }
+
+                String mdfKey = "MDF " + thicknessNum;
+
+                // Aynı kalınlıktan birden fazla varsa toplam et
+                mdfThicknessMap.put(mdfKey, mdfThicknessMap.getOrDefault(mdfKey, 0.0) + area);
+            }
+        }
+
+        // Şu anda hammadde listesindeki tüm MDF'leri takip et
+        Set<String> existingMdfMaterials = new HashSet<>();
+        for (Node node : vbMaterials.getChildren()) {
+            Object userData = node.getUserData();
+            if (userData instanceof CostItemController) {
+                CostItemController itemController = (CostItemController) userData;
+                String costName = itemController.getCostName();
+                if (costName.startsWith("MDF")) {
+                    existingMdfMaterials.add(costName);
+                }
+            }
+        }
+
+        // Hammadde listesindeki mevcut MDF'leri güncelle ve silinecekleri belirle
+        Set<String> mdfToRemove = new HashSet<>(existingMdfMaterials);
+        for (Node node : vbMaterials.getChildren()) {
+            Object userData = node.getUserData();
+            if (userData instanceof CostItemController) {
+                CostItemController itemController = (CostItemController) userData;
+                String costName = itemController.getCostName();
+
+                // Bu MDF hala kullanılıyor mu?
+                if (mdfThicknessMap.containsKey(costName)) {
+                    // Evet, miktarını güncelle
+                    double multiplier = 1.12 / 5.88; // kayıplar için çarpan
+                    itemController.setQuantity(mdfThicknessMap.get(costName) * multiplier);
+                    mdfToRemove.remove(costName);
+                    mdfThicknessMap.remove(costName); // Eklediğimiz olarak işaretle
+                }
+            }
+        }
+
+        // Artık kullanılmayan MDF'leri sil
+        Iterator<Node> iterator = vbMaterials.getChildren().iterator();
+        while (iterator.hasNext()) {
+            Node node = iterator.next();
+            Object userData = node.getUserData();
+            if (userData instanceof CostItemController) {
+                CostItemController itemController = (CostItemController) userData;
+                if (mdfToRemove.contains(itemController.getCostName())) {
+                    iterator.remove();
+                }
+            }
+        }
+
+        // Yeni MDF'leri ekle (mdf² > 0 olanlar)
+        for (String mdfName : mdfThicknessMap.keySet()) {
+            double area = mdfThicknessMap.get(mdfName);
+            if (area > 0) {
+                ProductDefinition.MaterialDefinition mdfDef = definitionManager.getMaterialByName(mdfName);
+                if (mdfDef != null) {
+                    addMaterialRowFromDefinition(mdfDef);
+                    // Eklenen MDF'nin miktarını ayarla
+                    if (!vbMaterials.getChildren().isEmpty()) {
+                        Node lastNode = vbMaterials.getChildren().get(vbMaterials.getChildren().size() - 1);
+                        Object userData = lastNode.getUserData();
+                        if (userData instanceof CostItemController) {
+                            CostItemController itemController = (CostItemController) userData;
+                            double multiplier = 1.12 / 5.88; // kayıplar için çarpan
+
+                            itemController.setQuantity(area * multiplier);
+                        }
+                    }
+                }
+            }
+        }
+
+        // Maliyet hesaplamalarını güncelle
+        updateCostCalculations();
     }
 
     // Maliyet hesaplamalarını güncelle
