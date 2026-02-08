@@ -177,7 +177,7 @@
 
                 <!-- Kaydol/İptal Butonları -->
                 <VBox spacing="8.0" styleClass="product-save-buttons">
-                    <Button fx:id="btnSave" styleClass="btn-primary" text="✓ Kaydol" prefWidth="Infinity" />
+                    <Button fx:id="btnSave" styleClass="btn-primary" text="✓ Kaydet" prefWidth="Infinity" />
                     <Button fx:id="btnCancel" styleClass="btn-secondary" text="✕ İptal" prefWidth="Infinity" />
                 </VBox>
             </VBox>

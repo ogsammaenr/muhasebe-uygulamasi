@@ -46,7 +46,10 @@ public class AddProductController implements Initializable {
     private HashMap<String, Double> mdfMap = new HashMap<>();  // "MDF 08" -> 0.5 (m²)
     private DefinitionManager definitionManager;
     private List<MdfDimensionItemController> mdfControllers = new ArrayList<>();
-    private MainController mainController;  // Dönüş için referans
+    private List<CostItemController> materialControllers = new ArrayList<>();
+    private List<CostItemController> laborControllers = new ArrayList<>();
+
+    private MainController mainController;
 
     // === HESAPLANAN VERİLER (SAĞ TARAF) ===
     private double totalM2 = 0;
@@ -73,8 +76,7 @@ public class AddProductController implements Initializable {
         tfDollarRate.textProperty().addListener((obs, oldVal, newVal) -> {
             try {
                 dollarRate = Double.parseDouble(newVal.replace(",", ".").isEmpty() ? "40" : newVal.replace(",", "."));
-                updateAllCosts();
-                // Dolar kuru değişince kalemlerin fiyatlarını da güncelle
+                // Kur değişince listeyi yenile ve maliyetleri yeniden hesapla
                 generateMaterialCostItems();
                 generateLaborCostItems();
             } catch (NumberFormatException e) {
@@ -267,23 +269,26 @@ public class AddProductController implements Initializable {
      */
     private void generateMaterialCostItems() {
         vbMaterials.getChildren().clear();
+        materialControllers.clear(); // Listeyi temizle
+
         for (ProductDefinition.MaterialDefinition material : definitionManager.getMaterials()) {
             double area = 0;
             boolean isEditable = false;
-            // Eğer MDF ise sadece o MDF'nin alanını al
+
             if (material.getName().startsWith("MDF")) {
                 area = mdfMap.getOrDefault(material.getName(), 0.0);
             } else {
-                // MDF değilse (Tutkal, Mebran vb.) toplam m2'yi al
                 area = totalM2;
-                isEditable = true;
+                isEditable = true; // MDF dışındakiler (Tutkal, Boya vb.) düzenlenebilir olsun
             }
 
-            // SADECE ALANI OLANLARI LİSTEYE EKLE
             if (area > 0) {
-                vbMaterials.getChildren().add(createCostItemDisplay(material, area, isEditable));
+                // Controller'ı oluştur ve listeye ekle
+                createAndAddCostItem(material, area, isEditable, vbMaterials, materialControllers);
             }
         }
+        // İlk hesaplama
+        recalculateTotalsFromUI();
     }
 
     /**
@@ -291,6 +296,8 @@ public class AddProductController implements Initializable {
      */
     private void generateLaborCostItems() {
         vbLabor.getChildren().clear();
+        laborControllers.clear(); // Listeyi temizle
+
         for (ProductDefinition.LaborDefinition labor : definitionManager.getLabors()) {
             double quantity = 0;
             switch (labor.getUnitType()) {
@@ -299,11 +306,12 @@ public class AddProductController implements Initializable {
                 default -> quantity = 1;
             }
 
-            // SADECE MİKTARI OLANLARI LİSTEYE EKLE
             if (quantity > 0) {
-                vbLabor.getChildren().add(createCostItemDisplay(labor, quantity, true));
+                // İşçiliklerin hepsi düzenlenebilir olsun
+                createAndAddCostItem(labor, quantity, true, vbLabor, laborControllers);
             }
         }
+        recalculateTotalsFromUI();
     }
 
     /**
@@ -328,25 +336,56 @@ public class AddProductController implements Initializable {
         return area * basePrice * multiplier;
     }
 
-    /**
-     * cost-item.fxml'i yükler ve veriyi bind eder
-     */
-    private Node createCostItemDisplay(ProductDefinition.CostDefinition definition, double quantity, boolean isBasePriceEditable) {
+    private void createAndAddCostItem(ProductDefinition.CostDefinition definition, double quantity, boolean isEditable, VBox container, List<CostItemController> controllerList) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/me/ogsammaenr/muhasebeuygulamasiv3/cost-item.fxml"));
             CostItemController controller = new CostItemController();
-
             loader.setController(controller);
             Node node = loader.load();
 
+            // Verileri bağla
             controller.bind(definition, quantity, dollarRate);
-            controller.setUnitPriceEditable(isBasePriceEditable);
+            controller.setUnitPriceEditable(isEditable);
 
-            return node;
+            // Dinleyici ekle: Fiyat değişirse toplamları yeniden hesapla
+            controller.setOnPriceChanged(this::recalculateTotalsFromUI);
+
+            // Listelere ekle
+            controllerList.add(controller);
+            container.getChildren().add(node);
+
         } catch (IOException e) {
             e.printStackTrace();
-            return new Label("Hata: " + definition.getName());
         }
+    }
+
+    private void recalculateTotalsFromUI() {
+        double totalMaterialCost = 0;
+        for (CostItemController c : materialControllers) {
+            totalMaterialCost += c.getTotalCost();
+        }
+
+        double totalLaborCost = 0;
+        for (CostItemController c : laborControllers) {
+            totalLaborCost += c.getTotalCost();
+        }
+
+        double totalCost = totalMaterialCost + totalLaborCost;
+
+        // Birim fiyatlar (m2 başına)
+        double unitMaterialCost = totalM2 > 0 ? totalMaterialCost / totalM2 : 0;
+        double unitLaborCost = totalM2 > 0 ? totalLaborCost / totalM2 : 0;
+        double unitTotalCost = totalM2 > 0 ? totalCost / totalM2 : 0;
+
+        // Etiketleri Güncelle
+        lblMaterialM2.setText(String.format("%.2f ₺", unitMaterialCost));
+        lblMaterialTotal.setText(String.format("%.2f ₺", totalMaterialCost));
+
+        lblLaborM2.setText(String.format("%.2f ₺", unitLaborCost));
+        lblLaborTotal.setText(String.format("%.2f ₺", totalLaborCost));
+
+        lblUnitPrice.setText(String.format("%.2f ₺", unitTotalCost));
+        lblTotalPrice.setText(String.format("%.2f ₺", totalCost));
     }
 }
 

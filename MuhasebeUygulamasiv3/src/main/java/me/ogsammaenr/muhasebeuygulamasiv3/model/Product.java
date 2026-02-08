@@ -146,7 +146,7 @@ public class Product {
          * @param desc
          */
         public CostItem(String laborName, double quantity, double customPrice, String desc) {
-            this.definition = new ProductDefinition.LaborDefinition(laborName, customPrice, ProductDefinition.UnitType.ADET);
+            this.definition = new ProductDefinition.LaborDefinition(laborName, customPrice, ProductDefinition.UnitType.M2);
             this.quantity = quantity;
             this.desc = desc;
             this.isCustomLabor = true;
