@@ -268,15 +268,20 @@ public class AddProductController implements Initializable {
     private void generateMaterialCostItems() {
         vbMaterials.getChildren().clear();
         for (ProductDefinition.MaterialDefinition material : definitionManager.getMaterials()) {
-            double cost = calculateMaterialItemCost(material);
-            // Sadece maliyeti 0'dan büyük olan (kullanılan) maddeleri göster
-            if (cost > 0) {
-                VBox itemBox = createCostItemDisplay(
-                        material.getName(),
-                        cost,
-                        material.getUnitType().toString()
-                );
-                vbMaterials.getChildren().add(itemBox);
+            double area = 0;
+            boolean isEditable = false;
+            // Eğer MDF ise sadece o MDF'nin alanını al
+            if (material.getName().startsWith("MDF")) {
+                area = mdfMap.getOrDefault(material.getName(), 0.0);
+            } else {
+                // MDF değilse (Tutkal, Mebran vb.) toplam m2'yi al
+                area = totalM2;
+                isEditable = true;
+            }
+
+            // SADECE ALANI OLANLARI LİSTEYE EKLE
+            if (area > 0) {
+                vbMaterials.getChildren().add(createCostItemDisplay(material, area, isEditable));
             }
         }
     }
@@ -286,32 +291,17 @@ public class AddProductController implements Initializable {
      */
     private void generateLaborCostItems() {
         vbLabor.getChildren().clear();
-
         for (ProductDefinition.LaborDefinition labor : definitionManager.getLabors()) {
             double quantity = 0;
-            ProductDefinition.UnitType unitType = labor.getUnitType();
-
-            if (unitType == ProductDefinition.UnitType.M2) {
-                quantity = totalM2;
-            } else if (unitType == ProductDefinition.UnitType.DAKIKA) {
-                quantity = totalCncTime;
-            } else {
-                quantity = 1;
+            switch (labor.getUnitType()) {
+                case M2 -> quantity = totalM2;
+                case DAKIKA -> quantity = totalCncTime;
+                default -> quantity = 1;
             }
 
-            double cost = quantity * labor.getBasePrice();
-            if ("USD".equalsIgnoreCase(labor.getCurrency())) {
-                cost = quantity * labor.getBasePrice() * dollarRate;
-            }
-
-            // Sadece maliyeti olan işçilikleri göster
-            if (cost > 0) {
-                VBox itemBox = createCostItemDisplay(
-                        labor.getName(),
-                        cost,
-                        labor.getUnitType().toString()
-                );
-                vbLabor.getChildren().add(itemBox);
+            // SADECE MİKTARI OLANLARI LİSTEYE EKLE
+            if (quantity > 0) {
+                vbLabor.getChildren().add(createCostItemDisplay(labor, quantity, true));
             }
         }
     }
@@ -339,20 +329,24 @@ public class AddProductController implements Initializable {
     }
 
     /**
-     * Maliyet öğesini görüntülemek için VBox oluştur
+     * cost-item.fxml'i yükler ve veriyi bind eder
      */
-    private VBox createCostItemDisplay(String name, double cost, String unit) {
-        VBox itemBox = new VBox();
-        itemBox.setStyle("-fx-border-color: #e0e0e0; -fx-border-radius: 4; -fx-padding: 8;");
+    private Node createCostItemDisplay(ProductDefinition.CostDefinition definition, double quantity, boolean isBasePriceEditable) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/me/ogsammaenr/muhasebeuygulamasiv3/cost-item.fxml"));
+            CostItemController controller = new CostItemController();
 
-        Label nameLabel = new Label(name);
-        nameLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 11;");
+            loader.setController(controller);
+            Node node = loader.load();
 
-        Label costLabel = new Label(String.format("%.2f ₺", cost));
-        costLabel.setStyle("-fx-text-fill: #2196f3; -fx-font-size: 12; -fx-font-weight: bold;");
+            controller.bind(definition, quantity, dollarRate);
+            controller.setUnitPriceEditable(isBasePriceEditable);
 
-        itemBox.getChildren().addAll(nameLabel, costLabel);
-        return itemBox;
+            return node;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new Label("Hata: " + definition.getName());
+        }
     }
 }
 

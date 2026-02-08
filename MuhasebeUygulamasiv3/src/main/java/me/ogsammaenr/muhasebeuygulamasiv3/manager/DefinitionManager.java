@@ -34,9 +34,9 @@ public class DefinitionManager {
         addMaterial("PVC", 0, ProductDefinition.UnitType.M2, "USD", 2 * 1.03);  // PVC dolar bazlı
         addMaterial("Tutkal", 0, ProductDefinition.UnitType.M2, "TL");
         addMaterial("Zimpara", 0, ProductDefinition.UnitType.M2, "TL");
+        addMaterial("Kesim", 250, ProductDefinition.UnitType.M2, "TL", 1 / 5.88);
 
         // İşçilikler
-        addLabor("Kesim İşçiliği", 250, ProductDefinition.UnitType.PLAKA);  // Plaka başına 250 TL
         addLabor("CNC (Dakika)", 27, ProductDefinition.UnitType.DAKIKA);
         addLabor("Zimpara İşçiliği", 60, ProductDefinition.UnitType.M2);
         addLabor("Paletleme İşçiliği", 25, ProductDefinition.UnitType.M2);
