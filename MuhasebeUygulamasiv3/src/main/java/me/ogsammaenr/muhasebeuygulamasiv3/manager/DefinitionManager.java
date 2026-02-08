@@ -25,34 +25,62 @@ public class DefinitionManager {
 
     private void initDefinitions() {
         // Malzemeler - TXT dosyasındaki verilerden
-        addMaterial("MDF 08", 1550, ProductDefinition.UnitType.M2, "TL");
-        addMaterial("MDF 12", 1940, ProductDefinition.UnitType.M2, "TL");
-        addMaterial("MDF 18", 2480, ProductDefinition.UnitType.M2, "TL");
-        addMaterial("MDF 22", 2260, ProductDefinition.UnitType.M2, "TL");
-        addMaterial("MDF 25", 3775, ProductDefinition.UnitType.M2, "TL");
-        addMaterial("MDF 30", 4530, ProductDefinition.UnitType.M2, "TL");
-        addMaterial("PVC", 0, ProductDefinition.UnitType.M2, "USD");  // PVC dolar bazlı
+        addMaterial("MDF 08", 1550, ProductDefinition.UnitType.M2, "TL", 1.12 / 5.88);
+        addMaterial("MDF 12", 1940, ProductDefinition.UnitType.M2, "TL", 1.12 / 5.88);
+        addMaterial("MDF 18", 2480, ProductDefinition.UnitType.M2, "TL", 1.12 / 5.88);
+        addMaterial("MDF 22", 2260, ProductDefinition.UnitType.M2, "TL", 1.12 / 5.88);
+        addMaterial("MDF 25", 3775, ProductDefinition.UnitType.M2, "TL", 1.12 / 5.88);
+        addMaterial("MDF 30", 4530, ProductDefinition.UnitType.M2, "TL", 1.12 / 5.88);
+        addMaterial("PVC", 0, ProductDefinition.UnitType.M2, "USD", 2 * 1.03);  // PVC dolar bazlı
         addMaterial("Tutkal", 0, ProductDefinition.UnitType.M2, "TL");
         addMaterial("Zimpara", 0, ProductDefinition.UnitType.M2, "TL");
 
-        addLabor("Kesim (Plaka)", 250, ProductDefinition.UnitType.PLAKA, "TL");
-        addLabor("CNC (Dakika)", 27, ProductDefinition.UnitType.DAKIKA, "TL");
-        addLabor("Zimpara İşçiliği", 60, ProductDefinition.UnitType.M2, "TL");
-        addLabor("Paletleme İşçiliği", 25, ProductDefinition.UnitType.M2, "TL");
-        addLabor("Tutkal İşçiliği", 70, ProductDefinition.UnitType.M2, "TL");
-        addLabor("Basım İşçiliği", 350, ProductDefinition.UnitType.M2, "TL");
-        addLabor("Ambalaj", 25, ProductDefinition.UnitType.M2, "TL");
-        addLabor("Nakliye", 100, ProductDefinition.UnitType.ADET, "TL");
+        // İşçilikler
+        addLabor("Kesim İşçiliği", 250, ProductDefinition.UnitType.PLAKA);  // Plaka başına 250 TL
+        addLabor("CNC (Dakika)", 27, ProductDefinition.UnitType.DAKIKA);
+        addLabor("Zimpara İşçiliği", 60, ProductDefinition.UnitType.M2);
+        addLabor("Paletleme İşçiliği", 25, ProductDefinition.UnitType.M2);
+        addLabor("Tutkal İşçiliği", 70, ProductDefinition.UnitType.M2);
+        addLabor("Basım İşçiliği", 350, ProductDefinition.UnitType.M2);
+        addLabor("Ambalaj", 25, ProductDefinition.UnitType.M2);
+        addLabor("Nakliye", 100, ProductDefinition.UnitType.ADET);
     }
 
     public void addMaterial(String name, double price, ProductDefinition.UnitType unit, String currency) {
         ProductDefinition.MaterialDefinition material = new ProductDefinition.MaterialDefinition(name, price, unit, currency);
         this.materials.add(material);
     }
+    public void addMaterial(String name, double price, ProductDefinition.UnitType unit, String currency, double multiplier) {
+        ProductDefinition.MaterialDefinition material = new ProductDefinition.MaterialDefinition(name, price, unit, currency);
+        material.setMultiplier(multiplier);
+        this.materials.add(material);
+    }
+
+    public void addLabor(String name, double price, ProductDefinition.UnitType unit) {
+        ProductDefinition.LaborDefinition labor = new ProductDefinition.LaborDefinition(name, price, unit);
+        this.labors.add(labor);
+    }
 
     public void addLabor(String name, double price, ProductDefinition.UnitType unit, String currency) {
-        ProductDefinition.LaborDefinition labor = new ProductDefinition.LaborDefinition(name, price, unit, currency);
+        ProductDefinition.LaborDefinition labor = new ProductDefinition.LaborDefinition(name, price, unit);
+        labor.setCurrency(currency);
         this.labors.add(labor);
+    }
+
+    public ProductDefinition.CostDefinition getDefinitionById(String id) {
+        ProductDefinition.CostDefinition material = materials.stream()
+                .filter(m -> m.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+
+        if (material != null) {
+            return material;
+        }
+
+        return labors.stream()
+                .filter(l -> l.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
     public ArrayList<ProductDefinition.MaterialDefinition> getMaterials() {

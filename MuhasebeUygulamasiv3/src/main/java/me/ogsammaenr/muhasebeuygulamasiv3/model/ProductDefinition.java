@@ -1,7 +1,8 @@
 package me.ogsammaenr.muhasebeuygulamasiv3.model;
 
 public class ProductDefinition {
-
+    public static String USD = "USD";
+    public static String TL = "TL";
 
     // ATA SINIF
     public static abstract class CostDefinition {
@@ -15,6 +16,7 @@ public class ProductDefinition {
             this.name = name;
             this.basePrice = price;
             this.unitType = unit;
+            this.currency = "TL"; // Varsayılan olarak TL
         }
 
         public String getId() {
@@ -39,49 +41,48 @@ public class ProductDefinition {
 
     // Malzemeler
     public static class MaterialDefinition extends CostDefinition {
-        private double wasteRate;
-        private String currency;
+        private double multiplier;  // Maliyet hesaplamasında kullanılacak çarpan (örneğin, atık oranı)
+        private String currency;    // "TL", "USD"
 
         public MaterialDefinition(String name, double price, UnitType unit) {
             super(name, price, unit);
-            this.wasteRate = 0.0;
+            this.multiplier = 1.0;
             this.currency = "TL"; // Varsayılan olarak TL
         }
 
         public MaterialDefinition(String name, double price, UnitType unit, String currency) {
             super(name, price, unit);
-            this.wasteRate = 0.0;
+            this.multiplier = 1.0;
             this.currency = currency;
         }
 
-        public void setWasteRate(double wasteRate) {
-            this.wasteRate = wasteRate;
+        public void setMultiplier(double multiplier) {
+            this.multiplier = multiplier;
         }
-
-        public double getWasteRate() {
-            return wasteRate;
+        public double getMultiplier() {
+            return multiplier;
         }
     }
 
     // İşçilikler
     public static class LaborDefinition extends CostDefinition {
-        private String currency;
+        private String currency;  // "TL", "USD"
+
         public LaborDefinition(String name, double price, UnitType unit) {
             super(name, price, unit);
             this.currency = "TL"; // Varsayılan olarak TL
         }
 
-        public LaborDefinition(String name, double price, UnitType unit, String currency) {
-            super(name, price, unit);
+        public void setCurrency(String currency) {
             this.currency = currency;
         }
     }
 
     public enum UnitType {
         M2,
-        ADET,
         DAKIKA,
         PLAKA,
+        ADET,
         KG
     }
 }

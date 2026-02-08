@@ -17,392 +17,342 @@ import java.net.URL;
 import java.util.*;
 
 public class AddProductController implements Initializable {
-    @FXML
-    private TextField tfCompanyName,
-            tfModelName,
-            tfDollarRate;
 
-    @FXML
-    private Label lblTotalM2,
-            lblUnitPrice,
-            lblTotalPrice,
-            lblMaterialM2,
-            lblMaterialTotal,
-            lblLaborM2,
-            lblLaborTotal,
-            lblProfitRate,
-            lblProfitM2,
-            lblProfitTotal,
-            lbCncTime;
+    // === FXML ELEMENTS ===
+    @FXML private TextField tfCompanyName;
+    @FXML private TextField tfModelName;
+    @FXML private VBox vbMdfDimensions;
+    @FXML private Button btnAddDimension;
+    @FXML private Label lblTotalM2;
+    @FXML private Label lbCncTime;
+    @FXML private TextField tfDollarRate;
+    @FXML private VBox vbMaterials;
+    @FXML private VBox vbLabor;
+    @FXML private Label lblUnitPrice;
+    @FXML private Label lblTotalPrice;
+    @FXML private Label lblMaterialM2;
+    @FXML private Label lblMaterialTotal;
+    @FXML private Label lblLaborM2;
+    @FXML private Label lblLaborTotal;
+    @FXML private Label lblProfitRate;
+    @FXML private Label lblProfitM2;
+    @FXML private Label lblProfitTotal;
+    @FXML private Button btnSave;
+    @FXML private Button btnCancel;
+    @FXML private Button btnAddMaterial;
+    @FXML private Button btnAddLabor;
 
-    @FXML
-    private VBox vbMdfDimensions,
-            vbMaterials,
-            vbLabor;
-
-    @FXML
-    private Button btnAddDimension,
-            btnSave,
-            btnCancel;
-
-    private MainController mainController;
+    // === MERKEZI VERİ YÖNETİMİ ===
+    private HashMap<String, Double> mdfMap = new HashMap<>();  // "MDF 08" -> 0.5 (m²)
     private DefinitionManager definitionManager;
+    private List<MdfDimensionItemController> mdfControllers = new ArrayList<>();
+    private MainController mainController;  // Dönüş için referans
+
+    // === HESAPLANAN VERİLER (SAĞ TARAF) ===
+    private double totalM2 = 0;
+    private double totalCncTime = 0;
+    private double totalMaterialCost = 0;
+    private double totalLaborCost = 0;
+    private double totalCost = 0;
+    private double dollarRate = 40.0; // varsayılan
+
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         definitionManager = DefinitionManager.getInstance();
 
-        btnCancel.setOnAction(event -> handleCancel());
-        btnSave.setOnAction(event -> handleSave());
-        btnAddDimension.setOnAction(event -> handleAddDimension());
+        // Ölçü ekleme butonu
+        btnAddDimension.setOnAction(event -> addMdfDimension());
 
-        // Definition'ları yükleme işlemini gecikmeli yap
-        javafx.application.Platform.runLater(() -> {
+        // Hammadde ekle butonu
+        btnAddMaterial.setOnAction(event -> generateMaterialCostItems());
 
-            ProductDefinition.MaterialDefinition pvc = definitionManager.getMaterialByName("PVC");
-                addMaterialRowFromDefinition(pvc);
+        // İşçilik ekle butonu
+        btnAddLabor.setOnAction(event -> generateLaborCostItems());
 
-            ProductDefinition.LaborDefinition kesim = definitionManager.getLaborByName("Kesim (Plaka)");
-                addLaborRowFromDefinition(kesim);
-
-            ProductDefinition.LaborDefinition cnc = definitionManager.getLaborByName("CNC (Dakika)");
-                addLaborRowFromDefinition(cnc);
-
+        // Dolar kuru değişikliğini dinle
+        tfDollarRate.textProperty().addListener((obs, oldVal, newVal) -> {
+            try {
+                dollarRate = Double.parseDouble(newVal.replace(",", ".").isEmpty() ? "40" : newVal.replace(",", "."));
+                updateAllCosts();
+                // Dolar kuru değişince kalemlerin fiyatlarını da güncelle
+                generateMaterialCostItems();
+                generateLaborCostItems();
+            } catch (NumberFormatException e) {
+                dollarRate = 40.0;
+            }
         });
 
-        // İlk ölçü satırını ekle
-        javafx.application.Platform.runLater(this::addDimensionRow);
-    }
-
-
-    /**
-     * MaterialDefinition kullanarak otomatik olarak hammadde satırı eklenir
-     * @param materialDef Eklenecek MaterialDefinition nesnesi
-     */
-    public void addMaterialRowFromDefinition(ProductDefinition.MaterialDefinition materialDef) {
-        if (materialDef == null) {
-            System.err.println("MaterialDefinition null olarak geldi");
-            return;
-        }
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/me/ogsammaenr/muhasebeuygulamasiv3/cost-item.fxml"));
-
-            // Controller'ı oluştur ve loader'a sağla
-            CostItemController itemController = new CostItemController();
-            loader.setController(itemController);
-
-            Node costItem = loader.load();
-
-
-            itemController.setParentController(this);
-            itemController.setParentContainer(vbMaterials);
-            itemController.setCostType("Hammadde");
-
-            // Definition'dan formu doldur
-            itemController.populateFromMaterialDefinition(materialDef);
-
-            // Root node'a controller referansını kaydet
-            costItem.setUserData(itemController);
-
-            vbMaterials.getChildren().add(costItem);
-            updateCostCalculations();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("Hammadde item yüklenemedi: " + e.getMessage());
-        }
+        tfDollarRate.setText("40.00");
     }
 
     /**
-     * LaborDefinition kullanarak otomatik olarak işçilik satırı eklenir
-     * @param laborDef Eklenecek LaborDefinition nesnesi
+     * MainController'ı ayarla (FXML loader'dan sonra çağrılır)
      */
-    public void addLaborRowFromDefinition(ProductDefinition.LaborDefinition laborDef) {
-        if (laborDef == null) {
-            System.err.println("LaborDefinition null olarak geldi");
-            return;
-        }
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/me/ogsammaenr/muhasebeuygulamasiv3/cost-item.fxml"));
-
-            // Controller'ı oluştur ve loader'a sağla
-            CostItemController itemController = new CostItemController();
-            loader.setController(itemController);
-
-            Node costItem = loader.load();
-
-
-            itemController.setParentController(this);
-            itemController.setParentContainer(vbLabor);
-            itemController.setCostType("İşçilik");
-
-            // Definition'dan formu doldur
-            itemController.populateFromLaborDefinition(laborDef);
-
-            // Root node'a controller referansını kaydet
-            costItem.setUserData(itemController);
-
-            vbLabor.getChildren().add(costItem);
-            updateCostCalculations();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("İşçilik item yüklenemedi: " + e.getMessage());
-        }
-    }
-
-    // Genel cost row ekleme metodu
-    private void addCostRow(VBox container, String costType) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/me/ogsammaenr/muhasebeuygulamasiv3/cost-item.fxml"));
-
-            // Controller'ı oluştur ve loader'a sağla
-            CostItemController itemController = new CostItemController();
-            loader.setController(itemController);
-
-            Node costItem = loader.load();
-
-            itemController.setParentController(this);
-            itemController.setParentContainer(container);
-            itemController.setCostType(costType);
-
-            // Root node'a controller referansını kaydet
-            costItem.setUserData(itemController);
-
-            container.getChildren().add(costItem);
-            updateCostCalculations();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println(costType + " item yüklenemedi: " + e.getMessage());
-        }
-    }
-
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
 
-    private void addDimensionRow() {
+    /**
+     * Yeni MDF ölçüsü için item ekle
+     */
+    private void addMdfDimension() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/me/ogsammaenr/muhasebeuygulamasiv3/mdf-dimension-item.fxml"));
+            Node itemNode = loader.load();
+            MdfDimensionItemController controller = loader.getController();
 
-            // Controller'ı oluştur ve loader'a sağla
-            MdfDimensionItemController itemController = new MdfDimensionItemController();
-            loader.setController(itemController);
+            // Veri değiştiğinde callback
+            controller.setOnDataChanged(this::onMdfDataChanged);
 
-            Node dimensionItem = loader.load();
+            mdfControllers.add(controller);
+            vbMdfDimensions.getChildren().add(itemNode);
 
-            itemController.setParentController(this);
-            itemController.setParentContainer(vbMdfDimensions);
+            // Sil butonunu uygun hale getir
+            setupDeleteButton(controller, itemNode);
 
-            // Root node'a controller referansını kaydet
-            dimensionItem.setUserData(itemController);
-
-            vbMdfDimensions.getChildren().add(dimensionItem);
-            updateTotalM2();
-            updateTotalCncTime();
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("MDF ölçü item yüklenemedi: " + e.getMessage());
         }
-    }
-
-    private void handleAddDimension() {
-        addDimensionRow();
-    }
-
-    protected void updateTotalM2() {
-        double totalM2 = 0.0;
-
-        for (Node node : vbMdfDimensions.getChildren()) {
-            // Her öğeden alanı al ve topla
-            Object userData = node.getUserData();
-            if (userData instanceof MdfDimensionItemController) {
-                MdfDimensionItemController itemController = (MdfDimensionItemController) userData;
-                totalM2 += itemController.getArea();
-            }
-        }
-
-        lblTotalM2.setText(String.format("%.2f m²", totalM2));
-    }
-
-    protected void updateTotalCncTime() {
-        double totalCncTime = 0.0;
-
-        for (Node node : vbMdfDimensions.getChildren()) {
-            // Her öğeden CNC süresini al ve topla
-            Object userData = node.getUserData();
-            if (userData instanceof MdfDimensionItemController) {
-                MdfDimensionItemController itemController = (MdfDimensionItemController) userData;
-                totalCncTime += itemController.getCncTime();
-            }
-        }
-
-        lbCncTime.setText(String.format("%.1f", totalCncTime));
     }
 
     /**
-     * MDF ölçüleri değiştiğinde hammadde listesini günceller
-     * Tüm MDF ölçülerinden hangi kalınlıkların kullanıldığını tespit eder ve
-     * karşılık gelen MDF hammaddelerini otomatik olarak ekler/günceller
+     * MDF öğesi için sil butonu ayarla
      */
-    public void updateMaterialFromDimension() {
-        // Tüm MDF ölçülerinden hangi kalınlıkların kullanıldığını ve toplam m²'yi hesapla
-        Map<String, Double> mdfThicknessMap = new HashMap<>();
-
-        for (Node node : vbMdfDimensions.getChildren()) {
-            Object userData = node.getUserData();
-            if (userData instanceof MdfDimensionItemController) {
-                MdfDimensionItemController itemController = (MdfDimensionItemController) userData;
-                double area = itemController.getArea();
-                String thickness = itemController.getThickness();
-
-                // Kalınlık stringini "mm" cinsinden al (örn: "18 mm" -> "18")
-                String thicknessNum = thickness.replaceAll(" mm", "");
-
-                // Padding yap: "8" -> "08", "18" -> "18"
-                if (thicknessNum.length() == 1) {
-                    thicknessNum = "0" + thicknessNum;
-                }
-
-                String mdfKey = "MDF " + thicknessNum;
-
-                // Aynı kalınlıktan birden fazla varsa toplam et
-                mdfThicknessMap.put(mdfKey, mdfThicknessMap.getOrDefault(mdfKey, 0.0) + area);
-            }
+    private void setupDeleteButton(MdfDimensionItemController controller, Node itemNode) {
+        Button deleteBtn = (Button) itemNode.lookup("#btnDelete");
+        if (deleteBtn != null) {
+            deleteBtn.setOnAction(event -> {
+                vbMdfDimensions.getChildren().remove(itemNode);
+                mdfControllers.remove(controller);
+                onMdfDataChanged();
+            });
         }
-
-        // Şu anda hammadde listesindeki tüm MDF'leri takip et
-        Set<String> existingMdfMaterials = new HashSet<>();
-        for (Node node : vbMaterials.getChildren()) {
-            Object userData = node.getUserData();
-            if (userData instanceof CostItemController) {
-                CostItemController itemController = (CostItemController) userData;
-                String costName = itemController.getCostName();
-                if (costName.startsWith("MDF")) {
-                    existingMdfMaterials.add(costName);
-                }
-            }
-        }
-
-        // Hammadde listesindeki mevcut MDF'leri güncelle ve silinecekleri belirle
-        Set<String> mdfToRemove = new HashSet<>(existingMdfMaterials);
-        for (Node node : vbMaterials.getChildren()) {
-            Object userData = node.getUserData();
-            if (userData instanceof CostItemController) {
-                CostItemController itemController = (CostItemController) userData;
-                String costName = itemController.getCostName();
-
-                // Bu MDF hala kullanılıyor mu?
-                if (mdfThicknessMap.containsKey(costName)) {
-                    // Evet, miktarını güncelle
-                    double multiplier = 1.12 / 5.88; // kayıplar için çarpan
-                    itemController.setQuantity(mdfThicknessMap.get(costName) * multiplier);
-                    mdfToRemove.remove(costName);
-                    mdfThicknessMap.remove(costName); // Eklediğimiz olarak işaretle
-                }
-            }
-        }
-
-        // Artık kullanılmayan MDF'leri sil
-        Iterator<Node> iterator = vbMaterials.getChildren().iterator();
-        while (iterator.hasNext()) {
-            Node node = iterator.next();
-            Object userData = node.getUserData();
-            if (userData instanceof CostItemController) {
-                CostItemController itemController = (CostItemController) userData;
-                if (mdfToRemove.contains(itemController.getCostName())) {
-                    iterator.remove();
-                }
-            }
-        }
-
-        // Yeni MDF'leri ekle (mdf² > 0 olanlar)
-        for (String mdfName : mdfThicknessMap.keySet()) {
-            double area = mdfThicknessMap.get(mdfName);
-            if (area > 0) {
-                ProductDefinition.MaterialDefinition mdfDef = definitionManager.getMaterialByName(mdfName);
-                if (mdfDef != null) {
-                    addMaterialRowFromDefinition(mdfDef);
-                    // Eklenen MDF'nin miktarını ayarla
-                    if (!vbMaterials.getChildren().isEmpty()) {
-                        Node lastNode = vbMaterials.getChildren().get(vbMaterials.getChildren().size() - 1);
-                        Object userData = lastNode.getUserData();
-                        if (userData instanceof CostItemController) {
-                            CostItemController itemController = (CostItemController) userData;
-                            double multiplier = 1.12 / 5.88; // kayıplar için çarpan
-
-                            itemController.setQuantity(area * multiplier);
-                        }
-                    }
-                }
-            }
-        }
-
-        // Maliyet hesaplamalarını güncelle
-        updateCostCalculations();
     }
 
-    // Maliyet hesaplamalarını güncelle
-    public void updateCostCalculations() {
-        double totalM2 = Double.parseDouble(lblTotalM2.getText().replace(" m²", "").replace(",", "."));
+    /**
+     * MDF verisi değiştiğinde çağrıl
+     * HashMapi güncelle ve maliyetleri yeniden hesapla
+     */
+    private void onMdfDataChanged() {
+        // HashMap'i güncelle
+        mdfMap.clear();
+        totalM2 = 0;
+        totalCncTime = 0;
 
-        double materialTotalCost = 0.0;
-        double materialM2Cost = 0.0;
-        double laborTotalCost = 0.0;
-        double laborM2Cost = 0.0;
+        for (MdfDimensionItemController controller : mdfControllers) {
+            String mdfType = controller.getMdfType();
+            double area = controller.getArea();
+            double cncTime = controller.getTotalCncTime();
 
-        // Hammadde toplamları hesapla
-        for (Node node : vbMaterials.getChildren()) {
-            Object userData = node.getUserData();
-            if (userData instanceof CostItemController) {
-                CostItemController itemController = (CostItemController) userData;
-                materialTotalCost += itemController.getTotalCost();
-            }
+            mdfMap.put(mdfType, mdfMap.getOrDefault(mdfType, 0.0) + area);
+            totalM2 += area;
+            totalCncTime += cncTime;
         }
 
-        // İşçilik toplamları hesapla
-        for (Node node : vbLabor.getChildren()) {
-            Object userData = node.getUserData();
-            if (userData instanceof CostItemController) {
-                CostItemController itemController = (CostItemController) userData;
-                laborTotalCost += itemController.getTotalCost();
-            }
-        }
+        // UI güncelle
+        updateMdfDisplay();
+        updateAllCosts();
+        generateMaterialCostItems();
+        generateLaborCostItems();
+    }
 
-        // M² başına maliyetleri hesapla
-        if (totalM2 > 0) {
-            materialM2Cost = materialTotalCost / totalM2;
-            laborM2Cost = laborTotalCost / totalM2;
-        }
+    /**
+     * MDF ekranını güncelle (sol taraf)
+     */
+    private void updateMdfDisplay() {
+        lblTotalM2.setText(String.format("%.4f m²", totalM2));
+        lbCncTime.setText(String.format("%.1f dk", totalCncTime));
+    }
 
-        // UI'da güncelle
-        lblMaterialM2.setText(String.format("%.2f ₺", materialM2Cost));
-        lblMaterialTotal.setText(String.format("%.2f ₺", materialTotalCost));
-        lblLaborM2.setText(String.format("%.2f ₺", laborM2Cost));
-        lblLaborTotal.setText(String.format("%.2f ₺", laborTotalCost));
+    /**
+     * Tüm maliyetleri yeniden hesapla ve UI güncellemeleri yap
+     */
+    private void updateAllCosts() {
+        calculateMaterialCosts();
+        calculateLaborCosts();
 
-        // Birim fiyat ve toplam fiyat
-        double unitPrice = materialM2Cost + laborM2Cost;
-        double totalPrice = materialTotalCost + laborTotalCost;
+        double totalCost = totalMaterialCost + totalLaborCost;
 
-        lblUnitPrice.setText(String.format("%.2f ₺", unitPrice));
-        lblTotalPrice.setText(String.format("%.2f ₺", totalPrice));
+        // Birim fiyatlar
+        double unitMaterialCost = totalM2 > 0 ? totalMaterialCost / totalM2 : 0;
+        double unitLaborCost = totalM2 > 0 ? totalLaborCost / totalM2 : 0;
+        double unitTotalCost = totalM2 > 0 ? totalCost / totalM2 : 0;
 
-        // Kar hesapla (ileri sürümlerde kar oranı ve miktarı eklenecek)
+        // Sağ taraf güncelleme
+        lblMaterialM2.setText(String.format("%.2f ₺", unitMaterialCost));
+        lblMaterialTotal.setText(String.format("%.2f ₺", totalMaterialCost));
+
+        lblLaborM2.setText(String.format("%.2f ₺", unitLaborCost));
+        lblLaborTotal.setText(String.format("%.2f ₺", totalLaborCost));
+
+        lblUnitPrice.setText(String.format("%.2f ₺", unitTotalCost));
+        lblTotalPrice.setText(String.format("%.2f ₺", totalCost));
+
+        // KAR HESAPLAMASI (şimdilik 0 olarak göster, daha sonra kar oranı eklenecek)
         lblProfitRate.setText("0,00 %");
         lblProfitM2.setText("0,00 ₺");
         lblProfitTotal.setText("0,00 ₺");
     }
 
-    private void handleCancel() {
-        if (mainController != null) {
-            mainController.loadDashboard();
+    /**
+     * HAMMADDE MALİYETLERİNİ HESAPLA
+     * Formül: (MDF'ye özel alan VEYA tüm alan) * birim fiyat * çarpan * dolar kuru
+     */
+    private void calculateMaterialCosts() {
+        totalMaterialCost = 0;
+
+        for (ProductDefinition.MaterialDefinition material : definitionManager.getMaterials()) {
+            double area = 0;
+            String materialName = material.getName();
+
+            // MDF ise kendi m²'sini, diğer ise toplam m²'yi kullan
+            if (materialName.startsWith("MDF")) {
+                area = mdfMap.getOrDefault(materialName, 0.0);
+            } else {
+                area = totalM2;
+            }
+
+            // Maliyet hesapla: alan * birim fiyat * çarpan * dolar kuru
+            double basePrice = material.getBasePrice();
+            double multiplier = material.getMultiplier();
+
+            if ("USD".equalsIgnoreCase(material.getCurrency())) {
+                basePrice *= dollarRate;
+            }
+
+            double cost = area * basePrice * multiplier;
+            totalMaterialCost += cost;
         }
     }
 
-    private void handleSave() {
-        // TODO: Ürün kaydetme işlemleri yapılacak
-        System.out.println("Ürün kaydedilecek");
-        handleCancel();
+    /**
+     * İŞÇİLİK MALİYETLERİNİ HESAPLA
+     * Formül: birim fiyat * (unitType uygun miktarı)
+     * - M2: toplam m²
+     * - DAKIKA: toplam CNC süresi
+     * - Diğerleri: 1 (sabit)
+     */
+    private void calculateLaborCosts() {
+        totalLaborCost = 0;
+
+        for (ProductDefinition.LaborDefinition labor : definitionManager.getLabors()) {
+            double quantity = 0;
+            ProductDefinition.UnitType unitType = labor.getUnitType();
+
+            // UnitType'a göre miktar belirle
+            if (unitType == ProductDefinition.UnitType.M2) {
+                quantity = totalM2;
+            } else if (unitType == ProductDefinition.UnitType.DAKIKA) {
+                quantity = totalCncTime;
+            } else if (unitType == ProductDefinition.UnitType.PLAKA ||
+                       unitType == ProductDefinition.UnitType.ADET ||
+                       unitType == ProductDefinition.UnitType.KG) {
+                quantity = 1; // Sabit
+            }
+
+            // Maliyet hesapla
+            double basePrice = labor.getBasePrice();
+
+            if ("USD".equalsIgnoreCase(labor.getCurrency())) {
+                basePrice *= dollarRate;
+            }
+
+            double cost = quantity * basePrice;
+            totalLaborCost += cost;
+        }
+    }
+
+    /**
+     * Hammadde öğelerini sadece maliyeti olanlar için oluştur
+     */
+    private void generateMaterialCostItems() {
+        vbMaterials.getChildren().clear();
+        for (ProductDefinition.MaterialDefinition material : definitionManager.getMaterials()) {
+            double cost = calculateMaterialItemCost(material);
+            // Sadece maliyeti 0'dan büyük olan (kullanılan) maddeleri göster
+            if (cost > 0) {
+                VBox itemBox = createCostItemDisplay(
+                        material.getName(),
+                        cost,
+                        material.getUnitType().toString()
+                );
+                vbMaterials.getChildren().add(itemBox);
+            }
+        }
+    }
+
+    /**
+     * İşçilik öğelerini dinamik olarak oluştur ve görüntüle
+     */
+    private void generateLaborCostItems() {
+        vbLabor.getChildren().clear();
+
+        for (ProductDefinition.LaborDefinition labor : definitionManager.getLabors()) {
+            double quantity = 0;
+            ProductDefinition.UnitType unitType = labor.getUnitType();
+
+            if (unitType == ProductDefinition.UnitType.M2) {
+                quantity = totalM2;
+            } else if (unitType == ProductDefinition.UnitType.DAKIKA) {
+                quantity = totalCncTime;
+            } else {
+                quantity = 1;
+            }
+
+            double cost = quantity * labor.getBasePrice();
+            if ("USD".equalsIgnoreCase(labor.getCurrency())) {
+                cost = quantity * labor.getBasePrice() * dollarRate;
+            }
+
+            // Sadece maliyeti olan işçilikleri göster
+            if (cost > 0) {
+                VBox itemBox = createCostItemDisplay(
+                        labor.getName(),
+                        cost,
+                        labor.getUnitType().toString()
+                );
+                vbLabor.getChildren().add(itemBox);
+            }
+        }
+    }
+
+    /**
+     * Belirli bir malzemenin maliyetini hesapla
+     */
+    private double calculateMaterialItemCost(ProductDefinition.MaterialDefinition material) {
+        double area = 0;
+
+        if (material.getName().startsWith("MDF")) {
+            area = mdfMap.getOrDefault(material.getName(), 0.0);
+        } else {
+            area = totalM2;
+        }
+
+        double basePrice = material.getBasePrice();
+        double multiplier = material.getMultiplier();
+
+        if ("USD".equalsIgnoreCase(material.getCurrency())) {
+            basePrice *= dollarRate;
+        }
+
+        return area * basePrice * multiplier;
+    }
+
+    /**
+     * Maliyet öğesini görüntülemek için VBox oluştur
+     */
+    private VBox createCostItemDisplay(String name, double cost, String unit) {
+        VBox itemBox = new VBox();
+        itemBox.setStyle("-fx-border-color: #e0e0e0; -fx-border-radius: 4; -fx-padding: 8;");
+
+        Label nameLabel = new Label(name);
+        nameLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 11;");
+
+        Label costLabel = new Label(String.format("%.2f ₺", cost));
+        costLabel.setStyle("-fx-text-fill: #2196f3; -fx-font-size: 12; -fx-font-weight: bold;");
+
+        itemBox.getChildren().addAll(nameLabel, costLabel);
+        return itemBox;
     }
 }
 

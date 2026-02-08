@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import java.lang.String?>
 
-<VBox fx:id="vbRoot" spacing="4.0" styleClass="mdf-dimension-item" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="vbRoot" spacing="4.0" styleClass="mdf-dimension-item" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.ogsammaenr.muhasebeuygulamasiv3.controller.MdfDimensionItemController">
     <padding>
         <Insets bottom="6.0" left="8.0" right="8.0" top="6.0" />
     </padding>
