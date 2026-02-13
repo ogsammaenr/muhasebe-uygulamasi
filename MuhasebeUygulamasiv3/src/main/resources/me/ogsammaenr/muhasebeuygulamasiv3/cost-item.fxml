@@ -22,13 +22,13 @@
 
     <!-- Birim Fiyat -->
     <VBox spacing="4.0" prefWidth="150">
-        <Label styleClass="form-label" text="Birim Fiyat (TL)" />
+        <Label fx:id="lblUnitPrice" styleClass="form-label" text="Birim Fiyat " />
         <TextField fx:id="tfUnitPrice" promptText="Fiyat" styleClass="form-input" />
     </VBox>
 
     <!-- Miktar/Süre -->
     <VBox spacing="4.0" prefWidth="120">
-        <Label styleClass="form-label" text="Birim" fx:id="lblQuantityType"/>
+        <Label fx:id="lblQuantityType" styleClass="form-label" text="Birim" />
         <TextField fx:id="tfQuantity" promptText="0" styleClass="form-input" />
     </VBox>
 

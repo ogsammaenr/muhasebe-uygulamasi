@@ -33,6 +33,9 @@ public class ProductDefinition {
         public String getCurrency() {
             return currency;
         }
+        public void setCurrency(String currency) {
+            this.currency = currency;
+        }
 
         public String getName() {
             return name;
@@ -42,18 +45,16 @@ public class ProductDefinition {
     // Malzemeler
     public static class MaterialDefinition extends CostDefinition {
         private double multiplier;  // Maliyet hesaplamasında kullanılacak çarpan (örneğin, atık oranı)
-        private String currency;    // "TL", "USD"
 
         public MaterialDefinition(String name, double price, UnitType unit) {
             super(name, price, unit);
             this.multiplier = 1.0;
-            this.currency = "TL"; // Varsayılan olarak TL
         }
 
         public MaterialDefinition(String name, double price, UnitType unit, String currency) {
             super(name, price, unit);
             this.multiplier = 1.0;
-            this.currency = currency;
+            super.setCurrency(currency);
         }
 
         public void setMultiplier(double multiplier) {
@@ -66,15 +67,13 @@ public class ProductDefinition {
 
     // İşçilikler
     public static class LaborDefinition extends CostDefinition {
-        private String currency;  // "TL", "USD"
 
         public LaborDefinition(String name, double price, UnitType unit) {
             super(name, price, unit);
-            this.currency = "TL"; // Varsayılan olarak TL
         }
 
         public void setCurrency(String currency) {
-            this.currency = currency;
+            super.setCurrency(currency);
         }
     }
 

@@ -17,6 +17,7 @@ public class CostItemController implements Initializable {
     @FXML private TextField tfQuantity;
     @FXML private Label lblQuantityType;
     @FXML private Label lblTotal;
+    @FXML private Label lblUnitPrice;
 
     private double quantity;
     private double multiplier = 1.0;
@@ -35,17 +36,13 @@ public class CostItemController implements Initializable {
         tfUnitPrice.textProperty().addListener((obs, oldVal, newVal) -> {
             calculateTotal();
             if (onPriceChangedListener != null) {
-                onPriceChangedListener.run(); // Ana sayfaya haber ver
+                onPriceChangedListener.run();
             }
         });
     }
 
     public void setUnitPriceEditable(boolean bool) {
         tfUnitPrice.setEditable(bool);
-        if (bool) {
-            // Düzenlenebilir olanların rengini hafif belli edelim
-            tfUnitPrice.setStyle("-fx-text-fill: #000; -fx-background-color: #fff; -fx-border-color: #ccc;");
-        }
     }
 
     public void setOnPriceChanged(Runnable listener) {
@@ -74,7 +71,8 @@ public class CostItemController implements Initializable {
 
         // Birim Fiyatı Belirle (Varsayılan)
         double basePrice = definition.getBasePrice();
-        if ("USD".equalsIgnoreCase(definition.getCurrency())) {
+        String currency = definition.getCurrency();
+        if ("USD".equalsIgnoreCase(currency)) {
             basePrice *= dollarRate;
         }
         double totalCost = basePrice * multiplier * quantity;
@@ -83,6 +81,7 @@ public class CostItemController implements Initializable {
         tfCostName.setText(definition.getName());
         lblQuantityType.setText(definition.getUnitType().toString());
         tfQuantity.setText(String.format("%.4f", quantity));
+        lblUnitPrice.setText(lblUnitPrice.getText() + " (" + currency + ")");
 
         // Fiyatı kutuya yaz (Bu tetikleme listener'ı çalıştırıp calculateTotal'i çağıracak)
         tfUnitPrice.setText(String.format("%.2f", basePrice).replace(",", "."));

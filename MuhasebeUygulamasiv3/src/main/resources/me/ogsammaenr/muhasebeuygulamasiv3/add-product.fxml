@@ -24,26 +24,27 @@
             <Label styleClass="product-page-subtitle" text="Ürün bilgilerini aşağıya giriniz" />
         </VBox>
 
-        <!-- Ürün Bilgileri (Firma, Model Adı) -->
-        <VBox spacing="12.0" styleClass="product-info-container">
-            <Label styleClass="section-box-title" text="Ürün Bilgileri" />
-
-            <VBox spacing="6.0">
-                <Label styleClass="form-label" text="Firma Adı" />
-                <TextField fx:id="tfCompanyName" promptText="Firma adı giriniz..." styleClass="form-input" />
-            </VBox>
-
-            <VBox spacing="6.0">
-                <Label styleClass="form-label" text="Model Adı" />
-                <TextField fx:id="tfModelName" promptText="Model adı giriniz..." styleClass="form-input" />
-            </VBox>
-        </VBox>
-
         <!-- Ana İçerik: Sol, Orta, Sağ -->
         <HBox spacing="2.0" VBox.vgrow="ALWAYS" style="-fx-padding: 0 16 16 1;">
 
             <!-- === SOL TARAF: MDF ÖLÇÜLERI VE DOLAR KURU === -->
             <VBox spacing="8.0" styleClass="product-left-section" HBox.hgrow="ALWAYS" style="-fx-pref-width: 250;">
+
+                <!-- Ürün Bilgileri (Firma, Model Adı) -->
+                <VBox spacing="12.0" styleClass="input-group-container">
+                    <Label styleClass="section-box-title" text="Ürün Bilgileri" />
+
+                    <VBox spacing="6.0">
+                        <Label styleClass="form-label" text="Firma Adı" />
+                        <TextField fx:id="tfCompanyName" promptText="Firma adı giriniz..." styleClass="form-input" />
+                    </VBox>
+
+                    <VBox spacing="6.0">
+                        <Label styleClass="form-label" text="Model Adı" />
+                        <TextField fx:id="tfModelName" promptText="Model adı giriniz..." styleClass="form-input" />
+                    </VBox>
+                </VBox>
+
                 <!-- MDF Ölçüleri Giriş Kartı -->
                 <VBox spacing="8.0" styleClass="input-group-container">
                     <Label styleClass="section-box-title" text="MDF Ölçüleri" />

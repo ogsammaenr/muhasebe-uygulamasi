@@ -276,13 +276,13 @@ public class AddProductController implements Initializable {
             boolean isEditable = false;
 
             if (material.getName().startsWith("MDF")) {
-                area = mdfMap.getOrDefault(material.getName(), 0.0);
+                area = mdfMap.getOrDefault(material.getName(), -1.0);
             } else {
                 area = totalM2;
-                isEditable = true; // MDF dışındakiler (Tutkal, Boya vb.) düzenlenebilir olsun
+                isEditable = true;
             }
 
-            if (area > 0) {
+            if (area >= 0) {
                 // Controller'ı oluştur ve listeye ekle
                 createAndAddCostItem(material, area, isEditable, vbMaterials, materialControllers);
             }
@@ -306,10 +306,8 @@ public class AddProductController implements Initializable {
                 default -> quantity = 1;
             }
 
-            if (quantity > 0) {
                 // İşçiliklerin hepsi düzenlenebilir olsun
                 createAndAddCostItem(labor, quantity, true, vbLabor, laborControllers);
-            }
         }
         recalculateTotalsFromUI();
     }
